@@ -55,6 +55,12 @@
             </key>
             <one-to-many class="model.TbNoticeInteraction" />
         </set>
+        <set name="tbMeetingUsers" inverse="false">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="model.TbMeetingUser" />
+        </set>
         <set name="tbAdmins" inverse="true">
             <key>
                 <column name="user_id" not-null="true" unique="true" />

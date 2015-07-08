@@ -2,6 +2,8 @@ package model;
 
 import java.sql.Time;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * TbMeeting entity. @author MyEclipse Persistence Tools
@@ -14,13 +16,15 @@ public class TbMeeting implements java.io.Serializable {
 	private Integer id;
 	private TbUser tbUser;
 	private TbMeetingRoom tbMeetingRoom;
+	private TbMeetingState tbMeetingState;
 	private String title;
 	private Date date;
 	private Time startTime;
 	private Integer duringTime;
 	private Integer totalNumber;
-	private Integer state;
+	private String description;
 	private String reservedWord;
+	private Set tbMeetingUsers = new HashSet(0);
 
 	// Constructors
 
@@ -29,29 +33,34 @@ public class TbMeeting implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public TbMeeting(TbUser tbUser, String title, Date date,
-			Integer duringTime, Integer totalNumber, Integer state) {
+	public TbMeeting(TbUser tbUser, TbMeetingState tbMeetingState,
+			String title, Date date, Integer duringTime, Integer totalNumber,
+			String description) {
 		this.tbUser = tbUser;
+		this.tbMeetingState = tbMeetingState;
 		this.title = title;
 		this.date = date;
 		this.duringTime = duringTime;
 		this.totalNumber = totalNumber;
-		this.state = state;
+		this.description = description;
 	}
 
 	/** full constructor */
-	public TbMeeting(TbUser tbUser, TbMeetingRoom tbMeetingRoom, String title,
-			Date date, Time startTime, Integer duringTime, Integer totalNumber,
-			Integer state, String reservedWord) {
+	public TbMeeting(TbUser tbUser, TbMeetingRoom tbMeetingRoom,
+			TbMeetingState tbMeetingState, String title, Date date,
+			Time startTime, Integer duringTime, Integer totalNumber,
+			String description, String reservedWord, Set tbMeetingUsers) {
 		this.tbUser = tbUser;
 		this.tbMeetingRoom = tbMeetingRoom;
+		this.tbMeetingState = tbMeetingState;
 		this.title = title;
 		this.date = date;
 		this.startTime = startTime;
 		this.duringTime = duringTime;
 		this.totalNumber = totalNumber;
-		this.state = state;
+		this.description = description;
 		this.reservedWord = reservedWord;
+		this.tbMeetingUsers = tbMeetingUsers;
 	}
 
 	// Property accessors
@@ -78,6 +87,14 @@ public class TbMeeting implements java.io.Serializable {
 
 	public void setTbMeetingRoom(TbMeetingRoom tbMeetingRoom) {
 		this.tbMeetingRoom = tbMeetingRoom;
+	}
+
+	public TbMeetingState getTbMeetingState() {
+		return this.tbMeetingState;
+	}
+
+	public void setTbMeetingState(TbMeetingState tbMeetingState) {
+		this.tbMeetingState = tbMeetingState;
 	}
 
 	public String getTitle() {
@@ -120,12 +137,12 @@ public class TbMeeting implements java.io.Serializable {
 		this.totalNumber = totalNumber;
 	}
 
-	public Integer getState() {
-		return this.state;
+	public String getDescription() {
+		return this.description;
 	}
 
-	public void setState(Integer state) {
-		this.state = state;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getReservedWord() {
@@ -134,6 +151,14 @@ public class TbMeeting implements java.io.Serializable {
 
 	public void setReservedWord(String reservedWord) {
 		this.reservedWord = reservedWord;
+	}
+
+	public Set getTbMeetingUsers() {
+		return this.tbMeetingUsers;
+	}
+
+	public void setTbMeetingUsers(Set tbMeetingUsers) {
+		this.tbMeetingUsers = tbMeetingUsers;
 	}
 
 }
