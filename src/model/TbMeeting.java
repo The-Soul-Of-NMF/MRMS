@@ -11,6 +11,16 @@ import java.util.Set;
 
 public class TbMeeting implements java.io.Serializable {
 
+	public static class State{
+		public static final int WaitingCheck = 1;
+		public static final int WaitingMeetingRoom = 2;
+		public static final int WaitingMeeing = 3;
+		public static final int CheckDenied = 4;
+		public static final int Meeting = 5;
+		public static final int Meeted = 6;
+		
+	}
+	
 	// Fields
 
 	private Integer id;
