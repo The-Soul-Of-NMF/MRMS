@@ -18,6 +18,12 @@
 	<action name="addMeetingRoomAction" class="addMeetingRoomAct">
 			<result name="addsuc">meeting_room_management.jsp</result>
 	</action>
+	<action name="ModifyAction" class="modifyAct">
+			<result name="moditrans">meeting_room_managment_edit.jsp</result>
+	</action>
+	<action name="ModifyMeetingRoomAction" class="modifyMeetingRoomAct">
+			<result name="modisucc">meeting_room_managment_edit.jsp</result>
+	</action>
 	</package>
 	<package name="department" namespace="/department" extends="struts-default">
 	</package>

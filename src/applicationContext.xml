@@ -67,4 +67,19 @@
 	<bean id="addMeetingRoom" class="dao.AddMeetingRoomImpl">
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 	</bean>
+	<bean id="modifyAct" class="action.ModifyAction">
+	</bean>
+	<bean id="modifyMeetingRoomAct" class="action.ModifyMeetingRoomAction">
+		<property name="meetingRoomService" ref="meetingRoomService"></property>
+	</bean>
+	<bean id="meetingRoomService" class="service.ModifyMeetingRoomServiceImpl">
+		<property name="ModifyMeetingRoom" ref="ModifyMeetingRoom"></property>
+		<property name="temp" ref="temp"></property>
+	</bean>
+	<bean id="ModifyMeetingRoom" class="dao.ModifyMeetingRoomImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="temp" class="dao.GetStateById">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
 </beans>

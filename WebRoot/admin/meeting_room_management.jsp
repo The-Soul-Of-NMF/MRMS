@@ -161,6 +161,7 @@
 
 						<thead>
 							<tr>
+								<th class="text-center">id</th>
 								<th class="text-center">门牌号</th>
 								<th class="text-center">容纳人数</th>
 								<th class="text-center">状态</th>
@@ -172,6 +173,7 @@
 						<tbody>
 						<s:iterator value="meetings">
 							<tr>
+								<td class="id"><s:property value="id"/></td>
 								<td><s:property value="doorNumber"/></td>
 								<td><s:property value="personLimit"/></td>
 								<td><s:property value="tbMeetingRoomState.name"/></td>
@@ -179,7 +181,7 @@
 									<a href="#" class="btn btn-link">点击产看具体信息</a>
 								</td>
 								<td >
-									<a href="./meeting_room_managent_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
+								<a  class="btn btn-primary btn-sm" onclick="get_current_id(this)">编辑</a>
 									<a href="#" class="btn btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
 								</td>
 							</tr>
@@ -201,4 +203,11 @@
 <script src="../lib/scripts/jquery-1.11.0.min.js"></script>
 <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/scripts/bootbox.min.js"></script>
+<script>
+function get_current_id(t)
+{
+	var current_id=$(t).parent().siblings(".id").first().text();
+	window.location.href="./ModifyAction?current_id="+current_id;
+	}
+</script>
 </html>

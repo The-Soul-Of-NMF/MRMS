@@ -34,5 +34,7 @@
 		<mapping resource="model/TbNoticeInteraction.hbm.xml"/>
 		<mapping resource="model/TbNoticeType.hbm.xml"/>
 		<mapping resource="model/TbThing.hbm.xml"/>
+		<mapping resource="model/TbMeetingUser.hbm.xml"/>
+		<mapping resource="model/TbMeetingState.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>
