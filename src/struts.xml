@@ -8,7 +8,16 @@
 <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
 <!-- 设定创建Action的工厂类为spring，也就是struts的action交给spring管理 -->
 <constant name="struts.objectFactory" value="spring"></constant>
-	<package name="user" namespace="/user" extends="struts-default">
+	<package name="default" namespace="/" extends="struts-default">
+	<action name="shownoticeAction" class="ShowNotice">
+			<result name="suc">index.jsp</result>
+	</action>
+	<action name="showMeetingRoomAction" class="ShowMeetingRoomAct">
+			<result name="suc">meeting_room_management.jsp</result>
+	</action>
+	<action name="addMeetingRoomAction" class="addMeetingRoomAct">
+			<result name="addsuc">meeting_room_management.jsp</result>
+	</action>
 	</package>
 	<package name="department" namespace="/department" extends="struts-default">
 	</package>

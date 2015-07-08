@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -53,7 +54,7 @@
 					<a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
 						会议室选择
 					</a>
-					<a class="list-group-item" href="../user/notice.jsp">
+					<a class="list-group-item" href='../shownoticeAction'>
 						通知<span class="badge">20</span>
 					</a>
 					<a class="list-group-item" href="../meeting/meeting_info_list.jsp">
@@ -78,7 +79,7 @@
 					<a class="list-group-item" href="../admin/department_management.jsp">
 						部门信息管理
 					</a>
-					<a class="list-group-item active" href="../admin/meeting_room_management.jsp">
+					<a class="list-group-item active" href="showMeetingRoomAction">
 						会议室信息管理
 					</a>
 					<a class="list-group-item" href="../admin/user_management.jsp">
@@ -151,7 +152,7 @@
 								<li class="pull-right">
 
 									<div>
-										<a href="./meeting_room_managent_edit.jsp" class="btn btn-success btn-sm">添加会议室</a>
+										<a href="./meeting_room_managent_add.jsp" class="btn btn-success btn-sm">添加会议室</a>
 									</div>
 								</li>
 							</ul>
@@ -169,10 +170,11 @@
 						</thead>
 
 						<tbody>
+						<s:iterator value="meetings">
 							<tr>
-								<td>101</td>
-								<td>5</td>
-								<td>使用中</td>
+								<td><s:property value="doorNumber"/></td>
+								<td><s:property value="personLimit"/></td>
+								<td><s:property value="tbMeetingRoomState.name"/></td>
 								<td>
 									<a href="#" class="btn btn-link">点击产看具体信息</a>
 								</td>
@@ -181,36 +183,8 @@
 									<a href="#" class="btn btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
 								</td>
 							</tr>
-							<tr>
-								<td>102</td>
-								<td>15</td>
-								<td>空闲</td>
-								<td><a href="#" class="btn btn-link">点击产看具体信息</a></td>
-								<td>
-									<a href="./meeting_room_managent_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
-									<a href="#" class="btn btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
-								</td>
-							</tr>
-							<tr>
-								<td>103</td>
-								<td>25</td>
-								<td>维修中</td>
-								<td><a href="#" class="btn btn-link">点击产看具体信息</a></td>
-								<td>
-									<a href="./meeting_room_managent_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
-									<a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
-								</td>
-							</tr>
-							<tr>
-								<td>104</td>
-								<td>35</td>
-								<td>空闲</td>
-								<td><a href="#" class="btn btn-link">点击产看具体信息</a></td>
-								<td>
-									<a href="./meeting_room_managent_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
-									<a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
-								</td>
-							</tr>
+							
+						</s:iterator>
 						</tbody>
 					</table>
 

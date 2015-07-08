@@ -103,24 +103,24 @@
         <div class="page-header">
             <h3><strong>添加会议室</strong></h3>
         </div>
-        <form class="col-md-8">
+        <form class="col-md-8" action="addMeetingRoomAction" method="post" id="meetingroom">
             <fieldset class="form-horizontal">
                 <legend>填写会议室信息</legend>
                 <div class="form-group">
                     <label for="name" class="col-md-3 control-label">门牌号：</label>
                     <div class="col-md-8">
-                        <input type="text" id="name" placeholder="会议室门牌号" class="form-control" />
+                        <input type="text" name="number" placeholder="会议室门牌号" class="form-control" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="col-md-3 control-label">容纳人数：</label>
+                    <label for="name"  class="col-md-3 control-label">容纳人数：</label>
                     <div class="col-md-8">
-                        <input type="text" id="name" placeholder="可容纳人数" class="form-control" />
+                        <input type="text" name="personlimit" placeholder="可容纳人数" class="form-control" />
                     </div>
                 </div>
             </fieldset>
             <div class="text-center form-group" style="margin-left: 90px;">
-                <button type="button" class="btn btn-success">确定</button>
+                <button type="button" class="btn btn-success" onclick="submit()">确定</button>
                 <button type="button" class="btn btn-default">取消</button>
             </div>
         </form>
@@ -137,4 +137,12 @@
 <script src="../lib/scripts/jquery-1.11.0.min.js"></script>
 <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/scripts/bootbox.min.js"></script>
+<script>
+function submit()
+{
+	
+	$("#meetingroom").submit();
+	
+	}
+</script>
 </html>

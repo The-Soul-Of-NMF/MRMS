@@ -40,5 +40,31 @@
 		<aop:pointcut expression="execution(* service.*.*(..))" id="txPointCut"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
 	</aop:config>
-	
+	<bean id="ShowNotice" class="action.ShowNoticeAction">
+		<property name="GetNoticeService" ref="GetNoticeService"></property>
+	</bean>
+	<bean id="GetNoticeService" class="service.GetNoticeServiceImpl">
+		<property name="GetNotice" ref="GetNotice"></property>
+	</bean>
+	<bean id="GetNotice" class="dao.GetNoticeImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="ShowMeetingRoomAct" class="action.ShowMeetingRoomAction">
+		<property name="ShowMeetingRoomService" ref="ShowMeetingRoomService"></property>
+	</bean>
+	<bean id="ShowMeetingRoomService" class="service.ShowMeetingRoomServiceImpl">
+		<property name="ShowMeetingRoom" ref="ShowMeetingRoom"></property>
+	</bean>
+	<bean id="ShowMeetingRoom" class="dao.ShowMeetingRoomImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="addMeetingRoomAct" class="action.AddMeetingRoomAction">
+		<property name="addMeetingRoomService" ref="addMeetingRoomService"></property>
+	</bean>
+	<bean id="addMeetingRoomService" class="service.AddMeetingRoomServiceImpl">
+		<property name="addMeetingRoom" ref="addMeetingRoom"></property>
+	</bean>
+	<bean id="addMeetingRoom" class="dao.AddMeetingRoomImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
 </beans>
