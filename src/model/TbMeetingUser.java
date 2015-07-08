@@ -1,34 +1,34 @@
 package model;
 
 /**
- * TbAdmin entity. @author MyEclipse Persistence Tools
+ * TbMeetingUser entity. @author MyEclipse Persistence Tools
  */
 
-public class TbAdmin implements java.io.Serializable {
+public class TbMeetingUser implements java.io.Serializable {
 
 	// Fields
 
 	private Integer id;
 	private TbUser tbUser;
-	private Boolean superAdmin;
+	private TbMeeting tbMeeting;
 	private String reservedWord;
 
 	// Constructors
 
 	/** default constructor */
-	public TbAdmin() {
+	public TbMeetingUser() {
 	}
 
 	/** minimal constructor */
-	public TbAdmin(TbUser tbUser, Boolean superAdmin) {
+	public TbMeetingUser(TbUser tbUser, TbMeeting tbMeeting) {
 		this.tbUser = tbUser;
-		this.superAdmin = superAdmin;
+		this.tbMeeting = tbMeeting;
 	}
 
 	/** full constructor */
-	public TbAdmin(TbUser tbUser, Boolean superAdmin, String reservedWord) {
+	public TbMeetingUser(TbUser tbUser, TbMeeting tbMeeting, String reservedWord) {
 		this.tbUser = tbUser;
-		this.superAdmin = superAdmin;
+		this.tbMeeting = tbMeeting;
 		this.reservedWord = reservedWord;
 	}
 
@@ -50,12 +50,12 @@ public class TbAdmin implements java.io.Serializable {
 		this.tbUser = tbUser;
 	}
 
-	public Boolean getSuperAdmin() {
-		return this.superAdmin;
+	public TbMeeting getTbMeeting() {
+		return this.tbMeeting;
 	}
 
-	public void setSuperAdmin(Boolean superAdmin) {
-		this.superAdmin = superAdmin;
+	public void setTbMeeting(TbMeeting tbMeeting) {
+		this.tbMeeting = tbMeeting;
 	}
 
 	public String getReservedWord() {
