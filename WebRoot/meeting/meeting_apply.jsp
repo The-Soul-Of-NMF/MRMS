@@ -120,7 +120,7 @@
 			<div class="page-header">
 				<h3><strong>会议申请</strong></h3>
 			</div>
-			<form name="meetinginfor" class="col-md-8" action="./meeting/meetingApplyAction" method="post">
+			<form name="meetinginfor" class="col-md-8" action=".。/meeting/meetingApplyAction" method="post">
             <fieldset id="content_fieldset">
                 <legend>填写申请信息</legend>
                 <div class="form-group">
