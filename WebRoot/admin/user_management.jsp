@@ -1,5 +1,9 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@page import="javax.servlet.http.HttpServletRequest"%>
+<%@page import="org.apache.struts2.ServletActionContext"%>
+<%@page import="model.TbUser"%>
+<%@taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -10,6 +14,10 @@
     <link href="css/user_management.css" rel="stylesheet" />
 </head>
 <body>
+<% 
+	 HttpServletRequest request1=ServletActionContext.getRequest();
+		   String limit=(String) request1.getSession().getAttribute("limit");
+		   TbUser user=(TbUser) request1.getSession().getAttribute("user");%>
 <!-- 顶部导航栏开始 -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -29,12 +37,12 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img height="20" class="dropdown-image" src="../lib/system/img/silverHugh.jpg">
-                        SilverHugh
+                        <%=user.getName() %>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="../user/profile.jsp">修改个人信息</a></li>
-                        <li><a href="../index.jsp">注销</a></li>
+                        <li><a href='../user/userinformationAction'>修改个人信息</a></li>
+                        <li><a href="../deletesessionAction">注销</a></li>
                     </ul>
                 </li>
             </ul>
@@ -60,17 +68,19 @@
                     <a class="list-group-item" href="'meetingInforAction'">
                         会议信息
                     </a>
-                    <a class="list-group-item" href="../user/profile.jsp">
+                    <a class="list-group-item" href='../user/userinformationAction'>
                         个人信息
                     </a>
 
                 </div>
             </div>
-
+				 <%
+		   			if(Integer.parseInt(limit)>1){
+		 		 %>
 
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item" href="../admin/signup_check.jsp">
+                    <a class="list-group-item" href='../user/usercheckAction'>
                         用户注册审查<span class="badge">20</span>
                     </a>
                     <a class="list-group-item" href="'meeting/showWaitMeetingAction'">
@@ -82,11 +92,11 @@
                     <a class="list-group-item" href="../admin/meeting_room_management.jsp">
                         会议室信息管理
                     </a>
-                    <a class="list-group-item active" href="../admin/user_management.jsp">
+                    <a class="list-group-item active" href="../user/usermanageAction">
                         用户信息管理
                     </a>
                 </div>
-            </div>
+            </div><%}  if(Integer.parseInt(limit)>2){%>
 
 
             <div class="panel-body">
@@ -95,7 +105,7 @@
                         权限管理
                     </a>
                 </div>
-            </div>
+            </div><%} %>
 
         </div>
     </div>
@@ -131,121 +141,46 @@
                 </tr>
             </thead>
             <tbody>
+            <s:iterator value="tbuser">
             	<tr>
-                    <td>12*****</td>
-                    <td>Jerry</td>
-                    <td>123@sina.com</td>
-                    <td>13*******43</td>
-                    <td>
+                    <td class="id"><s:property value="id"/></td>
+                    <td><s:property value="name"/></td>
+                    <td><s:property value="email"/></td>
+                    <td><s:property value="phone"/></td>
+                    <td class="dep">
                     	<select id="a00" class="form-control" disabled="disabled">
-                        	<option>技术部</option>
-                        	<option>财务部</option>
-                        	<option>人事部</option>
-                        	<option>后勤部</option>
+                    	<s:set name="dp" value="%{tbDepartment.name}"></s:set>
+                    	<s:iterator value="dep">
+                    	<s:set name="dpn" value="%{name}"></s:set>
+                    	     <s:if test="#dp==#dpn">
+                    	     <option selected="selected"><s:property value="name"/></option>
+                    	     </s:if>
+                    	     <s:else>
+                    	      <option><s:property value="name"/></option>
+                    	     </s:else>
+                    	</s:iterator>
+                        	
                     	</select>
                     </td>
-                    <td>
+                    <td class="w">
                     	<select id="a01" class="form-control" disabled="disabled">
+                        	<s:set name="ws" value="%{workingState}"/>
+                        	<s:if test="#ws==true">
+                        	<option selected="selected">在职</option>
+                        	<option >离职</option>
+                        	</s:if>
+                        	<s:else>
                         	<option>在职</option>
-                        	<option>离职</option>
+                        	<option selected="selected">离职</option>
+                        	</s:else>
+                        	
                     	</select>
                     </td>
                     <td>
-                        <a id="modify_0" class="btn btn-danger btn-sm">修改</a>
+                        <a id="modify_0" class="btn btn-danger btn-sm" onclick="update(this)">修改</a>
                     </td>
                 </tr>
-                <tr>
-                    <td>12*****</td>
-                    <td>Jerry</td>
-                    <td>123@sina.com</td>
-                    <td>13*******43</td>
-                    <td>
-                    	<select id="a10" class="form-control" disabled="disabled">
-                        	<option>技术部</option>
-                        	<option>财务部</option>
-                        	<option>人事部</option>
-                        	<option>后勤部</option>
-                    	</select>
-                    </td>
-                    <td>
-                    	<select id="a11" class="form-control" disabled="disabled">
-                        	<option>在职</option>
-                        	<option>离职</option>
-                    	</select>
-                    </td>
-                    <td>
-                        <a id="modify_1" class="btn btn-danger btn-sm">修改</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>12*****</td>
-                    <td>Jerry</td>
-                    <td>123@sina.com</td>
-                    <td>13*******43</td>
-                    <td>
-                    	<select id="a20" class="form-control" disabled="disabled">
-                        	<option>技术部</option>
-                        	<option>财务部</option>
-                        	<option>人事部</option>
-                        	<option>后勤部</option>
-                    	</select>
-                    </td>
-                    <td>
-                    	<select id="a21" class="form-control" disabled="disabled">
-                        	<option>在职</option>
-                        	<option>离职</option>
-                    	</select>
-                    </td>
-                    <td>
-                        <a id="modify_2" class="btn btn-danger btn-sm">修改</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>12*****</td>
-                    <td>Jerry</td>
-                    <td>123@sina.com</td>
-                    <td>13*******43</td>
-                    <td>
-                    	<select id="a30" class="form-control" disabled="disabled">
-                        	<option>技术部</option>
-                        	<option>财务部</option>
-                        	<option>人事部</option>
-                        	<option>后勤部</option>
-                    	</select>
-                    </td>
-                    <td>
-                    	<select id="a31" class="form-control" disabled="disabled">
-                        	<option>在职</option>
-                        	<option>离职</option>
-                    	</select>
-                    </td>
-                    <td>
-                        <a id="modify_3" class="btn btn-danger btn-sm">修改</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>12*****</td>
-                    <td>Jerry</td>
-                    <td>123@sina.com</td>
-                    <td>13*******43</td>
-                    <td>
-                    	<select id="a40" class="form-control" disabled="disabled">
-                        	<option>技术部</option>
-                        	<option>财务部</option>
-                        	<option>人事部</option>
-                        	<option>后勤部</option>
-                    	</select>
-                    </td>
-                   	<td>
-                    	<select id="a41" class="form-control" disabled="disabled">
-                        	<option>在职</option>
-                        	<option>离职</option>
-                    	</select>
-                    </td>
-                    <td>
-                        <a id="modify_4"  class="btn btn-danger btn-sm">修改</a>
-                    </td>
-                </tr>
+               </s:iterator>
             </tbody>
         </table>
     </div>
@@ -262,74 +197,27 @@
 <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/scripts/bootbox.min.js"></script>
 <script>
-	$(function(){
-		$("#modify_0").click(function(){
-			if($(this).text()=="保存"){
-				$("#a00").attr("disabled","disabled");
-				$("#a01").attr("disabled","disabled");
-				$("#modify_0").text("修改");
-			}else if($(this).text()=="修改"){
-				$("#a00").removeAttr("disabled");
-				$("#a01").removeAttr("disabled");
-				$("#modify_0").text("保存");
-			}
-		});
-	});
+	function update(button){
+		if($(button).text()=="保存"){
+			
+			var id=$(button).parent().siblings(".id").first().text();
+			var department=$(button).parent().siblings(".dep").first().children("#a00").first().val();
+			var work=$(button).parent().siblings(".w").first().children("#a01").first().val();
+			$(button).parent().siblings(".dep").first().children("#a00").first().attr("disabled","disabled");
+			$(button).parent().siblings(".w").first().children("#a01").first().attr("disabled","disabled");
+			$(button).text("修改");
+			var data={userid:id,userdepartment:department,userwork:work};
+			$.post("usermanagecheckAction",data,function(result){
+				alert("修改成功！");
+				window.location.href = "usermanageAction";
+			});
+		}else if($(button).text()=="修改"){
+			$(button).parent().siblings(".dep").first().children("#a00").first().removeAttr("disabled");
+			$(button).parent().siblings(".w").first().children("#a01").first().removeAttr("disabled");
+			$(button).text("保存");
+		}
+	}
 	
-	$(function(){
-		$("#modify_1").click(function(){
-			if($(this).text()=="保存"){
-				$("#a10").attr("disabled","disabled");
-				$("#a11").attr("disabled","disabled");
-				$("#modify_1").text("修改");
-			}else if($(this).text()=="修改"){
-				$("#a10").removeAttr("disabled");
-				$("#a11").removeAttr("disabled");
-				$("#modify_1").text("保存");
-			}
-		});
-	});
 	
-	$(function(){
-		$("#modify_2").click(function(){
-			if($(this).text()=="保存"){
-				$("#a20").attr("disabled","disabled");
-				$("#a21").attr("disabled","disabled");
-				$("#modify_2").text("修改");
-			}else if($(this).text()=="修改"){
-				$("#a20").removeAttr("disabled");
-				$("#a21").removeAttr("disabled");
-				$("#modify_2").text("保存");
-			}
-		});
-	});
-	
-	$(function(){
-		$("#modify_3").click(function(){
-			if($(this).text()=="保存"){
-				$("#a30").attr("disabled","disabled");
-				$("#a31").attr("disabled","disabled");
-				$("#modify_3").text("修改");
-			}else if($(this).text()=="修改"){
-				$("#a30").removeAttr("disabled");
-				$("#a31").removeAttr("disabled");
-				$("#modify_3").text("保存");
-			}
-		});
-	});
-	
-	$(function(){
-		$("#modify_4").click(function(){
-			if($(this).text()=="保存"){
-				$("#a40").attr("disabled","disabled");
-				$("#a41").attr("disabled","disabled");
-				$("#modify_4").text("修改");
-			}else if($(this).text()=="修改"){
-				$("#a40").removeAttr("disabled");
-				$("#a41").removeAttr("disabled");
-				$("#modify_4").text("保存");
-			}
-		});
-	});
 </script>
 </html>

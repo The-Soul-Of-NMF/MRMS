@@ -189,11 +189,15 @@ public class TbUser implements java.io.Serializable {
 	}
 
 	public Set getTbAdmins() {
-		return this.tbAdmins;
+		return tbAdmins;
 	}
 
 	public void setTbAdmins(Set tbAdmins) {
 		this.tbAdmins = tbAdmins;
 	}
+
+
+
+
 
 }

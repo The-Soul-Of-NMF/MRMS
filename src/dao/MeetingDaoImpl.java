@@ -1,5 +1,7 @@
 package dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -55,6 +57,13 @@ public class MeetingDaoImpl implements MeetingDao {
 	}
 	@SuppressWarnings("unchecked")
 	@Override
+	public List<TbMeeting> serachOwnMeeting(TbUser user, int state) {
+		String hql="from TbMeeting as s where s.tbUser.id="+user.getId()
+				+ " and s.tbMeetingState.id="+state;
+		return this.hibernateTemplate.find(hql);
+	}
+	@SuppressWarnings("unchecked")
+	@Override
 	public List<TbMeeting> serachJoinMeeting(TbUser user) {
 		String hql="from TbMeeting as s left outer join fetch s.tbMeetingUsers as b "
 				+ "where b.tbUser.id="+user.getId();
@@ -94,4 +103,12 @@ public class MeetingDaoImpl implements MeetingDao {
 				+ "where b.tbMeeting.id="+meeting.getId();
 		return this.hibernateTemplate.find(hql);
 	}
+
+	@Override
+	public List<TbMeeting> serachMatchMeeting(Date meetingDate) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
+		String hql="from TbMeeting m where m.date='" + format.format(meetingDate) + "' and m.startTime!=null";
+		return this.hibernateTemplate.find(hql);
+	}
+
 }

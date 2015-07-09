@@ -1,5 +1,9 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@page import="javax.servlet.http.HttpServletRequest"%>
+<%@page import="org.apache.struts2.ServletActionContext"%>
+<%@page import="model.TbUser"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -10,6 +14,10 @@
 </head>
 <body>
 <!-- 顶部导航栏开始 -->
+<% 
+	 HttpServletRequest request1=ServletActionContext.getRequest();
+		   String limit=(String) request1.getSession().getAttribute("limit");
+		   TbUser user=(TbUser) request1.getSession().getAttribute("user");%>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -28,12 +36,12 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img height="20" class="dropdown-image" src="../lib/system/img/silverHugh.jpg">
-                        SilverHugh
+                         <%=user.getName() %>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="../user/profile.jsp">修改个人信息</a></li>
-                        <li><a href="../index.jsp">注销</a></li>
+                        <li><a href='../user/userinformationAction'>修改个人信息</a></li>
+                        <li><a href="../deletesessionAction">注销</a></li>
                     </ul>
                 </li>
             </ul>
@@ -59,33 +67,35 @@
                     <a class="list-group-item" href="'meetingInforAction'">
                         会议信息
                     </a>
-                    <a class="list-group-item" href="../user/profile.jsp">
+                    <a class="list-group-item" href='../user/userinformationAction'>
                         个人信息
                     </a>
 
                 </div>
             </div>
-
+ 			<%
+		   			if(Integer.parseInt(limit)>1){
+		 		 %>
 
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item" href="../admin/signup_check.jsp">
+                    <a class="list-group-item" href='../user/usercheckAction'>
                         用户注册审查<span class="badge">20</span>
                     </a>
                     <a class="list-group-item" href="'meeting/showWaitMeetingAction'">
                         会议审查<span class="badge">10</span>
                     </a>
-                    <a class="list-group-item active" href="../admin/department_management.jsp">
+                    <a class="list-group-item active" href="../department/deparManaAction_show">
                         部门信息管理
                     </a>
                     <a class="list-group-item" href="../admin/meeting_room_management.jsp">
                         会议室信息管理
                     </a>
-                    <a class="list-group-item" href="../admin/user_management.jsp">
+                    <a class="list-group-item" href="../user/usermanageAction">
                         用户信息管理
                     </a>
                 </div>
-            </div>
+            </div><%}  if(Integer.parseInt(limit)>2){%>
 
 
             <div class="panel-body">
@@ -94,7 +104,7 @@
                         权限管理
                     </a>
                 </div>
-            </div>
+            </div><%} %>
 
         </div>
     </div>
@@ -103,20 +113,24 @@
         <div class="page-header">
             <h3><strong>编辑部门</strong></h3>
         </div>
-        <form class="col-md-8">
+        <form id="depar_name" action="deparManaAction_update" class="col-md-8">
             <fieldset class="form-horizontal">
                 <legend>填写部门名称</legend>
                 <div class="form-group">
                     <label for="name" class="col-md-3 control-label">部门名称：</label>
                     <div class="col-md-8">
-                        <input type="text" id="name" placeholder="名称" class="form-control" />
+                        <input type="text" id="name" name="name" placeholder="名称" class="form-control" />
+                        <s:iterator value="current_depar">
+                        	<input type="hidden" id="current_id" name="current_id" value="<s:property value='id' />" />
+                    	</s:iterator>
                     </div>
                 </div>
-                
             </fieldset>
             <div class="text-center form-group" style="margin-left: 90px;">
-                <button type="button" class="btn btn-success">确定</button>
-                <button type="button" class="btn btn-default">取消</button>
+                <button type="button" class="btn btn-success"
+                	onclick="edit_depar()" >确定</button>
+                <button type="button" class="btn btn-default"
+                	onclick="window.location.href='../department/deparManaAction_show'" >取消</button>
             </div>
         </form>
     </div>
@@ -132,4 +146,9 @@
 <script src="../lib/scripts/jquery-1.11.0.min.js"></script>
 <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/scripts/bootbox.min.js"></script>
+<script>
+	function edit_depar(){
+		$("#depar_name").submit();
+	}
+</script>
 </html>

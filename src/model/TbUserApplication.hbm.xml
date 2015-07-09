@@ -10,7 +10,7 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="tbDepartment" class="model.TbDepartment" fetch="select">
+        <many-to-one name="tbDepartment" class="model.TbDepartment"  lazy="false" fetch="select">
             <column name="department_id" not-null="true" />
         </many-to-one>
         <property name="name" type="java.lang.String">

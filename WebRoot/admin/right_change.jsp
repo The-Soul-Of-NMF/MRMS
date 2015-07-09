@@ -1,5 +1,8 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@page import="javax.servlet.http.HttpServletRequest"%>
+<%@page import="org.apache.struts2.ServletActionContext"%>
+<%@page import="model.TbUser"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -10,6 +13,10 @@
     <link href="css/right_change.css" rel="stylesheet" />
 </head>
 <body>
+<% 
+	 HttpServletRequest request1=ServletActionContext.getRequest();
+		   String limit=(String) request1.getSession().getAttribute("limit");
+		   TbUser user=(TbUser) request1.getSession().getAttribute("user");%>
 <!-- 顶部导航栏开始 -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -29,12 +36,12 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img height="20" class="dropdown-image" src="../lib/system/img/silverHugh.jpg">
-                        SilverHugh
+                       <%=user.getName() %>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="../user/profile.jsp">修改个人信息</a></li>
-                        <li><a href="../index.jsp">注销</a></li>
+                        <li><a href='../user/userinformationAction'>修改个人信息</a></li>
+                        <li><a href="../deletesessionAction">注销</a></li>
                     </ul>
                 </li>
             </ul>
@@ -60,17 +67,20 @@
                     <a class="list-group-item" href="'meetingInforAction'">
                         会议信息
                     </a>
-                    <a class="list-group-item" href="../user/profile.jsp">
+                    <a class="list-group-item" href='../user/userinformationAction'>
                         个人信息
                     </a>
 
                 </div>
             </div>
+				 <%
+		   			if(Integer.parseInt(limit)>1){
+		 		 %>
 
 
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item" href="../admin/signup_check.jsp">
+                    <a class="list-group-item" href='../user/usercheckAction'>
                         用户注册审查<span class="badge">20</span>
                     </a>
                     <a class="list-group-item" href="'meeting/showWaitMeetingAction'">
@@ -82,11 +92,11 @@
                     <a class="list-group-item" href="../admin/meeting_room_management.jsp">
                         会议室信息管理
                     </a>
-                    <a class="list-group-item" href="../admin/user_management.jsp">
+                    <a class="list-group-item" href="../user/usermanageAction">
                         用户信息管理
                     </a>
                 </div>
-            </div>
+            </div><%}  if(Integer.parseInt(limit)>2){%>
 
 
             <div class="panel-body">
@@ -95,7 +105,7 @@
                         权限管理
                     </a>
                 </div>
-            </div>
+            </div><%} %>
 
         </div>
     </div>
@@ -107,10 +117,11 @@
                     <div>
                     	<label class="radio-inline">把</label>
                         <label class="radio-inline">
-                            <input id="female" name="gender" class="form-control" type="text" placeholder="请输入账号" />
+                            <input id="id" name="id" class="form-control" type="text" placeholder="请输入账号" />
                         </label>
                         <label class="radio-inline">
-                            <a href="#" class="btn btn-success">提升</a>
+                            <a class="btn btn-success" 
+                            	onclick="promote()" >提升</a>
                             为管理员.</label>&nbsp;&nbsp;&nbsp;&nbsp;
 
                     </div>
@@ -126,4 +137,17 @@
 <script src="../lib/scripts/jquery-1.11.0.min.js"></script>
 <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/scripts/bootbox.min.js"></script>
+<script>
+	function promote(){
+		var user_id=$("#id").val()
+		var data={id:user_id}
+		$.post("../user/userAction_promote",data,function(result){
+			if(result=="-1"){
+				alert("该用户不存在!")
+			}else{
+				alert("该用户已被提升为超级管理员!")
+			}
+		});
+	}
+</script>
 </html>

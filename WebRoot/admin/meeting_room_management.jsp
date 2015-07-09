@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -47,21 +48,23 @@
 		<div class="panel-group" id="accordion">
 			<div class="panel-body">
 				<div class="list-group" style="margin:0">
-					<a class="list-group-item" href="'meeting/meetingApplyPrepare'">
-                        会议申请
-                    </a>
-                    <a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
-                        会议室选择
-                    </a>
-                    <a class="list-group-item" href="../user/notice.jsp">
-                        通知<span class="badge">20</span>
-                    </a>
-                    <a class="list-group-item" href="'meetingInforAction'">
+
+					<a class="list-group-item" href="../meeting/meeting_apply.jsp">
+						会议申请
+					</a>
+					<a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
+						会议室选择
+					</a>
+					<a class="list-group-item" href='../user/shownoticeAction'>
+						通知<span class="badge">20</span>
+					</a>
+					<a class="list-group-item" href="'meetingInforAction'">
                         会议信息
                     </a>
-                    <a class="list-group-item" href="../user/profile.jsp">
-                        个人信息
-                    </a>
+					<a class="list-group-item" href="../user/profile.jsp">
+						个人信息
+					</a>
+
 
                 </div>
             </div>
@@ -78,7 +81,7 @@
 					<a class="list-group-item" href="../admin/department_management.jsp">
 						部门信息管理
 					</a>
-					<a class="list-group-item active" href="../admin/meeting_room_management.jsp">
+					<a class="list-group-item active" href="showMeetingRoomAction">
 						会议室信息管理
 					</a>
 					<a class="list-group-item" href="../admin/user_management.jsp">
@@ -106,52 +109,16 @@
 					</div>
 				</div>
 
-				<!-- 搜索表单开始 -->
-				<div>
-					<form>
-						<div class="form-inline">
-							
-							<div class="form-group col-md-offset-1">
-								<input type="text" placeholder="会议室门牌号" class="form-control" />
-							</div>
-							
-							<div class="form-group">
-								<input type="text" placeholder="容纳人数" class="form-control" />
-							</div>
-							<div class="form-group">
-								<input type="text" placeholder="状态" class="form-control" />
-							</div>
-							
-							<div class="form-group col-md-offset-1">
-								<button type="submit" class="btn btn-info">查询</button>
-							</div>
-						</div>
-					</form>
-				</div>
-				<!-- 搜索表单结束 -->
 
 				<div>
 					<table class="table table-striped table-bordered text-center">
 						<caption>
-							<h4><strong>查询结果</strong></h4>
+							<h4><strong>会议室信息</strong></h4>
 							<ul class="pagination pagination-sm col-md-12">
-								<li title="第一页"><a href="#">&laquo;</a>
-								</li>
-								<li title="上一页"><a href="#">&lsaquo;</a>
-								</li>
-								<li title="当前页" class="active"><a href="#">1</a>
-								</li>
-								<li title="下一页"><a href="#">&rsaquo;</a>
-								</li>
-								<li title="最末页"><a href="#">&raquo;</a>
-								</li>
-								<li>
-									<a href="">共<strong>1</strong>条记录，<strong>1</strong>页</a>
-								</li>
 								<li class="pull-right">
 
 									<div>
-										<a href="./meeting_room_managent_edit.jsp" class="btn btn-success btn-sm">添加会议室</a>
+										<a href="/MRMS/admin/meeting_room_management_add.jsp" class="btn btn-success btn-sm">添加会议室</a>
 									</div>
 								</li>
 							</ul>
@@ -160,6 +127,7 @@
 
 						<thead>
 							<tr>
+								<th class="text-center">id</th>
 								<th class="text-center">门牌号</th>
 								<th class="text-center">容纳人数</th>
 								<th class="text-center">状态</th>
@@ -169,48 +137,22 @@
 						</thead>
 
 						<tbody>
+						<s:iterator value="meetings">
 							<tr>
-								<td>101</td>
-								<td>5</td>
-								<td>使用中</td>
+								<td class="id"><s:property value="id"/></td>
+								<td class="door_num"><s:property value="doorNumber"/></td>
+								<td class="person_limit"><s:property value="personLimit"/></td>
+								<td><s:property value="tbMeetingRoomState.name"/></td>
 								<td>
-									<a href="#" class="btn btn-link">点击产看具体信息</a>
+									<a href="#" class="btn btn-link">点击查看具体信息</a>
 								</td>
 								<td >
-									<a href="./meeting_room_managent_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
-									<a href="#" class="btn btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
+								<a  class="btn btn-primary btn-sm" onclick="get_current_id(this)">编辑</a>
+									<a  class="btn btn btn-danger btn-sm col-md-offset-1" onclick="deletemeeting(this)">删除</a>
 								</td>
 							</tr>
-							<tr>
-								<td>102</td>
-								<td>15</td>
-								<td>空闲</td>
-								<td><a href="#" class="btn btn-link">点击产看具体信息</a></td>
-								<td>
-									<a href="./meeting_room_managent_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
-									<a href="#" class="btn btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
-								</td>
-							</tr>
-							<tr>
-								<td>103</td>
-								<td>25</td>
-								<td>维修中</td>
-								<td><a href="#" class="btn btn-link">点击产看具体信息</a></td>
-								<td>
-									<a href="./meeting_room_managent_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
-									<a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
-								</td>
-							</tr>
-							<tr>
-								<td>104</td>
-								<td>35</td>
-								<td>空闲</td>
-								<td><a href="#" class="btn btn-link">点击产看具体信息</a></td>
-								<td>
-									<a href="./meeting_room_managent_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
-									<a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
-								</td>
-							</tr>
+							
+						</s:iterator>
 						</tbody>
 					</table>
 
@@ -227,4 +169,19 @@
 <script src="../lib/scripts/jquery-1.11.0.min.js"></script>
 <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/scripts/bootbox.min.js"></script>
+<script>
+function get_current_id(t)
+{
+	var current_id=$(t).parent().siblings(".id").first().text();
+	var door_num=$(t).parent().siblings(".door_num").first().text();
+	var person_limit=$(t).parent().siblings(".person_limit").first().text();
+	window.location.href="./ModifyAction?current_id="+current_id+"&door_num="+door_num+"&person_limit="+person_limit;
+}
+function deletemeeting(t)
+{
+    alert("确定删除？");
+    var del_id=$(t).parent().siblings(".id").first().text();
+	window.location.href="./DeleteMeetingRoomAction?del_id="+del_id;
+}
+</script>
 </html>

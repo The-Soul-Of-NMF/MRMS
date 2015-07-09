@@ -1,14 +1,26 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@page import="javax.servlet.http.HttpServletRequest"%>
+<%@page import="org.apache.struts2.ServletActionContext"%>
+<%@page import="model.TbUser"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%@taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../lib/system/css/left_menu.css" rel="stylesheet" />
+    <link href="/MRMS/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/MRMS/lib/system/css/left_menu.css" rel="stylesheet" />
 </head>
 <body>
+	<% 
+	 HttpServletRequest request1=ServletActionContext.getRequest();
+		   String limit=(String) request1.getSession().getAttribute("limit");
+		   TbUser user=(TbUser) request1.getSession().getAttribute("user");%>
 <!-- 顶部导航栏开始 -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -28,12 +40,12 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img height="20" class="dropdown-image" src="../lib/system/img/silverHugh.jpg">
-                        SilverHugh
+                         <%=user.getName() %>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="../user/profile.jsp">修改个人信息</a></li>
-                        <li><a href="../index.jsp">注销</a></li>
+                        <li><a href='../user/userinformationAction'>修改个人信息</a></li>
+                        <li><a href="../deletesessionAction">注销</a></li>
                     </ul>
                 </li>
             </ul>
@@ -59,17 +71,20 @@
                     <a class="list-group-item" href="'meetingInforAction'">
                         会议信息
                     </a>
-                    <a class="list-group-item" href="../user/profile.jsp">
+                    <a class="list-group-item" href='../user/userinformationAction'>
                         个人信息
                     </a>
 
                 </div>
             </div>
-
+ <%
+		   			if(Integer.parseInt(limit)>1){
+		 		 %>
 
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item" href="../admin/signup_check.jsp">
+
+                    <a class="list-group-item active" href='../user/usercheckAction'>
                         用户注册审查<span class="badge">20</span>
                     </a>
                     <a class="list-group-item" href="'meeting/showWaitMeetingAction'">
@@ -81,11 +96,11 @@
                     <a class="list-group-item" href="../admin/meeting_room_management.jsp">
                         会议室信息管理
                     </a>
-                    <a class="list-group-item" href="../admin/user_management.jsp">
+                    <a class="list-group-item" href="../user/usermanageAction">
                         用户信息管理
                     </a>
                 </div>
-            </div>
+            </div><%}  if(Integer.parseInt(limit)>2){%>
 
 
             <div class="panel-body">
@@ -94,7 +109,7 @@
                         权限管理
                     </a>
                 </div>
-            </div>
+            </div><%} %>
 
         </div>
     </div>
@@ -126,48 +141,24 @@
                     <th class="text-center">操作</th>
                 </tr>
             </thead>
+            <s:iterator value="tbuserapplication">
             <tbody>
                 <tr>
-                    <td>10001</td>
-                    <td>Jerry</td>
-                    <td>男</td>
-                    <td>技术部</td>
-                    <td >
-                        <a href="signup_check.jsp" class="btn btn-primary btn-sm" onclick="Agree();">同意</a>
-                        <a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="Disagree();">不同意</a>
+                    <td class="id"><s:property value="id"/></td>
+                    <td><s:property value="name"/></td>
+                    <td>
+                    <s:set name="gd" value="%{gender}"></s:set>
+                    <s:if test="#gd==true">男</s:if>
+                    <s:else>女</s:else>
                     </td>
-                </tr>
-                <tr>
-                    <td>10002</td>
-                    <td>Jam</td>
-                    <td>女</td>
-                    <td>销售部</td>
+                    <td><s:property value=" tbDepartment.name"/></td>
                     <td >
-                        <a href="signup_check.jsp" class="btn btn-primary btn-sm" onclick="Agree();">同意</a>
-                        <a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="Disagree();">不同意</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>10003</td>
-                    <td>David</td>
-                    <td>男</td>
-                    <td>技术部</td>
-                    <td >
-                        <a href="signup_check.jsp" class="btn btn-primary btn-sm" onclick="Agree();">同意</a>
-                        <a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="Disagree();">不同意</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>10004</td>
-                    <td>Nancy</td>
-                    <td>男</td>
-                    <td>技术部</td>
-                    <td >
-                        <a href="signup_check.jsp" class="btn btn-primary btn-sm" onclick="Agree();">同意</a>
-                        <a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="Disagree();">不同意</a>
+                        <a class="btn btn-primary btn-sm" onclick="Agree(this)">同意</a>
+                        <a class="btn btn-danger btn-sm col-md-offset-1" onclick="Disagree(this)">不同意</a>
                     </td>
                 </tr>
             </tbody>
+             </s:iterator>
         </table>
     </div>
     </div>
@@ -178,8 +169,29 @@
         <br />
     </div>
 </body>
-<script src="../lib/scripts/jquery-1.11.0.min.js"></script>
-<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="../lib/scripts/bootbox.min.js"></script>
+<script src="/MRMS/lib/scripts/jquery-1.11.0.min.js"></script>
+<script src="/MRMS/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/MRMS/lib/scripts/bootbox.min.js"></script>
 <script src="js/signup_check.js"></script>
+<script>
+function Agree(button){
+	var id=$(button).parent().siblings(".id").first().text();
+	var data={userid:id};
+	$.post("usercheckActionOne",data,function(result){
+		alert("处理成功！");
+		window.location.href = "usercheckAction";
+	});
+	
+}
+function Disagree(button){
+	var id=$(button).parent().siblings(".id").first().text();
+	var data={userid:id};
+	$.post("usercheckActionTwo",data,function(result){
+		alert("处理成功！");
+		window.location.href = "usercheckAction";
+	});
+	
+	
+}
+</script>
 </html>

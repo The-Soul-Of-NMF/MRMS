@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+<struts>
+<!-- 开启动态方法调用 -->
+<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+<!-- 设定创建Action的工厂类为spring，也就是struts的action交给spring管理 -->
+<constant name="struts.objectFactory" value="spring"></constant>
+
+	<package name="delete" namespace="/" extends="struts-default">
+		<action name="deletesessionAction" class="deletesessionAction" method="close">
+			<result name="success">index.jsp</result>
+		</action>
+	</package>
+	<package name="default" namespace="/user" extends="struts-default">
+		<action name="userAction" class="userAction" method="register">
+			<result name="success" type="dispatcher">
+				<param name="location">signup.jsp</param>
+			</result>
+		</action>
+		<action name="registerAction" class="userAction" method="reg">
+			<result name="success">signup.jsp</result>
+		</action>
+		<action name="registercheckAction" class="userAction" method="registercheck">
+			<result name="success">signup.jsp</result>
+		</action>
+		<action name="usercheckAction" class="usercheckAction" method="check">
+			<result name="success">/admin/signup_check.jsp</result>
+		</action>
+		<action name="usercheckActionOne" class="usercheckAction" method="checks">
+			<result name="success">/admin/signup_check.jsp</result>
+		</action>
+		<action name="usercheckActionTwo" class="usercheckAction" method="checktwo">
+			<result name="success">/admin/signup_check.jsp</result>
+		</action>
+		<action name="userlogincheckAction" class="userloginAction" method="logincheck">
+		</action>
+		<action name="userloginAction" class="userloginAction" method="login">
+			<result name="success">/user/welcome.jsp</result>
+		</action>
+			<action name="userinformationAction" class="userinformationAction" method="show">
+			<result name="success">/user/profile.jsp</result>
+		</action>
+		<action name="backwelcomeAction" class="backwelcomeAction" method="back">
+			<result name="success">welcome.jsp</result>
+		</action>
+		<action name="updateuserAction" class="updateuserAction" method="update">
+			<result name="success">/user/welcome.jsp</result>
+		</action>
+		<action name="deletesessionAction" class="deletesessionAction" method="close">
+			<result name="success">../index.jsp</result>
+		</action>
+		<action name="usermanageAction" class="usermanageAction" method="manage">
+			<result name="success">/admin/user_management.jsp</result>
+		</action>
+		<action name="usermanagecheckAction" class="usermanageAction" method="managecheck">
+			<result name="success">/admin/user_management.jsp</result>
+		</action>
+		<action name="userAction_promote" method="promote" class="userAction">
+		</action>
+	</package>
+	
+	<package name="department" namespace="/department" extends="struts-default">
+		<action name="deparManaAction_add" method="add_depar" class="deparManaAction">
+			<result name="success">/admin/department_management.jsp</result>
+		</action>
+		<action name="deparManaAction_show" method="show_depar" class="deparManaAction">
+			<result name="success">/admin/department_management.jsp</result>
+		</action>
+		<action name="deparManaAction_update" method="modify_depar_name" class="deparManaAction">
+			<result name="success">/admin/department_management.jsp</result>
+		</action>
+		<action name="deparManaAction_current_id" method="get_current_depar" class="deparManaAction">
+			<result name="success">/admin/department_management_edit.jsp</result>
+		</action>
+		<action name="deparManaAction_delete" method="delete_depar" class="deparManaAction">
+			<result name="success">/admin/department_management.jsp</result>
+		</action>
+		<action name="deparManaAction_check_delete" method="check_delete" class="deparManaAction">
+		</action>
+		<action name="deparManaAction_query_by_id" method="query_depar_by_id" class="deparManaAction">
+			<result name="success">/admin/department_management.jsp</result>
+		</action>
+		<action name="deparManaAction_query_by_num" method="query_depar_by_num" class="deparManaAction">
+			<result name="success">/admin/department_management.jsp</result>
+		</action>
+		<action name="deparManaAction_query_by_member" method="query_depar_by_member" class="deparManaAction">
+			<result name="success">../admin/department_management.jsp</result>
+      </action>
+      </package>
+
+	<package name="default1" namespace="/meetingRoom" extends="struts-default">
+	
+		<action name="showMeetingRoomAction" class="ShowMeetingRoomAct">
+				<result name="suc">/admin/meeting_room_management.jsp</result>
+		</action>
+		<action name="addMeetingRoomAction" class="addMeetingRoomAct">
+				<result name="addsuc">/admin/meeting_room_management.jsp</result>
+		</action>
+		<action name="ModifyAction" class="modifyAct">
+				<result name="moditrans">/admin/meeting_room_management_edit.jsp</result>
+		</action>
+		<action name="ModifyMeetingRoomAction" class="modifyMeetingRoomAct">
+				<result name="modisucc">/admin/meeting_room_management.jsp</result>
+		</action>
+		<action name="DeleteMeetingRoomAction" class="deleteMeetingRoomAct">
+				<result name="delsucc">/admin/meeting_room_management.jsp</result>
+		</action>
+	</package>
+	
+	<package name="notice" namespace="/user" extends="struts-default">
+		<action name="shownoticeAction" class="ShowNotice">
+				<result name="suc">notice.jsp</result>
+		</action>
+	</package>
+	
+	
+	<package name="meeting" namespace="/meeting" extends="struts-default">
+		<action name="meetingForRoomAction" class="meetingForRoomAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_for_room_list.jsp</param>
+			</result>
+		</action>
+		<action name="meetingTimeChooseAction" class="meetingTimeChooseAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_time_choose.jsp</param>
+			</result>
+		</action>
+		<action name="meetingRoomChooseAction" class="meetingRoomChooseAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_room_match_success.jsp</param>
+			</result>
+			<result name="fail">
+				<param name="location">/meeting/meeting_room_match_fail.jsp</param>
+			</result>
+		</action>
+	</package>
+</struts>

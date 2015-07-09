@@ -10,7 +10,7 @@
             <column name="id" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="tbDepartment" class="model.TbDepartment" fetch="select">
+        <many-to-one name="tbDepartment" class="model.TbDepartment" fetch="join" lazy="false">
             <column name="department_id" not-null="true" />
         </many-to-one>
         <property name="name" type="java.lang.String">
@@ -23,7 +23,7 @@
             <column name="gender" not-null="true" />
         </property>
         <property name="iconName" type="java.lang.String">
-            <column name="icon_name" not-null="true" />
+            <column name="icon_name" not-null="false" />
         </property>
         <property name="email" type="java.lang.String">
             <column name="email" not-null="true" />
@@ -37,7 +37,7 @@
         <property name="reservedWord" type="java.lang.String">
             <column name="reserved_word" />
         </property>
-        <set name="tbNoticeInteractionsForToUserId" inverse="true">
+        <set name="tbNoticeInteractionsForToUserId" inverse="true" lazy="false">
             <key>
                 <column name="to_user_id" not-null="true" />
             </key>
@@ -49,7 +49,7 @@
             </key>
             <one-to-many class="model.TbMeeting" />
         </set>
-        <set name="tbNoticeInteractionsForFromUserId" inverse="true">
+        <set name="tbNoticeInteractionsForFromUserId" inverse="true" lazy="false">
             <key>
                 <column name="from_user_id" not-null="true" />
             </key>
@@ -61,7 +61,7 @@
             </key>
             <one-to-many class="model.TbMeetingUser" />
         </set>
-        <set name="tbAdmins" inverse="true">
+        <set name="tbAdmins" inverse="true" lazy="false">
             <key>
                 <column name="user_id" not-null="true" unique="true" />
             </key>
