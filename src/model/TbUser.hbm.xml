@@ -37,7 +37,7 @@
         <property name="reservedWord" type="java.lang.String">
             <column name="reserved_word" />
         </property>
-        <set name="tbNoticeInteractionsForToUserId" inverse="true">
+        <set name="tbNoticeInteractionsForToUserId" inverse="true" lazy="false">
             <key>
                 <column name="to_user_id" not-null="true" />
             </key>
@@ -49,13 +49,19 @@
             </key>
             <one-to-many class="model.TbMeeting" />
         </set>
-        <set name="tbNoticeInteractionsForFromUserId" inverse="true">
+        <set name="tbNoticeInteractionsForFromUserId" inverse="true" lazy="false">
             <key>
                 <column name="from_user_id" not-null="true" />
             </key>
             <one-to-many class="model.TbNoticeInteraction" />
         </set>
-        <set name="tbAdmins" inverse="true" lazy="false">
+        <set name="tbMeetingUsers" inverse="false">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="model.TbMeetingUser" />
+        </set>
+        <set name="tbAdmins" inverse="true">
             <key>
                 <column name="user_id" not-null="true" unique="true" />
             </key>

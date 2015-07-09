@@ -8,6 +8,7 @@
 <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
 <!-- 设定创建Action的工厂类为spring，也就是struts的action交给spring管理 -->
 <constant name="struts.objectFactory" value="spring"></constant>
+
 	<package name="delete" namespace="/" extends="struts-default">
 		<action name="deletesessionAction" class="deletesessionAction" method="close">
 			<result name="success">index.jsp</result>
@@ -89,6 +90,51 @@
 		</action>
 		<action name="deparManaAction_query_by_member" method="query_depar_by_member" class="deparManaAction">
 			<result name="success">../admin/department_management.jsp</result>
+
+	<package name="default" namespace="/meetingRoom" extends="struts-default">
+	
+		<action name="showMeetingRoomAction" class="ShowMeetingRoomAct">
+				<result name="suc">/admin/meeting_room_management.jsp</result>
+		</action>
+		<action name="addMeetingRoomAction" class="addMeetingRoomAct">
+				<result name="addsuc">/admin/meeting_room_management.jsp</result>
+		</action>
+		<action name="ModifyAction" class="modifyAct">
+				<result name="moditrans">/admin/meeting_room_management_edit.jsp</result>
+		</action>
+		<action name="ModifyMeetingRoomAction" class="modifyMeetingRoomAct">
+				<result name="modisucc">/admin/meeting_room_management.jsp</result>
+		</action>
+		<action name="DeleteMeetingRoomAction" class="deleteMeetingRoomAct">
+				<result name="delsucc">/admin/meeting_room_management.jsp</result>
+		</action>
+	</package>
+	
+	<package name="notice" namespace="/user" extends="struts-default">
+		<action name="shownoticeAction" class="ShowNotice">
+				<result name="suc">notice.jsp</result>
+		</action>
+	</package>
+	
+	
+	<package name="meeting" namespace="/meeting" extends="struts-default">
+		<action name="meetingForRoomAction" class="meetingForRoomAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_for_room_list.jsp</param>
+			</result>
+		</action>
+		<action name="meetingTimeChooseAction" class="meetingTimeChooseAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_time_choose.jsp</param>
+			</result>
+		</action>
+		<action name="meetingRoomChooseAction" class="meetingRoomChooseAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_room_match_success.jsp</param>
+			</result>
+			<result name="fail">
+				<param name="location">/meeting/meeting_room_match_fail.jsp</param>
+			</result>
 		</action>
 	</package>
 </struts>

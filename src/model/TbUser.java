@@ -21,10 +21,11 @@ public class TbUser implements java.io.Serializable {
 	private Long phone;
 	private Boolean workingState;
 	private String reservedWord;
-	private Set tbNoticeInteractionsForToUserId = new HashSet();
-	private Set tbMeetings = new HashSet();
-	private Set tbNoticeInteractionsForFromUserId = new HashSet();
-	private Set tbAdmins= new HashSet();
+	private Set tbNoticeInteractionsForToUserId = new HashSet(0);
+	private Set tbMeetings = new HashSet(0);
+	private Set tbNoticeInteractionsForFromUserId = new HashSet(0);
+	private Set tbMeetingUsers = new HashSet(0);
+	private Set tbAdmins = new HashSet(0);
 
 	// Constructors
 
@@ -51,7 +52,8 @@ public class TbUser implements java.io.Serializable {
 	public TbUser(Integer id, TbDepartment tbDepartment, String name,
 			String password, Boolean gender, String iconName, String email,
 			Long phone, Boolean workingState, String reservedWord,
-			Set tbNoticeInteractionsForToUserId, Set tbMeetings, Set tbNoticeInteractionsForFromUserId,
+			Set tbNoticeInteractionsForToUserId, Set tbMeetings,
+			Set tbNoticeInteractionsForFromUserId, Set tbMeetingUsers,
 			Set tbAdmins) {
 		this.id = id;
 		this.tbDepartment = tbDepartment;
@@ -66,7 +68,8 @@ public class TbUser implements java.io.Serializable {
 		this.tbNoticeInteractionsForToUserId = tbNoticeInteractionsForToUserId;
 		this.tbMeetings = tbMeetings;
 		this.tbNoticeInteractionsForFromUserId = tbNoticeInteractionsForFromUserId;
-		this.tbAdmins=tbAdmins;
+		this.tbMeetingUsers = tbMeetingUsers;
+		this.tbAdmins = tbAdmins;
 	}
 
 	// Property accessors
@@ -167,6 +170,7 @@ public class TbUser implements java.io.Serializable {
 	public void setTbMeetings(Set tbMeetings) {
 		this.tbMeetings = tbMeetings;
 	}
+
 	public Set getTbNoticeInteractionsForFromUserId() {
 		return this.tbNoticeInteractionsForFromUserId;
 	}
@@ -174,6 +178,14 @@ public class TbUser implements java.io.Serializable {
 	public void setTbNoticeInteractionsForFromUserId(
 			Set tbNoticeInteractionsForFromUserId) {
 		this.tbNoticeInteractionsForFromUserId = tbNoticeInteractionsForFromUserId;
+	}
+
+	public Set getTbMeetingUsers() {
+		return this.tbMeetingUsers;
+	}
+
+	public void setTbMeetingUsers(Set tbMeetingUsers) {
+		this.tbMeetingUsers = tbMeetingUsers;
 	}
 
 	public Set getTbAdmins() {

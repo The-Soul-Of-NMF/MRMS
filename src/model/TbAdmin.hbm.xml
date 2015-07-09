@@ -8,7 +8,7 @@
     <class name="model.TbAdmin" table="tb_admin" catalog="db_mrms">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="increment" />
+            <generator class="identity" />
         </id>
         <many-to-one name="tbUser" class="model.TbUser" fetch="select" >
             <column name="user_id" not-null="true" unique="true" />

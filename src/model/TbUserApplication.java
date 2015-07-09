@@ -24,10 +24,8 @@ public class TbUserApplication implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public TbUserApplication(Integer id, TbDepartment tbDepartment,
-			String name, String password, Boolean gender, String email,
-			Long phone) {
-		this.id = id;
+	public TbUserApplication(TbDepartment tbDepartment, String name,
+			String password, Boolean gender, String email, Long phone) {
 		this.tbDepartment = tbDepartment;
 		this.name = name;
 		this.password = password;
@@ -37,10 +35,9 @@ public class TbUserApplication implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public TbUserApplication(Integer id, TbDepartment tbDepartment,
-			String name, String password, Boolean gender, String email,
-			Long phone, String reservedWord) {
-		this.id = id;
+	public TbUserApplication(TbDepartment tbDepartment, String name,
+			String password, Boolean gender, String email, Long phone,
+			String reservedWord) {
 		this.tbDepartment = tbDepartment;
 		this.name = name;
 		this.password = password;

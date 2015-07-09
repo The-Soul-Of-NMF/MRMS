@@ -20,16 +20,13 @@ public class TbAdmin implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public TbAdmin(Integer id, TbUser tbUser, Boolean superAdmin) {
-		this.id = id;
+	public TbAdmin(TbUser tbUser, Boolean superAdmin) {
 		this.tbUser = tbUser;
 		this.superAdmin = superAdmin;
 	}
 
 	/** full constructor */
-	public TbAdmin(Integer id, TbUser tbUser, Boolean superAdmin,
-			String reservedWord) {
-		this.id = id;
+	public TbAdmin(TbUser tbUser, Boolean superAdmin, String reservedWord) {
 		this.tbUser = tbUser;
 		this.superAdmin = superAdmin;
 		this.reservedWord = reservedWord;

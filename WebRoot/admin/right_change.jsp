@@ -117,10 +117,11 @@
                     <div>
                     	<label class="radio-inline">把</label>
                         <label class="radio-inline">
-                            <input id="female" name="gender" class="form-control" type="text" placeholder="请输入账号" />
+                            <input id="id" name="id" class="form-control" type="text" placeholder="请输入账号" />
                         </label>
                         <label class="radio-inline">
-                            <a href="#" class="btn btn-success">提升</a>
+                            <a class="btn btn-success" 
+                            	onclick="promote()" >提升</a>
                             为管理员.</label>&nbsp;&nbsp;&nbsp;&nbsp;
 
                     </div>
@@ -136,4 +137,17 @@
 <script src="../lib/scripts/jquery-1.11.0.min.js"></script>
 <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/scripts/bootbox.min.js"></script>
+<script>
+	function promote(){
+		var user_id=$("#id").val()
+		var data={id:user_id}
+		$.post("../user/userAction_promote",data,function(result){
+			if(result=="-1"){
+				alert("该用户不存在!")
+			}else{
+				alert("该用户已被提升为超级管理员!")
+			}
+		});
+	}
+</script>
 </html>

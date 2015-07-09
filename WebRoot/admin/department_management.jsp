@@ -1,8 +1,11 @@
 <%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+
 <%@page import="javax.servlet.http.HttpServletRequest"%>
 <%@page import="org.apache.struts2.ServletActionContext"%>
 <%@page import="model.TbUser"%>
+
+<%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -10,6 +13,7 @@
     <title></title>
     <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../lib/system/css/left_menu.css" rel="stylesheet" />
+    <link href="css/department_management.css" rel="stylesheet" />
 </head>
 <body>
 <% 
@@ -84,7 +88,7 @@
 					<a class="list-group-item" href="../admin/meeting_apply_check.jsp">
 						会议审查<span class="badge">10</span>
 					</a>
-					<a class="list-group-item active" href="../admin/department_management.jsp">
+					<a class="list-group-item active" href="../department/deparManaAction_show">
 						部门信息管理
 					</a>
 					<a class="list-group-item" href="../admin/meeting_room_management.jsp">
@@ -108,49 +112,68 @@
 		</div>
 	</div>
 	<!-- 左侧可伸缩菜单栏结束 -->
-        <div class="col-md-9" style="margin-top: -25px;">
-				<div class="page-header">
-					<div>
-						<h3><strong>部门管理</strong></h3>
-					</div>
-				</div>
-
+        <div class="col-md-9" style="margin-top: 15px;">
+				
 				<!-- 搜索表单开始 -->
-				<div>
-					<form>
-						<div class="form-inline  ">
-							
-							<div class="form-group" style="margin-left: 3px;">
-								<input type="text" placeholder="部门编号" class="form-control" />
-							</div>
-							
-							<div class="form-group" style="margin-left: 4px;">
-								<input type="text" placeholder="部门人数" class="form-control" />
-							</div>
-							<div class="form-group" style="margin-left: 4px;">
-								<input type="text" placeholder="成员" class="form-control" />
-							</div>
-							<div class="form-group" style="margin-left: 4px;">
-								<select class="form-control">
-									<option value="">不限部门</option>
-									<option value="1">技术部</option>
-									<option value="2">销售部</option>
-									<option value="3">市场部</option>
-									<option value="4">行政部</option>
-								</select>
+				<ul class="nav nav-tabs">
+            		<li class="active"><a href="#tab1" data-toggle="tab">部门编号</a></li>
+            		<li><a href="#tab2" data-toggle="tab">部门人数</a></li>
+            		<li><a href="#tab3" data-toggle="tab">部门成员</a></li>
+        		</ul>
+        		<div class="tab-content">
+            		<div class="tab-pane active" id="tab1">
+			    		<div class="page-header">
+							<h3><strong>输入部门编号</strong></h3>
+						</div>
+						<form action="../department/deparManaAction_query_by_id">
+							<div class="form-inline  ">
+								<div class="form-group" style="margin-left: 3px;">
+									<input type="text" name="depar_id" placeholder="部门编号" class="form-control" />
+								</div>
 							</div>
 							<div class="form-group" style="margin-left: 22px;">
 								<button type="submit" class="btn btn-info">查询</button>
 							</div>
+						</form>
+					</div>
+					<div class="tab-pane" id="tab2">
+			    		<div class="page-header">
+							<h3><strong>输入部门人数范围</strong></h3>
 						</div>
-					</form>
+						<form action="../department/deparManaAction_query_by_num">
+							<div class="form-inline  ">
+								<div class="form-group" style="margin-left: 4px;">
+									<input type="text" name="left_num" placeholder="人数" class="form-control" />至
+									<input type="text" name="right_num" placeholder="人数" class="form-control" />
+								</div>
+							</div>
+							<div class="form-group" style="margin-left: 22px;">
+								<button type="submit" class="btn btn-info">查询</button>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane" id="tab3">
+			    		<div class="page-header">
+							<h3><strong>输入部门成员姓名</strong></h3>
+						</div>
+						<form action="../department/deparManaAction_query_by_member">
+							<div class="form-inline  ">
+								<div class="form-group" style="margin-left: 4px;">
+									<input type="text" name="depar_member" placeholder="成员" class="form-control" />
+								</div>
+							</div>
+							<div class="form-group" style="margin-left: 22px;">
+								<button type="submit" class="btn btn-info">查询</button>
+							</div>
+						</form>
+					</div>
 				</div>
 				<!-- 搜索表单结束 -->
 
 				<div>
 					<table class="table table-striped table-bordered text-center">
 						<caption>
-							<h4><strong>查询结果</strong></h4>
+							<h4><strong>部门信息</strong></h4>
 							<ul class="pagination pagination-sm col-md-12">
 								<li title="第一页"><a href="#">&laquo;</a>
 								</li>
@@ -168,7 +191,7 @@
 								<li class="pull-right">
 
 									<div>
-										<a href="./department_management_add.jsp" class="btn btn-success btn-sm">添加部门</a>
+										<a href="../admin/department_management_add.jsp" class="btn btn-success btn-sm">添加部门</a>
 									</div>
 								</li>
 							</ul>
@@ -184,46 +207,24 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>10001</td>
-								<td>技术部</td>
-								<td>34</td>
-								<td>马云等</td>
-								<td>
-									<a href="./department_management_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
-									<a href="#" class="btn btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
-								</td>
-							</tr>
-							<tr>
-								<td>10002</td>
-								<td>销售部</td>
-								<td>23</td>
-								<td>周可儿等</td>
-								<td>
-									<a href="./department_management_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
-									<a href="#" class="btn btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
-								</td>
-							</tr>
-							<tr>
-								<td>10003</td>
-								<td>市场部</td>
-								<td>3</td>
-								<td>洪鑫等</td>
-								<td>
-									<a href="./department_management_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
-									<a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
-								</td>
-							</tr>
-							<tr>
-								<td>10004</td>
-								<td>行政部</td>
-								<td>3</td>
-								<td>比利海灵顿等</td>
-								<td>
-									<a href="./department_management_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
-									<a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
-								</td>
-							</tr>
+					
+						
+							<s:iterator value="all_depar">
+								<tr>
+									<td class="depar_id"><s:property value="id"/></td>
+									<td><s:property value="name"/></td>
+									<td><s:property value="totalNumber"/></td>
+									<td>
+										<s:iterator value="user">
+         									<s:property value="user_name" />,
+										</s:iterator>
+									</td>
+									<td>
+										<a class="btn btn-primary btn-sm" onclick= "get_current_id(this)" >编辑</a>
+										<a class="btn btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm(this)" >删除</a>
+									</td>
+								</tr>
+							</s:iterator>
 						</tbody>
 					</table>
 
@@ -240,4 +241,25 @@
 <script src="../lib/scripts/jquery-1.11.0.min.js"></script>
 <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/scripts/bootbox.min.js"></script>
+<script>
+	function get_current_id(t){
+		var current_id=$(t).parent().siblings(".depar_id").first().text();
+		window.location.href="../department/deparManaAction_current_id?current_id="+current_id
+	}
+	function deleteConfirm(t){
+		var current_id=$(t).parent().siblings(".depar_id").first().text();
+		if(confirm("确定删除么?")){
+			var data={current_id:current_id}
+			$.post("../department/deparManaAction_check_delete",data,function(result){
+				if(result=="-1"){
+					alert("当前部门中还有员工，不能被删除!")
+				}else if(result=="1"){
+					window.location.href="../department/deparManaAction_delete?"+
+							"current_id="+current_id
+				}
+			})
+			
+		}
+	}
+</script>
 </html>

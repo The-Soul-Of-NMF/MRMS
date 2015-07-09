@@ -34,8 +34,7 @@ public class TbDepartment implements java.io.Serializable {
 
 	/** full constructor */
 	public TbDepartment(String name, Integer totalNumber, Boolean state,
-			String reservedWord,Set tbUsers,
-			Set tbUserApplications) {
+			String reservedWord, Set tbUsers, Set tbUserApplications) {
 		this.name = name;
 		this.totalNumber = totalNumber;
 		this.state = state;
@@ -85,6 +84,7 @@ public class TbDepartment implements java.io.Serializable {
 	public void setReservedWord(String reservedWord) {
 		this.reservedWord = reservedWord;
 	}
+
 	public Set getTbUsers() {
 		return this.tbUsers;
 	}
