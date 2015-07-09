@@ -1,5 +1,6 @@
 package action;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +22,13 @@ public class MeetingDetailAction extends ActionSupport {
 	private TbMeeting meeting;
 	private MeetingService meetingService;
 	private List<TbUser> meetingInvited;
+	private Date finishTIme;
 	public String execute(){
 		HttpServletRequest request=ServletActionContext.getRequest();
-		String id=request.getParameter("meetingId");
-		this.setMeeting(meetingService.serachMeeting(Integer.parseInt(id)));
+		int id=Integer.parseInt(request.getParameter("meetingId"));
+		this.setMeeting(meetingService.serachMeeting(id));
 		this.setMeetingInvited(meetingService.searchInvitedUser(meeting));
+		
 		return "success";
 	}
 	public TbMeeting getMeeting() {
@@ -45,5 +48,11 @@ public class MeetingDetailAction extends ActionSupport {
 	}
 	public void setMeetingInvited(List<TbUser> meetingInvited) {
 		this.meetingInvited = meetingInvited;
+	}
+	public Date getFinishTIme() {
+		return finishTIme;
+	}
+	public void setFinishTIme(Date finishTIme) {
+		this.finishTIme = finishTIme;
 	}
 }

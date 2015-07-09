@@ -124,9 +124,9 @@
                 </div>
                 <div class="form-group">
                     <label>会议起止时间:</label></br>
-                    <input type="text" id="time1" class="form-control" disabled="disabled" value="<s:property value="meeting.startTime"/>"/>
+                    <input type="text" id="time1" class="form-control" disabled="disabled" value="<s:date name="meeting.startTime" format="HH:mm"/>"/>
 					<p id="p">——</p>
-				    <input type="text" id="time2" class="form-control" disabled="disabled" value="<s:property value="meeting.startTime"/>"/>
+				    <input type="text" id="time2" class="form-control" disabled="disabled" value="<s:date name="meeting.startTime" format="HH:mm"/>"/>
                 </div>
 				 <div class="form-group">
                     <label>会议简介:</label>
