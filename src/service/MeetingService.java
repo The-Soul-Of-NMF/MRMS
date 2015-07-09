@@ -13,7 +13,7 @@ public interface MeetingService {
 	TbMeeting saveMeeting(TbMeeting meeting);
 	TbMeeting getTheLastMeeting();
 	TbMeeting serachMeeting(int id);
-	TbMeetingUser createNewMeetingUser(TbMeetingUser meetingUser);
+	void createNewMeetingUser(TbMeeting tbMeeting,String[] userId);
 	TbUser serachUser(int id);
 	List<TbMeeting> serachOwnMeeting(TbUser user);
 	List<TbMeeting> serachOwnMeeting(TbUser user, int state);
@@ -22,8 +22,10 @@ public interface MeetingService {
 	List<TbMeeting> serachMatchMeeting(Date meetingDate);
 	List<TbMeeting> serachMatchMeeting(Date meetingDate, int roomId);
 	List<TbUser> serachAllUser();
+	List<TbUser> searchInvitedUser(TbMeeting meeting);
 	void changeMeetingState(TbMeeting meeting,TbMeetingState state);
 	void updateMeeting(TbMeeting meeting);
 	TbMeetingState getMeetingState(int stateId);
 	TbMeetingRoom searchMeetingRoom(int roomId);
+	TbMeetingState serachMeetingState(int id);
 }

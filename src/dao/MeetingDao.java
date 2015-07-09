@@ -26,4 +26,7 @@ public interface MeetingDao {
 	void updateMeeting(TbMeeting meeting);
 	TbMeetingState getMeetingState(int stateId);
 	TbMeetingRoom getMeetingRoom(int roomId);
+	List<TbUser> searchInvitedUser(TbMeeting meeting);
+	TbMeeting changeMeetingState(TbMeeting meeting,TbMeetingState state);
+	TbMeetingState serachMeetingState(int id);
 }

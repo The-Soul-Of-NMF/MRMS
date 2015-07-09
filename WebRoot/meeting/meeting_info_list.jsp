@@ -1,16 +1,19 @@
-﻿<%@ page language="java" pageEncoding="UTF-8"%>  
+﻿<%@page import="org.apache.struts2.ServletActionContext"%>
+<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ page import="model.TbUser" %>
 <%@page import="javax.servlet.http.HttpServletRequest"%>
-<%@page import="org.apache.struts2.ServletActionContext"%>
-<%@page import="model.TbUser"%>
+
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <title>会议列表</title>
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../lib/system/css/left_menu.css" rel="stylesheet" />
-	 <link href="css/meeting_info_list.css" rel="stylesheet" />
+    <link href="/MRMS/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/MRMS/lib/system/css/left_menu.css" rel="stylesheet" />
+	 <link href="/MRMS/meeting/css/meeting_info_list.css" rel="stylesheet" />
 </head>
 <body>
 	<% 
@@ -55,7 +58,7 @@
         <div class="panel-group" id="accordion">
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item" href="../meeting/meeting_apply.jsp">
+                     <a class="list-group-item" href="'meeting/meetingApplyPrepare'">
                         会议申请
                     </a>
                     <a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
@@ -64,7 +67,7 @@
                     <a class="list-group-item" href="../user/notice.jsp">
                         通知<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item active" href="../meeting/meeting_info_list.jsp">
+                    <a class="list-group-item" href="'meetingInforAction'">
                         会议信息
                     </a>
                     <a class="list-group-item" href='../user/userinformationAction'>
@@ -83,7 +86,7 @@
                     <a class="list-group-item" href='../user/usercheckAction'>
                         用户注册审查<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item" href="../admin/meeting_apply_check.jsp">
+                    <a class="list-group-item" href="'meeting/showWaitMeetingAction'">
                         会议审查<span class="badge">10</span>
                     </a>
                     <a class="list-group-item" href="../admin/department_management.jsp">
@@ -125,18 +128,21 @@
                     <li>
                         <a href="">共<strong>98</strong>条记录，<strong>10</strong>页</a>
                     </li>
+                   
                 </ul>
+                <%String ss=((TbUser)session.getAttribute("user")).getName();
+            		HttpServletRequest request2=ServletActionContext.getRequest();
+            	%>
                 <div style="float:right;padding:5px">
-					<select id="state" class="form-control">
-					    <option selected="selected" value="0">全部会议</option>
-						<option value="1">未审核</option>
-						<option  value="2">审核未通过</option>
-						<option  value="3">未申请会议室</option>
-						<option  value="4">已申请会议室</option>
-						<option  value="5">会议中</option>
-						<option  value="6">已结束</option>
+					<select id="state" name="state" class="form-control" onchange="selectstate()">
+					    <option <s:if test="select==0">selected</s:if> value="0" >全部会议</option>
+						<option <s:if test="select==1">selected</s:if> value="1">待审核</option>
+						<option <s:if test="select==2">selected</s:if> value="2">待申请会议室</option>
+						<option <s:if test="select==3">selected</s:if> value="3">等待开始</option>
+						<option <s:if test="select==4">selected</s:if> value="4">审核未通过</option>
+						<option <s:if test="select==5">selected</s:if> value="5">已举行</option>
+						<option <s:if test="select==6">selected</s:if> value="6">会议中</option>
 					</select>
-					
                 </div>
             </caption>
             <thead>
@@ -149,23 +155,26 @@
 					<th>是否本人拥有</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><a href="meeting_info_detail.jsp">人事部会议</a></td>
-                    <td>邓旺华</td>
-                    <td>2015-06-24 8:00-9:00</td>
-                    <td>已结束</td>
-                    <td ><img src="img/check.png" id="check_size"/></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><a href="meeting_info_detail.jsp">销售部会议</a></td>
-                    <td>洪鑫</td>
-                    <td>2015-06-26 13:00-15:00</td>
-                    <td>已申请会议室</td>
-                    <td ></td>
-                </tr>
+            <tbody id="meetingtable">
+            	<input id="select_info" type="hidden" value="" />
+            	<s:iterator value="meetinglist">
+					<tr>
+            			<td><s:property value="id"/></td>
+            			<td><a href='meetingDetailAction?meetingId=<s:property value="id"/>'><s:property value="title"/></a></td>
+            			<td><s:property value="tbUser.name"/></td>
+            			<td><s:date name="date" format="yyyy/MM/dd"/></td>
+            			<td><s:property value="tbMeetingState.name"/></td>
+            			<td>
+            			<s:set name="usert" value="tbUser.name"></s:set>
+            				<%
+            				String ss2=request2.getAttribute("usert").toString();
+            				if(ss.equals(ss2)){
+            				%>
+            				<img src="/MRMS/meeting/img/check.png" id="check_size"/>
+            				<%}%>
+            			</td>
+            		</tr>
+            	</s:iterator>
             </tbody>
         </table>
     </div>
@@ -178,7 +187,8 @@
         <br />
     </div>
 </body>
-<script src="../lib/scripts/jquery-1.11.0.min.js"></script>
-<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="../lib/scripts/bootbox.min.js"></script>
+<script src="/MRMS/lib/scripts/jquery-1.11.0.min.js"></script>
+<script src="/MRMS/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/MRMS/lib/scripts/bootbox.min.js"></script>
+<script src="/MRMS/meeting/js/meeting_info_list.js"></script>
 </html>

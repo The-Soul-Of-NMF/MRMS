@@ -58,8 +58,6 @@
 		<action name="usermanagecheckAction" class="usermanageAction" method="managecheck">
 			<result name="success">/admin/user_management.jsp</result>
 		</action>
-		
-		
 		<action name="userAction_promote" method="promote" class="userAction">
 		</action>
 	</package>
@@ -89,9 +87,9 @@
 			<result name="success">/admin/department_management.jsp</result>
 		</action>
 		<action name="deparManaAction_query_by_member" method="query_depar_by_member" class="deparManaAction">
-			<result name="success">/admin/department_management.jsp</result>
-		</action>
-	</package>
+			<result name="success">../admin/department_management.jsp</result>
+      </action>
+      </package>
 	<package name="default1" namespace="/meetingRoom" extends="struts-default">
 	
 		<action name="showMeetingRoomAction" class="ShowMeetingRoomAct">
@@ -119,8 +117,6 @@
 				<result name="suc">notice.jsp</result>
 		</action>
 	</package>
-	
-	
 	<package name="meeting" namespace="/meeting" extends="struts-default">
 		<action name="meetingForRoomAction" class="meetingForRoomAction">
 			<result name="success">
@@ -143,6 +139,40 @@
 		<action name="meetingRoomGetAction" class="meetingRoomGetAction">
 			<result name="success">
 				<param name="location">/meeting/meeting_room_choose_complete.jsp</param>
+		<action name="meetingApplyPrepare" class="meetingApplyPrepare">
+			<result name="success">
+				<param name="location">/meeting/meeting_apply.jsp</param>
+			</result>
+		</action>
+		
+		<action name="meetingApplyAction" class="meetingApplyAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_apply_success.jsp</param>
+			</result>
+		</action>
+		<action name="meetingInforAction" class="meetingInforAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_info_list.jsp</param>
+			</result>
+		</action>
+		<action name="loginAction" class="loginAction">
+			<result name="success">
+				<param name="location">/user/welcome.jsp</param>
+			</result>
+		</action>
+		<action name="showWaitMeetingAction" class="showWaitMeetingAction">
+			<result name="success">
+				<param name="location">/admin/meeting_apply_check.jsp</param>
+			</result>
+		</action>
+		<action name="meetingApplyCheckAction" class="meetingApplyCheckAction">
+			<result name="success">
+				<param name="location">/admin/meeting_apply_check.jsp</param>
+			</result>
+		</action>
+		<action name="meetingDetailAction" class="meetingDetailAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_info_detail.jsp</param>
 			</result>
 		</action>
 	</package>

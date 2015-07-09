@@ -58,6 +58,37 @@
 		<div class="panel-group" id="accordion">
 			<div class="panel-body">
 				<div class="list-group" style="margin:0">
+<<<<<<< HEAD
+					<a class="list-group-item" href="'meeting/meetingApplyPrepare'">
+                        会议申请
+                    </a>
+                    <a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
+                        会议室选择
+                    </a>
+                    <a class="list-group-item" href="../user/notice.jsp">
+                        通知<span class="badge">20</span>
+                    </a>
+                    <a class="list-group-item" href="'meetingInforAction'">
+                        会议信息
+                    </a>
+                    <a class="list-group-item" href="../user/profile.jsp">
+                        个人信息
+                    </a>
+
+                </div>
+            </div>
+
+
+            <div class="panel-body">
+                <div class="list-group" style="margin:0">
+                    <a class="list-group-item" href="../admin/signup_check.jsp">
+                        用户注册审查<span class="badge">20</span>
+                    </a>
+                    <a class="list-group-item" href="'meeting/showWaitMeetingAction'">
+                        会议审查<span class="badge">10</span>
+                    </a>
+					<a class="list-group-item active" href="../admin/department_management.jsp">
+=======
 					<a class="list-group-item" href="../meeting/meeting_apply.jsp">
 						会议申请
 					</a>
@@ -89,6 +120,7 @@
 						会议审查<span class="badge">10</span>
 					</a>
 					<a class="list-group-item active" href="../department/deparManaAction_show">
+>>>>>>> 76f544cc519c8e1924767a41815d53409713816c
 						部门信息管理
 					</a>
 					<a class="list-group-item" href="../admin/meeting_room_management.jsp">
@@ -215,8 +247,8 @@
 									<td><s:property value="name"/></td>
 									<td><s:property value="totalNumber"/></td>
 									<td>
-										<s:iterator value="user">
-         									<s:property value="user_name" />,
+										<s:iterator value="tbUsers">
+         									<s:property value="name" />,
 										</s:iterator>
 									</td>
 									<td>

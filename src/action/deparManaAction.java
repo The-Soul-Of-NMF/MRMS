@@ -2,6 +2,7 @@ package action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,10 +63,11 @@ public class deparManaAction extends ActionSupport{
 	public void setDepar(TbDepartment depar) {
 		this.depar = depar;
 	}
-	//修改部门名称
-	public String modify_depar_name(){
+	//修改部门名称]
+	public String modify_depar_name() throws UnsupportedEncodingException{
 		HttpServletRequest rq=ServletActionContext.getRequest();
-		String name=rq.getParameter("name");
+		rq.setCharacterEncoding("UTF-8");
+		String name=new String(rq.getParameter("name").getBytes("ISO-8859-1"),"UTF-8");
 		int current_id=Integer.parseInt(rq.getParameter("current_id"));
 		deparService.update_depar_name(name, current_id);
 		all_depar=deparService.showTbDepartment();
@@ -73,14 +75,16 @@ public class deparManaAction extends ActionSupport{
 		return "success";
 	}
 	//添加新部门
-	public String add_depar(){
+	public String add_depar() throws UnsupportedEncodingException{
 		HttpServletRequest rq=ServletActionContext.getRequest();
-		String name=rq.getParameter("name");
+		rq.setCharacterEncoding("UTF-8");
+		String name=new String(rq.getParameter("name").getBytes("ISO-8859-1"),"UTF-8");
 		depar.setName(name);
 		depar.setTotalNumber(10);
 		depar.setState(true);
 		deparService.saveTbDepartment(depar);
 		all_depar=deparService.showTbDepartment();
+		System.out.println();
 		
 		return "success";
 	}

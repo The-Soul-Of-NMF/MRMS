@@ -55,16 +55,16 @@
         <div class="panel-group" id="accordion">
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item" href="../meeting/meeting_apply.jsp">
+                     <a class="list-group-item" href="'meeting/meetingApplyPrepare'">
                         会议申请
                     </a>
                     <a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
                         会议室选择
                     </a>
-                    <a class="list-group-item active" href="../user/notice.jsp">
+                    <a class="list-group-item" href="../user/notice.jsp">
                         通知<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item" href="../meeting/meeting_info_list.jsp">
+                    <a class="list-group-item" href="'meetingInforAction'">
                         会议信息
                     </a>
                     <a class="list-group-item" href='./userinformationAction'>
@@ -82,10 +82,10 @@
                     <a class="list-group-item" href='./usercheckAction'>
                         用户注册审查<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item" href="../admin/meeting_apply_check.jsp">
+                    <a class="list-group-item" href="'meeting/showWaitMeetingAction'">
                         会议审查<span class="badge">10</span>
                     </a>
-                    <a class="list-group-item" href="../admin/department_management.jsp">
+                    <a class="list-group-item" href="../department/deparManaAction_show">
                         部门信息管理
                     </a>
                     <a class="list-group-item" href="../admin/meeting_room_management.jsp">
