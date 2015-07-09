@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import model.TbMeeting;
+import model.TbMeetingRoom;
 import model.TbMeetingState;
 import model.TbMeetingUser;
 import model.TbUser;
@@ -19,6 +20,10 @@ public interface MeetingService {
 	List<TbMeeting> serachJoinMeeting(TbUser user);
 	List<TbMeeting> serachWaitMeeting();
 	List<TbMeeting> serachMatchMeeting(Date meetingDate);
+	List<TbMeeting> serachMatchMeeting(Date meetingDate, int roomId);
 	List<TbUser> serachAllUser();
 	void changeMeetingState(TbMeeting meeting,TbMeetingState state);
+	void updateMeeting(TbMeeting meeting);
+	TbMeetingState getMeetingState(int stateId);
+	TbMeetingRoom searchMeetingRoom(int roomId);
 }

@@ -146,6 +146,10 @@
 	</bean>
 	<bean id = "meetingRoomChooseAction" class = "action.MeetingRoomChooseAction" scope="prototype">
 		<property name="meetingService" ref="meetingService"></property>
+		<property name="showMeetingRoomService" ref="ShowMeetingRoomService"></property>
+	</bean>
+	<bean id = "meetingRoomGetAction" class = "action.MeetingRoomGetAction" scope="prototype">
+		<property name="meetingService" ref="meetingService"></property>
 	</bean>
 	
 
@@ -160,8 +164,7 @@
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 	</bean>
 	
-	
 	<bean id="meetingRoomDetailAction" class="action.MeetingRoomDetailAction">
-		
+		<property name="meetingService" ref="meetingService"></property>
 	</bean>
 </beans>

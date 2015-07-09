@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import model.TbMeeting;
+import model.TbMeetingRoom;
 import model.TbMeetingState;
 import model.TbMeetingUser;
 import model.TbUser;
@@ -98,5 +99,26 @@ public class MeetingDaoImpl implements MeetingDao {
 		String hql="from TbMeeting m where m.date='" + format.format(meetingDate) + "' and m.startTime!=null";
 		return this.hibernateTemplate.find(hql);
 	}
-
+	@Override
+	public List<TbMeeting> serachMatchMeeting(Date meetingDate,
+			int roomId) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
+		String hql="from TbMeeting m where m.date='" + format.format(meetingDate) + "' and m.tbMeetingRoom.id="+roomId;
+		return this.hibernateTemplate.find(hql);
+	}
+	@Override
+	public void updateMeeting(TbMeeting meeting) {
+		hibernateTemplate.update(meeting);
+		
+	}
+	@Override
+	public TbMeetingState getMeetingState(int stateId) {
+		String hql = "from TbMeetingState s where s.id = "+ stateId;
+		return (TbMeetingState) hibernateTemplate.find(hql).get(0);
+	}
+	@Override
+	public TbMeetingRoom getMeetingRoom(int roomId) {
+		String hql = "from TbMeetingRoom r where r.id = " + roomId;
+		return (TbMeetingRoom) hibernateTemplate.find(hql).get(0);
+	}
 }

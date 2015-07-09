@@ -207,6 +207,7 @@
 			$(button).parent().siblings(".w").first().children("#a01").first().attr("disabled","disabled");
 			$(button).text("修改");
 			var data={userid:id,userdepartment:department,userwork:work};
+			alert(data.userid + " " + data.userwork)
 			$.post("usermanagecheckAction",data,function(result){
 				alert("修改成功！");
 				window.location.href = "usermanageAction";

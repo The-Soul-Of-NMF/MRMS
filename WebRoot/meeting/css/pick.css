@@ -1,10 +1,19 @@
-﻿.main_content{
-    margin-top: -25px;
+
+.room{
+	margin:30px auto;
+	border: 3px solid #777;
+	border-radius:5px;
+	padding: 20px;
+	width:600px;
 }
-#meeting_time_choose, #meeting_room_choose_one, #meeting_time_success{
-    display: none;
+.room p{
+	float: left;
+	font-weight: bold;
+	margin:20px 40px;
 }
-.text-primary{
-    height: 30px;
-    line-height: 30px;
+.room_selection{
+	margin:20px 30px;
+}
+.room a{
+	margin-left:450px;
 }

@@ -1,0 +1,54 @@
+
+div.timeline{
+    font-weight: bold;
+}
+
+div.timeline_circle{
+    position: relative;
+    cursor: pointer;
+}
+
+div.timeline_circle_border{
+    position: absolute;
+}
+
+div.timeline_little_circle{
+    position: absolute;
+    background: rgba(255,255,255,0.3);
+    z-index: 999;
+}
+
+
+div.timeline_little_circle:hover{
+
+}
+
+div.timeline_time_tip{
+    position: absolute;
+    font-family: "Comic Sans MS", "Calibri", "Monotype Corsiva", "Times", "Microsoft Yahei";
+
+    font-weight: bold;
+}
+
+div.timeline_time_tip_main{
+    font-size: 20px;
+}
+
+div.timeline_message_box{
+    top: -10px;
+    position: absolute;
+    border-radius: 3px;
+    padding: 10px 20px;
+    text-align: center;
+    font-family: Arial, "微软雅黑", "宋体";
+    font-weight: bold;
+}
+div.box_triangle{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    top: 10px;
+    left: -10px;
+}

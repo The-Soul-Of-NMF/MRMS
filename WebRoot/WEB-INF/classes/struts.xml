@@ -109,6 +109,9 @@
 		<action name="DeleteMeetingRoomAction" class="deleteMeetingRoomAct">
 				<result name="delsucc">/admin/meeting_room_management.jsp</result>
 		</action>
+		<action name="meetingRoomDetailAction" class="meetingRoomDetailAction">
+				<result name="success">/admin/meeting_room_detail.jsp</result>
+		</action>
 	</package>
 	
 	<package name="notice" namespace="/user" extends="struts-default">
@@ -135,6 +138,11 @@
 			</result>
 			<result name="fail">
 				<param name="location">/meeting/meeting_room_match_fail.jsp</param>
+			</result>
+		</action>
+		<action name="meetingRoomGetAction" class="meetingRoomGetAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_room_choose_complete.jsp</param>
 			</result>
 		</action>
 	</package>

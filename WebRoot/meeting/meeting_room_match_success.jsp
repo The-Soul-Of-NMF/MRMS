@@ -117,19 +117,32 @@
                     <table class="table table-striped table-bordered text-center">
                         <thead>
                         <tr>
+                            <th class="text-center">会议室ID</th>
                             <th class="text-center">门牌号</th>
                             <th class="text-center">容纳人数</th>
                             <th class="text-center">选择</th>
                         </tr>
                         </thead>
                         <tbody>
-                        
+                        	<s:iterator value="matchedRoomList">
+                        		<tr>
+                        			<td class="r_id"><s:property value="id" /></td>
+                        			<td><s:property value="doorNumber" /></td>
+                        			<td><s:property value="personLimit" /></td>
+                        			<td><a class="choose_btn btn btn-primary" >选择</a></td>
+                        		</tr>
+                        	</s:iterator>
                         </tbody>
                     </table>
             </fieldset>
 
         </form>
 
+	<form id="get_room_form" action="/MRMS/meeting/meetingRoomGetAction" method="post">
+		<input name="meeting_id" type="hidden" value="<s:property value='meeting.id' />" />
+		<input id="meeting_room_id" name="meeting_room_id" type="hidden" value="" />
+		<input id="meeting_start_time" name="meeting_start_time" type="hidden"  value="<s:date name='meetingTime' format='HH:mm' />" />
+	</form>
 
     </div>
 </div>
@@ -144,4 +157,18 @@
 <script src="/MRMS/lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="/MRMS/lib/scripts/bootbox.min.js"></script>
 <script src="/MRMS/meeting/js/pick.js"></script>
+<script>
+	$(function(){
+		$(".choose_btn").click(function(){
+			var meeting_room = $(this).parent().siblings(".r_id").first().text();
+			$("#meeting_room_id").val(meeting_room);
+			bootbox.confirm("确定选择该会议室在"+ $("#meeting_start_time").val()+"召开会议？",
+            	function (choice) {
+                	if (choice) {
+                    	$("#get_room_form")[0].submit();
+                }
+            });			
+		})
+	})
+</script>
 </html>

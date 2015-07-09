@@ -116,7 +116,7 @@
                     <label for="meeting_num" class="col-md-3 control-label">会议编号：</label>
                     <div class="col-md-8">
                         <input disabled="disabled" type="text" id="meeting_num" value='<s:property value="meeting.id"/>'"  class="form-control" />
-                        <input name="id" type="hidden" id="meeting_num" value='<s:property value="meeting.id"/>'"  class="form-control" />
+                        <input name="id" type="hidden" id="meeting_num" value="<s:property value='meeting.id'/>"  class="form-control" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -128,7 +128,7 @@
                 <div class="form-group">
                     <label for="name" class="col-md-3 control-label">开始日期：</label>
                     <div class="col-md-8">
-                        <input disabled="disabled" type="date" id="start_date" value='<s:date name="meeting.date" format="yyyy-MM-dd" />'" class="form-control" />
+                        <input disabled="disabled" type="date" id="start_date" value="<s:date name='meeting.date' format='yyyy-MM-dd' />" class="form-control" />
                     </div>
                 </div>
                 <div class="form-group">

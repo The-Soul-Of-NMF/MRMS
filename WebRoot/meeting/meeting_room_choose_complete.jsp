@@ -109,96 +109,42 @@
             <h3><strong>会议室选择</strong></h3>
         </div>
 
-        <form id="meeting_time_choose" class="col-md-12">
-            <fieldset class="form-horizontal">
-                <legend>选择一个最理想的会议开始时间</legend>
-                <div class="form-group">
-                    <label for="meeting_num" class="col-md-3 control-label">会议编号：</label>
-                    <div class="col-md-8">
-                        <input disabled="disabled" type="text" id="meeting_num" value="M10001" placeholder="姓名" class="form-control" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="meeting_name" class="col-md-3 control-label">会议名称：</label>
-                    <div class="col-md-8">
-                        <input disabled="disabled" id="meeting_name" value="人事部例会" placeholder="姓名" class="form-control" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="name" class="col-md-3 control-label">开始日期：</label>
-                    <div class="col-md-8">
-                        <input disabled="disabled" type="date" id="name" value="2015-06-27" placeholder="姓名" class="form-control" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="start_time" class="col-md-3 control-label">开始时间：</label>
-                    <div class="col-md-8">
-                        <input type="time" id="start_time" class="form-control" value="09:30" />
-                    </div>
-                </div>
-            </fieldset>
-            <div class="text-center form-group">
-                <button type="button" class="btn btn-primary" id="time_choose_ok_btn">确定</button>
-                <button type="button" class="btn btn-primary col-md-offset-1 back_to_list_btn">返回</button>
-            </div>
-        </form>
-
-
-        <form id="meeting_room_choose_one" class="col-md-12">
-            <fieldset class="form-horizontal">
-                <legend>以下会议室满足条件</legend>
-                    <table class="table table-striped table-bordered text-center">
-                        <thead>
-                        <tr>
-                            <th class="text-center">门牌号</th>
-                            <th class="text-center">容纳人数</th>
-                            <th class="text-center">选择</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        
-                        </tbody>
-                    </table>
-            </fieldset>
-
-        </form>
-
         <form id="meeting_time_success" class="col-md-12">
             <fieldset class="form-horizontal">
                 <legend>会议室选择成功</legend>
                 <div class="form-group">
                     <label for="meeting_num" class="col-md-3 control-label">会议编号：</label>
                     <div class="col-md-8">
-                        <p class="text-primary">M10001</p>
+                        <p class="text-primary"><s:property value="meeting.id"/></p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="meeting_name" class="col-md-3 control-label">会议名称：</label>
                     <div class="col-md-8">
-                        <p class="text-primary">人事部例会</p>
+                        <p class="text-primary"><s:property value="meeting.title"/></p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="name" class="col-md-3 control-label">起止时间：</label>
                     <div class="col-md-8">
-                        <p class="text-primary">2015-06-27 09:30 ~ 2015-06-27 11:30</p>
+                        <p class="text-primary"><s:date name="startDate" format="yyyy-MM-dd HH:mm"/> ~ <s:date name="endDate" format="yyyy-MM-dd HH:mm"/></p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="start_time" class="col-md-3 control-label">会议室：</label>
+                    <label for="start_time" class="col-md-3 control-label">会议室门牌号：</label>
                     <div class="col-md-8">
-                        <p class="text-primary">101</p>
+                        <p class="text-primary"><s:property value="meeting.tbMeetingRoom.doorNumber" /></p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="start_time" class="col-md-3 control-label">参会人数：</label>
                     <div class="col-md-8">
-                        <p class="text-primary">9</p>
+                        <p class="text-primary"><s:property value="meeting.totalNumber"/></p>
                     </div>
                 </div>
             </fieldset>
             <div class="text-center form-group">
-                <button type="button" class="btn btn-primary col-md-offset-1 back_to_list_btn">返回</button>
+                <a href="/MRMS/meeting/meetingForRoomAction"  class="btn btn-primary col-md-offset-1 back_to_list_btn">返回</a>
             </div>
         </form>
 

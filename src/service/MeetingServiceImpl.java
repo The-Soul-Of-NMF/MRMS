@@ -5,6 +5,7 @@ import java.util.List;
 
 import dao.MeetingDao;
 import model.TbMeeting;
+import model.TbMeetingRoom;
 import model.TbMeetingState;
 import model.TbMeetingUser;
 import model.TbUser;
@@ -64,6 +65,24 @@ public class MeetingServiceImpl implements MeetingService {
 	@Override
 	public List<TbMeeting> serachMatchMeeting(Date meetingDate) {
 		return meetingDao.serachMatchMeeting(meetingDate);
+	}
+	@Override
+	public List<TbMeeting> serachMatchMeeting(Date meetingDate,
+			int roomId) {
+		return meetingDao.serachMatchMeeting(meetingDate, roomId);
+	}
+	@Override
+	public void updateMeeting(TbMeeting meeting) {
+		meetingDao.updateMeeting(meeting);
+		
+	}
+	@Override
+	public TbMeetingState getMeetingState(int stateId) {
+		return meetingDao.getMeetingState(stateId);
+	}
+	@Override
+	public TbMeetingRoom searchMeetingRoom(int roomId) {
+		return meetingDao.getMeetingRoom(roomId);
 	}
 	
 }

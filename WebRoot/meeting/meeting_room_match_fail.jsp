@@ -9,7 +9,9 @@
     <title></title>
     <link href="/MRMS/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/MRMS/lib/system/css/left_menu.css" rel="stylesheet" />
+    <link href="/MRMS/lib/timeline/jquery.timeline_h.css" rel="stylesheet" />
     <link href="/MRMS/meeting/css/pick.css" rel="stylesheet"/>
+	
 </head>
 <body>
 <!-- 顶部导航栏开始 -->
@@ -108,100 +110,26 @@
         <div class="page-header">
             <h3><strong>会议室选择</strong></h3>
         </div>
+        <h4><strong>会议时长：<s:property value="meeting.duringTime"/>min&nbsp 会议总人数：<s:property value="meeting.totalNumber"/>人</strong></h4>
+        
+	<s:iterator value="roomList">
+	<div class="room">
+		<p>Room ID: <span class="r_id"><s:property value="id"/></span></p>
+		<p>门牌号: <s:property value="doorNumber"/></p>
+		<p>人数上限: <s:property value="personLimit"/></p>
+		<div class="room_selection">
+			<input type="hidden" value="<s:property value='reservedWord' />" />
+		</div>	
+		<a class="confirm_btn btn btn-primary">确认</a>
+	</div>
 
-        <form id="meeting_time_choose" class="col-md-12">
-            <fieldset class="form-horizontal">
-                <legend>选择一个最理想的会议开始时间</legend>
-                <div class="form-group">
-                    <label for="meeting_num" class="col-md-3 control-label">会议编号：</label>
-                    <div class="col-md-8">
-                        <input disabled="disabled" type="text" id="meeting_num" value="M10001" placeholder="姓名" class="form-control" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="meeting_name" class="col-md-3 control-label">会议名称：</label>
-                    <div class="col-md-8">
-                        <input disabled="disabled" id="meeting_name" value="人事部例会" placeholder="姓名" class="form-control" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="name" class="col-md-3 control-label">开始日期：</label>
-                    <div class="col-md-8">
-                        <input disabled="disabled" type="date" id="name" value="2015-06-27" placeholder="姓名" class="form-control" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="start_time" class="col-md-3 control-label">开始时间：</label>
-                    <div class="col-md-8">
-                        <input type="time" id="start_time" class="form-control" value="09:30" />
-                    </div>
-                </div>
-            </fieldset>
-            <div class="text-center form-group">
-                <button type="button" class="btn btn-primary" id="time_choose_ok_btn">确定</button>
-                <button type="button" class="btn btn-primary col-md-offset-1 back_to_list_btn">返回</button>
-            </div>
-        </form>
+	</s:iterator>
 
-
-        <form id="meeting_room_choose_one" class="col-md-12">
-            <fieldset class="form-horizontal">
-                <legend>以下会议室满足条件</legend>
-                    <table class="table table-striped table-bordered text-center">
-                        <thead>
-                        <tr>
-                            <th class="text-center">门牌号</th>
-                            <th class="text-center">容纳人数</th>
-                            <th class="text-center">选择</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        
-                        </tbody>
-                    </table>
-            </fieldset>
-
-        </form>
-
-        <form id="meeting_time_success" class="col-md-12">
-            <fieldset class="form-horizontal">
-                <legend>会议室选择成功</legend>
-                <div class="form-group">
-                    <label for="meeting_num" class="col-md-3 control-label">会议编号：</label>
-                    <div class="col-md-8">
-                        <p class="text-primary">M10001</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="meeting_name" class="col-md-3 control-label">会议名称：</label>
-                    <div class="col-md-8">
-                        <p class="text-primary">人事部例会</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="name" class="col-md-3 control-label">起止时间：</label>
-                    <div class="col-md-8">
-                        <p class="text-primary">2015-06-27 09:30 ~ 2015-06-27 11:30</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="start_time" class="col-md-3 control-label">会议室：</label>
-                    <div class="col-md-8">
-                        <p class="text-primary">101</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="start_time" class="col-md-3 control-label">参会人数：</label>
-                    <div class="col-md-8">
-                        <p class="text-primary">9</p>
-                    </div>
-                </div>
-            </fieldset>
-            <div class="text-center form-group">
-                <button type="button" class="btn btn-primary col-md-offset-1 back_to_list_btn">返回</button>
-            </div>
-        </form>
-
+	<form id="get_room_form" action="/MRMS/meeting/meetingRoomGetAction" method="post">
+		<input name="meeting_id" type="hidden" value="<s:property value='meeting.id' />" />
+		<input id="meeting_room_id" name="meeting_room_id" type="hidden" value="" />
+		<input id="meeting_start_time" name="meeting_start_time" type="hidden"  value="" />
+	</form>
     </div>
 </div>
 <div class="container text-center">
@@ -215,4 +143,35 @@
 <script src="/MRMS/lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="/MRMS/lib/scripts/bootbox.min.js"></script>
 <script src="/MRMS/meeting/js/pick.js"></script>
+<script src="/MRMS/lib/timeline/jquery.timeline_h.js"></script>
+
+<script type="text/javascript">
+	$(function(){
+		$(".room_selection").each(function(){
+			var t = $(this);
+			t.timeline_h({
+				callback: function(){
+					var j = t.find("input").first().val();
+					var obj = JSON.parse(j);
+					for (var x in obj){
+						t.meeting(obj[x]);
+					}
+				}
+			})
+		});
+		
+		$(".confirm_btn").click(function(){
+			var b = $(this);
+			var time = $(this).get_time();
+			$("#meeting_start_time").val(time.startTime);
+			$("#meeting_room_id").val(b.parent().find(".r_id").first().text());
+			bootbox.confirm("确定选择该会议室在"+ $("#meeting_start_time").val()+"召开会议？",
+            	function (choice) {
+                	if (choice) {
+                    	$("#get_room_form")[0].submit();
+                }
+            });	
+		});
+	})
+</script>
 </html>

@@ -8,6 +8,24 @@
     <title></title>
     <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../lib/system/css/left_menu.css" rel="stylesheet" />
+    <link href="../lib/timeline/jquery.timeline.css" rel="stylesheet" />
+    <style type="text/css">
+    	#time_line{
+    		margin-left: 200px;
+    		margin-top: 50px;
+    	}
+    	#room_form{
+    	
+    		margin-top: 50px;
+    		float: right;
+    	}
+    	#room_form input,#room_form a{
+    		margin: 10px 0px;
+    	}
+    	#room_form input[type='submit']{
+    		float:right;
+    	}
+    </style>
 </head>
 <body>
 <!-- 顶部导航栏开始 -->
@@ -101,61 +119,23 @@
 	</div>
 	<!-- 左侧可伸缩菜单栏结束 -->
         <div class="col-md-9" style="margin-top: -25px;">
-				<div class="page-header">
-					<div>
-						<h3><strong>会议室管理</strong></h3>
-					</div>
-				</div>
-
-
+			<div class="page-header">
 				<div>
-					<table class="table table-striped table-bordered text-center">
-						<caption>
-							<h4><strong>会议室信息</strong></h4>
-							<ul class="pagination pagination-sm col-md-12">
-								<li class="pull-right">
-
-									<div>
-										<a href="/MRMS/admin/meeting_room_management_add.jsp" class="btn btn-success btn-sm">添加会议室</a>
-									</div>
-								</li>
-							</ul>
-
-						</caption>
-
-						<thead>
-							<tr>
-								<th class="text-center">id</th>
-								<th class="text-center">门牌号</th>
-								<th class="text-center">容纳人数</th>
-								<th class="text-center">状态</th>
-								<th class="text-center">具体信息</th>
-								<th class="text-center">操作</th>
-							</tr>
-						</thead>
-
-						<tbody>
-						<s:iterator value="meetings">
-							<tr>
-								<td class="id"><s:property value="id"/></td>
-								<td class="door_num"><s:property value="doorNumber"/></td>
-								<td class="person_limit"><s:property value="personLimit"/></td>
-								<td><s:property value="tbMeetingRoomState.name"/></td>
-								<td>
-									<a href="/MRMS/meetingRoom/meetingRoomDetailAction?room_id=<s:property value="id"/>" class="btn btn-link">点击查看具体信息</a>
-								</td>
-								<td >
-								<a  class="btn btn-primary btn-sm" onclick="get_current_id(this)">编辑</a>
-									<a  class="btn btn btn-danger btn-sm col-md-offset-1" onclick="deletemeeting(this)">删除</a>
-								</td>
-							</tr>
-							
-						</s:iterator>
-						</tbody>
-					</table>
-
+					<h3><strong>会议室管理</strong></h3>
 				</div>
 			</div>
+			<form id="room_form" action="/MRMS/meetingRoom/meetingRoomDetailAction" method="get">
+				<input name="room_id" type="hidden" value ="<s:property value='roomId' />" />
+				<input id="json_str" type="hidden" value ="<s:property value='meetingsJSON' />" />
+				<input name="date" type="date" id="start_date" value="<s:date name='currentDate' format='yyyy-MM-dd' />" class="form-control" />
+				<input type="submit" class="btn btn-primary">
+				<a href="/MRMS/meetingRoom/showMeetingRoomAction" class="btn btn-primary">返回</a>
+			</form>
+			
+			<div id="time_line">
+			</div>
+
+		</div>
     </div>
     <div class="container text-center">
         <hr />
@@ -167,19 +147,19 @@
 <script src="../lib/scripts/jquery-1.11.0.min.js"></script>
 <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/scripts/bootbox.min.js"></script>
+<script src="../lib/timeline/jquery.timeline.js"></script>
 <script>
-function get_current_id(t)
-{
-	var current_id=$(t).parent().siblings(".id").first().text();
-	var door_num=$(t).parent().siblings(".door_num").first().text();
-	var person_limit=$(t).parent().siblings(".person_limit").first().text();
-	window.location.href="./ModifyAction?current_id="+current_id+"&door_num="+door_num+"&person_limit="+person_limit;
-}
-function deletemeeting(t)
-{
-    alert("确定删除？");
-    var del_id=$(t).parent().siblings(".id").first().text();
-	window.location.href="./DeleteMeetingRoomAction?del_id="+del_id;
-}
+	$(function(){
+		$("#time_line").timeline({
+			callback:function(){
+				var json = $("#json_str").val();
+				var jsonObj = JSON.parse(json);
+				for(var x in jsonObj){
+					var m = jsonObj[x];
+					$("#time_line").meeting(m);
+				}
+			}
+		});
+	})
 </script>
 </html>
