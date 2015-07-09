@@ -92,7 +92,7 @@ public class UserLoginAction extends ActionSupport{
 	           }
 	    	  else{
 	    		  user=(TbUser)userservice.queryUser(name, password).get(0);
-	    		  if(user.getTbAdmins().size()!=0){
+	    		  if(user.getTbAdmins() != null && user.getTbAdmins().size()!=0){
 	    		  Iterator iterator=user.getTbAdmins().iterator();
 	    		  while(iterator.hasNext()){
 	    			  admin=(TbAdmin) iterator.next();

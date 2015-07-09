@@ -90,7 +90,7 @@
 		alert("用户不存在或密码不正确！");
 		}
 		if(result=="3"){
-		window.location.href="user/userloginAction";
+		window.location.href="/MRMS/user/userloginAction";
 		}
 		});
     }

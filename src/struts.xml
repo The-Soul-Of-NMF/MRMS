@@ -90,8 +90,9 @@
 		</action>
 		<action name="deparManaAction_query_by_member" method="query_depar_by_member" class="deparManaAction">
 			<result name="success">../admin/department_management.jsp</result>
-
-	<package name="default" namespace="/meetingRoom" extends="struts-default">
+		</action>
+	</package>
+	<package name="default1" namespace="/meetingRoom" extends="struts-default">
 	
 		<action name="showMeetingRoomAction" class="ShowMeetingRoomAct">
 				<result name="suc">/admin/meeting_room_management.jsp</result>
