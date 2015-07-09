@@ -41,6 +41,9 @@
 		<aop:pointcut expression="execution(* service.*.*(..))" id="txPointCut"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
 	</aop:config>
+	
+	
+	
 	<bean id="ShowNotice" class="action.ShowNoticeAction">
 		<property name="GetNoticeService" ref="GetNoticeService"></property>
 	</bean>
@@ -61,6 +64,7 @@
 	</bean>
 	<bean id="addMeetingRoomAct" class="action.AddMeetingRoomAction">
 		<property name="addMeetingRoomService" ref="addMeetingRoomService"></property>
+		<property name="ShowMeetingRoomService" ref="ShowMeetingRoomService"></property>
 	</bean>
 	<bean id="addMeetingRoomService" class="service.AddMeetingRoomServiceImpl">
 		<property name="addMeetingRoom" ref="addMeetingRoom"></property>
@@ -72,6 +76,7 @@
 	</bean>
 	<bean id="modifyMeetingRoomAct" class="action.ModifyMeetingRoomAction">
 		<property name="meetingRoomService" ref="meetingRoomService"></property>
+		<property name="ShowMeetingRoomService" ref="ShowMeetingRoomService"></property>
 	</bean>
 	<bean id="meetingRoomService" class="service.ModifyMeetingRoomServiceImpl">
 		<property name="ModifyMeetingRoom" ref="ModifyMeetingRoom"></property>
@@ -104,11 +109,17 @@
 
 	<bean id="deleteMeetingRoomAct" class="action.DeleteMeetingRoomAction">
 		<property name="deleteMeetingRoomService" ref="deleteMeetingRoomService"></property>
+		<property name="ShowMeetingRoomService" ref="ShowMeetingRoomService"></property>
 	</bean>
 	<bean id="deleteMeetingRoomService" class="service.DeleteMeetingRoomServiceImpl">
 		<property name="deleteMeetingRoom" ref="deleteMeetingRoom"></property>
 	</bean>
 	<bean id="deleteMeetingRoom" class="dao.DeleteMeetingRoomImpl">
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	
+	<bean id="meetingRoomDetailAction" class="action.MeetingRoomDetailAction">
+		
 	</bean>
 </beans>

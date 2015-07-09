@@ -1,6 +1,5 @@
-<%@ page language="java" pageEncoding="UTF-8"%>  
+﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -54,7 +53,7 @@
 					<a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
 						会议室选择
 					</a>
-					<a class="list-group-item" href='../user/shownoticeAction'>
+					<a class="list-group-item" href="../user/notice.jsp">
 						通知<span class="badge">20</span>
 					</a>
 					<a class="list-group-item" href="../meeting/meeting_info_list.jsp">
@@ -79,7 +78,7 @@
 					<a class="list-group-item" href="../admin/department_management.jsp">
 						部门信息管理
 					</a>
-					<a class="list-group-item active" href="showMeetingRoomAction">
+					<a class="list-group-item active" href="../admin/meeting_room_management.jsp">
 						会议室信息管理
 					</a>
 					<a class="list-group-item" href="../admin/user_management.jsp">
@@ -152,7 +151,7 @@
 								<li class="pull-right">
 
 									<div>
-										<a href="./meeting_room_management_add.jsp" class="btn btn-success btn-sm">添加会议室</a>
+										<a href="./meeting_room_managent_edit.jsp" class="btn btn-success btn-sm">添加会议室</a>
 									</div>
 								</li>
 							</ul>
@@ -161,7 +160,6 @@
 
 						<thead>
 							<tr>
-								<th class="text-center">id</th>
 								<th class="text-center">门牌号</th>
 								<th class="text-center">容纳人数</th>
 								<th class="text-center">状态</th>
@@ -171,22 +169,48 @@
 						</thead>
 
 						<tbody>
-						<s:iterator value="meetings">
 							<tr>
-								<td class="id"><s:property value="id"/></td>
-								<td><s:property value="doorNumber"/></td>
-								<td><s:property value="personLimit"/></td>
-								<td><s:property value="tbMeetingRoomState.name"/></td>
+								<td>101</td>
+								<td>5</td>
+								<td>使用中</td>
 								<td>
-									<a href="#" class="btn btn-link">点击查看具体信息</a>
+									<a href="#" class="btn btn-link">点击产看具体信息</a>
 								</td>
 								<td >
-								<a  class="btn btn-primary btn-sm" onclick="get_current_id(this)">编辑</a>
-									<a  class="btn btn btn-danger btn-sm col-md-offset-1" onclick="deletemeeting(this)">删除</a>
+									<a href="./meeting_room_managent_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
+									<a href="#" class="btn btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
 								</td>
 							</tr>
-							
-						</s:iterator>
+							<tr>
+								<td>102</td>
+								<td>15</td>
+								<td>空闲</td>
+								<td><a href="#" class="btn btn-link">点击产看具体信息</a></td>
+								<td>
+									<a href="./meeting_room_managent_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
+									<a href="#" class="btn btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
+								</td>
+							</tr>
+							<tr>
+								<td>103</td>
+								<td>25</td>
+								<td>维修中</td>
+								<td><a href="#" class="btn btn-link">点击产看具体信息</a></td>
+								<td>
+									<a href="./meeting_room_managent_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
+									<a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
+								</td>
+							</tr>
+							<tr>
+								<td>104</td>
+								<td>35</td>
+								<td>空闲</td>
+								<td><a href="#" class="btn btn-link">点击产看具体信息</a></td>
+								<td>
+									<a href="./meeting_room_managent_edit.jsp" class="btn btn-primary btn-sm">编辑</a>
+									<a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 
@@ -203,17 +227,4 @@
 <script src="../lib/scripts/jquery-1.11.0.min.js"></script>
 <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/scripts/bootbox.min.js"></script>
-<script>
-function get_current_id(t)
-{
-	var current_id=$(t).parent().siblings(".id").first().text();
-	window.location.href="./ModifyAction?current_id="+current_id;
-}
-function deletemeeting(t)
-{
-    alert("确定删除？");
-    var del_id=$(t).parent().siblings(".id").first().text();
-	window.location.href="./DeleteMeetingRoomAction?del_id="+del_id;
-}
-</script>
 </html>

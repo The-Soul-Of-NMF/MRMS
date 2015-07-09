@@ -8,29 +8,32 @@
 <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
 <!-- 设定创建Action的工厂类为spring，也就是struts的action交给spring管理 -->
 <constant name="struts.objectFactory" value="spring"></constant>
-	<package name="default" namespace="/" extends="struts-default">
+	<package name="default" namespace="/meetingRoom" extends="struts-default">
 	
-	<action name="showMeetingRoomAction" class="ShowMeetingRoomAct">
-			<result name="suc">meeting_room_management.jsp</result>
-	</action>
-	<action name="addMeetingRoomAction" class="addMeetingRoomAct">
-			<result name="addsuc">meeting_room_management.jsp</result>
-	</action>
-	<action name="ModifyAction" class="modifyAct">
-			<result name="moditrans">meeting_room_management_edit.jsp</result>
-	</action>
-	<action name="ModifyMeetingRoomAction" class="modifyMeetingRoomAct">
-			<result name="modisucc">meeting_room_management_edit.jsp</result>
-	</action>
-	<action name="DeleteMeetingRoomAction" class="deleteMeetingRoomAct">
-			<result name="delsucc">meeting_room_management.jsp</result>
-	</action>
+		<action name="showMeetingRoomAction" class="ShowMeetingRoomAct">
+				<result name="suc">/admin/meeting_room_management.jsp</result>
+		</action>
+		<action name="addMeetingRoomAction" class="addMeetingRoomAct">
+				<result name="addsuc">/admin/meeting_room_management.jsp</result>
+		</action>
+		<action name="ModifyAction" class="modifyAct">
+				<result name="moditrans">/admin/meeting_room_management_edit.jsp</result>
+		</action>
+		<action name="ModifyMeetingRoomAction" class="modifyMeetingRoomAct">
+				<result name="modisucc">/admin/meeting_room_management.jsp</result>
+		</action>
+		<action name="DeleteMeetingRoomAction" class="deleteMeetingRoomAct">
+				<result name="delsucc">/admin/meeting_room_management.jsp</result>
+		</action>
 	</package>
+	
 	<package name="notice" namespace="/user" extends="struts-default">
-	<action name="shownoticeAction" class="ShowNotice">
-			<result name="suc">notice.jsp</result>
-	</action>
+		<action name="shownoticeAction" class="ShowNotice">
+				<result name="suc">notice.jsp</result>
+		</action>
 	</package>
+	
+	
 	<package name="meeting" namespace="/meeting" extends="struts-default">
 		<action name="meetingForRoomAction" class="meetingForRoomAction">
 			<result name="success">

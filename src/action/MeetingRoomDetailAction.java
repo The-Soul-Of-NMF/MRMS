@@ -7,7 +7,7 @@ import model.TbMeeting;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ShowMeetingRoomAction extends ActionSupport {
+public class MeetingRoomDetailAction extends ActionSupport {
 	private ArrayList<TbMeeting> meetings;
 	private ShowMeetingRoomService ShowMeetingRoomService;
 	public String execute()

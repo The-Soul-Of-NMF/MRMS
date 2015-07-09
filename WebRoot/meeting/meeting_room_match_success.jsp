@@ -1,13 +1,15 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<!--会议室选择页面-->
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>用户权限提升</title>
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../lib/system/css/left_menu.css" rel="stylesheet" />
-    <link href="css/right_change.css" rel="stylesheet" />
+    <title></title>
+    <link href="/MRMS/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/MRMS/lib/system/css/left_menu.css" rel="stylesheet" />
+    <link href="/MRMS/meeting/css/pick.css" rel="stylesheet"/>
 </head>
 <body>
 <!-- 顶部导航栏开始 -->
@@ -51,7 +53,7 @@
                     <a class="list-group-item" href="../meeting/meeting_apply.jsp">
                         会议申请
                     </a>
-                    <a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
+                    <a class="list-group-item active" href="../meeting/meeting_room_pick.jsp">
                         会议室选择
                     </a>
                     <a class="list-group-item" href="../user/notice.jsp">
@@ -91,7 +93,7 @@
 
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item active" href="../admin/right_change.jsp">
+                    <a class="list-group-item" href="../admin/right_change.jsp">
                         权限管理
                     </a>
                 </div>
@@ -100,44 +102,46 @@
         </div>
     </div>
     <!-- 左侧可伸缩菜单栏结束 -->
-        <div id="content_panel" class="col-md-9">
-            		<div class="page-header">
-						<h3><strong>选择被提升用户</strong></h3>
-					</div>
-                    <div>
-                    	<label class="radio-inline">把</label>
-                        <label class="radio-inline">
-                            <input id="id" name="id" class="form-control" type="text" placeholder="请输入账号" />
-                        </label>
-                        <label class="radio-inline">
-                            <a class="btn btn-success" 
-                            	onclick="promote()" >提升</a>
-                            为管理员.</label>&nbsp;&nbsp;&nbsp;&nbsp;
 
-                    </div>
+
+    <div class="col-md-9 main_content">
+        <div class="page-header">
+            <h3><strong>会议室选择</strong></h3>
         </div>
+
+
+
+        <form id="meeting_room_choose_one" class="col-md-12">
+            <fieldset class="form-horizontal">
+                <legend>以下会议室满足条件</legend>
+                    <table class="table table-striped table-bordered text-center">
+                        <thead>
+                        <tr>
+                            <th class="text-center">门牌号</th>
+                            <th class="text-center">容纳人数</th>
+                            <th class="text-center">选择</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        
+                        </tbody>
+                    </table>
+            </fieldset>
+
+        </form>
+
+
     </div>
-    <div class="container text-center">
-        <hr />
-        北京工业大学&bull;<span class="team_name">平乐园中央陆军</span>开发小组
-        <br />
-        <br />
-    </div>
+</div>
+<div class="container text-center">
+    <hr />
+    北京工业大学&bull;<span class="team_name">平乐园中央陆军</span>开发小组
+    <br />
+    <br />
+</div>
 </body>
-<script src="../lib/scripts/jquery-1.11.0.min.js"></script>
-<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="../lib/scripts/bootbox.min.js"></script>
-<script>
-	function promote(){
-		var user_id=$("#id").val()
-		var data={id:user_id}
-		$.post("../user/userAction_promote",data,function(result){
-			if(result=="-1"){
-				alert("该用户不存在!")
-			}else{
-				alert("该用户已被提升为超级管理员!")
-			}
-		});
-	}
-</script>
+<script src="/MRMS/lib/scripts/jquery-1.11.0.min.js"></script>
+<script src="/MRMS/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/MRMS/lib/scripts/bootbox.min.js"></script>
+<script src="/MRMS/meeting/js/pick.js"></script>
 </html>

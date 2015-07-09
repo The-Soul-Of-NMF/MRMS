@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -75,7 +76,7 @@
                     <a class="list-group-item" href="../admin/meeting_apply_check.jsp">
                         会议审查<span class="badge">10</span>
                     </a>
-                    <a class="list-group-item active" href="../admin/department_management.jsp">
+                    <a class="list-group-item active" href="../department/deparManaAction_show">
                         部门信息管理
                     </a>
                     <a class="list-group-item" href="../admin/meeting_room_management.jsp">
@@ -103,20 +104,24 @@
         <div class="page-header">
             <h3><strong>编辑部门</strong></h3>
         </div>
-        <form class="col-md-8">
+        <form id="depar_name" action="deparManaAction_update" class="col-md-8">
             <fieldset class="form-horizontal">
                 <legend>填写部门名称</legend>
                 <div class="form-group">
                     <label for="name" class="col-md-3 control-label">部门名称：</label>
                     <div class="col-md-8">
-                        <input type="text" id="name" placeholder="名称" class="form-control" />
+                        <input type="text" id="name" name="name" placeholder="名称" class="form-control" />
+                        <s:iterator value="current_depar">
+                        	<input type="hidden" id="current_id" name="current_id" value="<s:property value='id' />" />
+                    	</s:iterator>
                     </div>
                 </div>
-                
             </fieldset>
             <div class="text-center form-group" style="margin-left: 90px;">
-                <button type="button" class="btn btn-success">确定</button>
-                <button type="button" class="btn btn-default">取消</button>
+                <button type="button" class="btn btn-success"
+                	onclick="edit_depar()" >确定</button>
+                <button type="button" class="btn btn-default"
+                	onclick="window.location.href='../department/deparManaAction_show'" >取消</button>
             </div>
         </form>
     </div>
@@ -132,4 +137,9 @@
 <script src="../lib/scripts/jquery-1.11.0.min.js"></script>
 <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/scripts/bootbox.min.js"></script>
+<script>
+	function edit_depar(){
+		$("#depar_name").submit();
+	}
+</script>
 </html>

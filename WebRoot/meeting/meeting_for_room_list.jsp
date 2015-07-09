@@ -1,12 +1,15 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<!--会议室选择页面-->
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../lib/system/css/left_menu.css" rel="stylesheet" />
+    <link href="/MRMS/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/MRMS/lib/system/css/left_menu.css" rel="stylesheet" />
+    <link href="/MRMS/meeting/css/pick.css" rel="stylesheet"/>
 </head>
 <body>
 <!-- 顶部导航栏开始 -->
@@ -50,7 +53,7 @@
                     <a class="list-group-item" href="../meeting/meeting_apply.jsp">
                         会议申请
                     </a>
-                    <a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
+                    <a class="list-group-item active" href="../meeting/meeting_room_pick.jsp">
                         会议室选择
                     </a>
                     <a class="list-group-item" href="../user/notice.jsp">
@@ -75,7 +78,7 @@
                     <a class="list-group-item" href="../admin/meeting_apply_check.jsp">
                         会议审查<span class="badge">10</span>
                     </a>
-                    <a class="list-group-item active" href="../admin/department_management.jsp">
+                    <a class="list-group-item" href="../admin/department_management.jsp">
                         部门信息管理
                     </a>
                     <a class="list-group-item" href="../admin/meeting_room_management.jsp">
@@ -99,37 +102,61 @@
         </div>
     </div>
     <!-- 左侧可伸缩菜单栏结束 -->
-         <div class="col-md-9" style="margin-top: -25px;">
+
+
+    <div class="col-md-9 main_content">
         <div class="page-header">
-            <h3><strong>编辑部门</strong></h3>
+            <h3><strong>会议室选择</strong></h3>
         </div>
-        <form class="col-md-8">
+
+        <form id="meeting_list" class="col-md-12">
             <fieldset class="form-horizontal">
-                <legend>填写部门名称</legend>
-                <div class="form-group">
-                    <label for="name" class="col-md-3 control-label">部门名称：</label>
-                    <div class="col-md-8">
-                        <input type="text" id="name" placeholder="名称" class="form-control" />
-                    </div>
-                </div>
-                
+                <legend>您可以为以下会议选择会议室</legend>
+                <table class="table table-striped table-bordered text-center">
+                    <thead>
+                    <tr>
+                        <th class="text-center">编号</th>
+                        <th class="text-center">会议编号</th>
+                        <th class="text-center">会议名称</th>
+                        <th class="text-center">预期日期</th>
+                        <th class="text-center"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% int i = 0; %>
+                    <s:iterator value="meetings">  
+                                     		
+                    	<tr>                    		
+                    		<td><%= ++i %></td>
+                    		<td><s:property value="id"/></td>
+                    		<td><s:property value="title" /></td>
+                    		<td><s:date name="date" format="yyyy-MM-dd" /></td>
+                    		<td><a class="btn btn-primary btn-sm" href="/MRMS/meeting/meetingTimeChooseAction?id=<s:property value="id"/>">选择会议室</a></td>
+                   		</tr>	
+                   		                   	
+                    </s:iterator>
+                    </tbody>
+                </table>
             </fieldset>
-            <div class="text-center form-group" style="margin-left: 90px;">
-                <button type="button" class="btn btn-success">确定</button>
-                <button type="button" class="btn btn-default">取消</button>
-            </div>
         </form>
+
     </div>
-        
-    </div>
-    <div class="container text-center">
-        <hr />
-        北京工业大学&bull;<span class="team_name">平乐园中央陆军</span>开发小组
-        <br />
-        <br />
-    </div>
+</div>
+<div class="container text-center">
+    <hr />
+    北京工业大学&bull;<span class="team_name">平乐园中央陆军</span>开发小组
+    <br />
+    <br />
+</div>
 </body>
-<script src="../lib/scripts/jquery-1.11.0.min.js"></script>
-<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="../lib/scripts/bootbox.min.js"></script>
+<script src="/MRMS/lib/scripts/jquery-1.11.0.min.js"></script>
+<script src="/MRMS/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/MRMS/lib/scripts/bootbox.min.js"></script>
+<script src="/MRMS/meeting/js/pick.js"></script>
+<script>
+	function submit_form(btn){
+		alert();
+		$(btn).parent().parent().parent().submit();
+	}
+</script>
 </html>

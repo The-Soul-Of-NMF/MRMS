@@ -1,5 +1,6 @@
 package service;
 
+import java.util.Date;
 import java.util.List;
 
 import dao.MeetingDao;
@@ -11,8 +12,7 @@ import model.TbUser;
 public class MeetingServiceImpl implements MeetingService {
 	private MeetingDao meetingDao;
 	@Override
-	public TbMeeting saveMeeting(TbMeeting meeting) {
-		
+	public TbMeeting saveMeeting(TbMeeting meeting) {		
 		return meetingDao.saveMeeting(meeting);
 	}
 	public MeetingDao getMeetingDao() {
@@ -23,17 +23,14 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 	@Override
 	public TbMeetingUser createNewMeetingUser(TbMeetingUser meetingUser) {
-		// TODO Auto-generated method stub
 		return meetingDao.createNewMeetingUser(meetingUser);
 	}
 	@Override
 	public TbMeeting getTheLastMeeting() {
-		// TODO Auto-generated method stub
 		return meetingDao.getTheLastMeeting();
 	}
 	@Override
 	public TbUser serachUser(int id) {
-		// TODO Auto-generated method stub
 		return meetingDao.serachUser(id);
 	}
 	@Override
@@ -46,22 +43,27 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 	@Override
 	public List<TbUser> serachAllUser() {
-		// TODO Auto-generated method stub
 		return meetingDao.serachAllUser();
 	}
 	@Override
 	public List<TbMeeting> serachWaitMeeting() {
-		// TODO Auto-generated method stub
 		return meetingDao.serachWaitMeeting();
 	}
 	@Override
 	public void changeMeetingState(TbMeeting meeting, TbMeetingState state) {
 		meetingDao.changeMeetingState(meeting, state);
-		
 	}
 	@Override
 	public TbMeeting serachMeeting(int id) {
 		return meetingDao.serachMeeting(id);
+	}
+	@Override
+	public List<TbMeeting> serachOwnMeeting(TbUser user, int state) {
+		return meetingDao.serachOwnMeeting(user, state);
+	}
+	@Override
+	public List<TbMeeting> serachMatchMeeting(Date meetingDate) {
+		return meetingDao.serachMatchMeeting(meetingDate);
 	}
 	
 }

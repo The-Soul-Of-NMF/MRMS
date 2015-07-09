@@ -1,5 +1,6 @@
-﻿<%@ page language="java" pageEncoding="UTF-8"%>  
+<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -75,10 +76,10 @@
                     <a class="list-group-item" href="../admin/meeting_apply_check.jsp">
                         会议审查<span class="badge">10</span>
                     </a>
-                    <a class="list-group-item active" href="../admin/department_management.jsp">
+                    <a class="list-group-item" href="../admin/department_management.jsp">
                         部门信息管理
                     </a>
-                    <a class="list-group-item" href="../admin/meeting_room_management.jsp">
+                    <a class="list-group-item active" href="../admin/meeting_room_management.jsp">
                         会议室信息管理
                     </a>
                     <a class="list-group-item" href="../admin/user_management.jsp">
@@ -99,27 +100,53 @@
         </div>
     </div>
     <!-- 左侧可伸缩菜单栏结束 -->
-        <div class="col-md-9" style="margin-top: -25px;">
+         <div class="col-md-9" style="margin-top: -25px;">
         <div class="page-header">
-            <h3><strong>添加部门</strong></h3>
+            <h3><strong>添加会议室</strong></h3>
         </div>
         <form class="col-md-8">
+        <s:iterator>
             <fieldset class="form-horizontal">
-                <legend>填写部门名称</legend>
+                <legend>填写会议室信息</legend>
                 <div class="form-group">
-                    <label for="name" class="col-md-3 control-label">部门名称：</label>
-                    <div class="col-md-8">
-                        <input type="text" id="name" placeholder="名称" class="form-control" />
+                 	<label for="name" class="col-md-3 control-label">id:</label>
+                    <div class="col-md-8" id="id">
+                    <input type="text" id="sname" name="number"  disabled="disabled" class="form-control" value=<s:property value="ID"/> />
                     </div>
                 </div>
-                
+                <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">门牌号：</label>
+                    <div class="col-md-8">
+                        <input type="text" value=<s:property value="door_num"/> id="number" placeholder="会议室门牌号" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">容纳人数：</label>
+                    <div class="col-md-8">
+                        <input value=<s:property value="person_limit"/> type="text" id="personlimit" placeholder="可容纳人数" class="form-control" />
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">状态：</label>
+                    <div class="col-md-8">
+                       <div class="form-group" style="margin-left: 0px;margin-right: 0px;">
+								<select class="form-control" name="state" id="state">
+									<option value="1">开放</option>
+									<option value="2">维修中</option>
+									<option value="3">关闭</option>
+								</select>
+							</div>
+                    </div>
+                </div>
             </fieldset>
             <div class="text-center form-group" style="margin-left: 90px;">
-                <button type="button" class="btn btn-success">确定</button>
+                <button type="button" class="btn btn-success" onclick="agree()">确定</button>
                 <button type="button" class="btn btn-default">取消</button>
             </div>
+            </s:iterator>
         </form>
     </div>
+        
     </div>
     <div class="container text-center">
         <hr />
@@ -131,4 +158,16 @@
 <script src="../lib/scripts/jquery-1.11.0.min.js"></script>
 <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/scripts/bootbox.min.js"></script>
+<script>
+function agree()
+{
+    var current_id=document.getElementById("sname").value;
+    var state = document.getElementById("state").value;
+    var number = document.getElementById("number").value;
+    var personlimit = document.getElementById("personlimit").value;
+    
+    window.location.href="./ModifyMeetingRoomAction?current_id="+current_id+"&state="+state+"&number="+number+"&personlimit="+personlimit;
+}
+
+</script>
 </html>

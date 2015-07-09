@@ -4,10 +4,9 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>用户权限提升</title>
+    <title></title>
     <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../lib/system/css/left_menu.css" rel="stylesheet" />
-    <link href="css/right_change.css" rel="stylesheet" />
 </head>
 <body>
 <!-- 顶部导航栏开始 -->
@@ -79,7 +78,7 @@
                     <a class="list-group-item" href="../admin/department_management.jsp">
                         部门信息管理
                     </a>
-                    <a class="list-group-item" href="../admin/meeting_room_management.jsp">
+                    <a class="list-group-item active" href="../admin/meeting_room_management.jsp">
                         会议室信息管理
                     </a>
                     <a class="list-group-item" href="../admin/user_management.jsp">
@@ -91,7 +90,7 @@
 
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item active" href="../admin/right_change.jsp">
+                    <a class="list-group-item" href="../admin/right_change.jsp">
                         权限管理
                     </a>
                 </div>
@@ -100,22 +99,33 @@
         </div>
     </div>
     <!-- 左侧可伸缩菜单栏结束 -->
-        <div id="content_panel" class="col-md-9">
-            		<div class="page-header">
-						<h3><strong>选择被提升用户</strong></h3>
-					</div>
-                    <div>
-                    	<label class="radio-inline">把</label>
-                        <label class="radio-inline">
-                            <input id="id" name="id" class="form-control" type="text" placeholder="请输入账号" />
-                        </label>
-                        <label class="radio-inline">
-                            <a class="btn btn-success" 
-                            	onclick="promote()" >提升</a>
-                            为管理员.</label>&nbsp;&nbsp;&nbsp;&nbsp;
-
-                    </div>
+         <div class="col-md-9" style="margin-top: -25px;">
+        <div class="page-header">
+            <h3><strong>添加会议室</strong></h3>
         </div>
+        <form class="col-md-8" action="/MRMS/meetingRoom/addMeetingRoomAction" method="post" id="meetingroom">
+            <fieldset class="form-horizontal">
+                <legend>填写会议室信息</legend>
+                <div class="form-group"> 
+                    <label for="name" class="col-md-3 control-label">门牌号：</label>
+                    <div class="col-md-8">
+                        <input type="text" name="number" placeholder="会议室门牌号" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name"  class="col-md-3 control-label">容纳人数：</label>
+                    <div class="col-md-8">
+                        <input type="text" name="personlimit" placeholder="可容纳人数" class="form-control" />
+                    </div>
+                </div>
+            </fieldset>
+            <div class="text-center form-group" style="margin-left: 90px;">
+                <button type="button" class="btn btn-success" onclick="submit()">确定</button>
+                <button type="button" class="btn btn-default">取消</button>
+            </div>
+        </form>
+    </div>
+        
     </div>
     <div class="container text-center">
         <hr />
@@ -128,16 +138,11 @@
 <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/scripts/bootbox.min.js"></script>
 <script>
-	function promote(){
-		var user_id=$("#id").val()
-		var data={id:user_id}
-		$.post("../user/userAction_promote",data,function(result){
-			if(result=="-1"){
-				alert("该用户不存在!")
-			}else{
-				alert("该用户已被提升为超级管理员!")
-			}
-		});
+function submit()
+{
+	
+	$("#meetingroom").submit();
+	
 	}
 </script>
 </html>
