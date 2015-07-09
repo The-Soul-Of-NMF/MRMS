@@ -82,4 +82,14 @@
 	<bean id="temp" class="dao.GetStateById">
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 	</bean>
+	
+	<bean id="deleteMeetingRoomAct" class="action.DeleteMeetingRoomAction">
+		<property name="deleteMeetingRoomService" ref="deleteMeetingRoomService"></property>
+	</bean>
+	<bean id="deleteMeetingRoomService" class="service.DeleteMeetingRoomServiceImpl">
+		<property name="deleteMeetingRoom" ref="deleteMeetingRoom"></property>
+	</bean>
+	<bean id="deleteMeetingRoom" class="dao.DeleteMeetingRoomImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
 </beans>

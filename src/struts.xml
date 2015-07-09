@@ -19,10 +19,13 @@
 			<result name="addsuc">meeting_room_management.jsp</result>
 	</action>
 	<action name="ModifyAction" class="modifyAct">
-			<result name="moditrans">meeting_room_managment_edit.jsp</result>
+			<result name="moditrans">meeting_room_management_edit.jsp</result>
 	</action>
 	<action name="ModifyMeetingRoomAction" class="modifyMeetingRoomAct">
-			<result name="modisucc">meeting_room_managment_edit.jsp</result>
+			<result name="modisucc">meeting_room_management_edit.jsp</result>
+	</action>
+	<action name="DeleteMeetingRoomAction" class="deleteMeetingRoomAct">
+			<result name="delsucc">meeting_room_management.jsp</result>
 	</action>
 	</package>
 	<package name="department" namespace="/department" extends="struts-default">

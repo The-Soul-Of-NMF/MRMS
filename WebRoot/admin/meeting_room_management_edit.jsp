@@ -131,9 +131,8 @@
                     <div class="col-md-8">
                        <div class="form-group" style="margin-left: 0px;margin-right: 0px;">
 								<select class="form-control" name="state" id="state">
-									<option value="1">使用中</option>
-									<option value="2">空闲中</option>
-									<option value="3">维修中</option>
+									<option value="1">开放</option>
+									<option value="2">维修</option>
 								</select>
 							</div>
                     </div>

@@ -23,7 +23,7 @@ public class AddMeetingRoomAction extends ActionSupport {
 		String test = request.getParameter("number");
 		int number=Integer.parseInt(request.getParameter("number"));
 		int personlimit=Integer.parseInt(request.getParameter("personlimit"));
-		TbMeetingRoomState defaul = new TbMeetingRoomState("busy");
+		TbMeetingRoomState defaul = new TbMeetingRoomState();
 		defaul.setId(1);
 		TbMeetingRoom room = new TbMeetingRoom(defaul, number, personlimit);
 		addMeetingRoomService.addMeetingRoomS(room);

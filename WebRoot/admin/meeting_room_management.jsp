@@ -1,4 +1,4 @@
-﻿<%@ page language="java" pageEncoding="UTF-8"%>  
+<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
@@ -152,7 +152,7 @@
 								<li class="pull-right">
 
 									<div>
-										<a href="./meeting_room_managent_add.jsp" class="btn btn-success btn-sm">添加会议室</a>
+										<a href="./meeting_room_management_add.jsp" class="btn btn-success btn-sm">添加会议室</a>
 									</div>
 								</li>
 							</ul>
@@ -178,11 +178,11 @@
 								<td><s:property value="personLimit"/></td>
 								<td><s:property value="tbMeetingRoomState.name"/></td>
 								<td>
-									<a href="#" class="btn btn-link">点击产看具体信息</a>
+									<a href="#" class="btn btn-link">点击查看具体信息</a>
 								</td>
 								<td >
 								<a  class="btn btn-primary btn-sm" onclick="get_current_id(this)">编辑</a>
-									<a href="#" class="btn btn btn-danger btn-sm col-md-offset-1" onclick="deleteConfirm();">删除</a>
+									<a  class="btn btn btn-danger btn-sm col-md-offset-1" onclick="deletemeeting(this)">删除</a>
 								</td>
 							</tr>
 							
@@ -208,6 +208,12 @@ function get_current_id(t)
 {
 	var current_id=$(t).parent().siblings(".id").first().text();
 	window.location.href="./ModifyAction?current_id="+current_id;
-	}
+}
+function deletemeeting(t)
+{
+    alert("确定删除？");
+    var del_id=$(t).parent().siblings(".id").first().text();
+	window.location.href="./DeleteMeetingRoomAction?del_id="+del_id;
+}
 </script>
 </html>
