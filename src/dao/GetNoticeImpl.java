@@ -15,7 +15,7 @@ public class GetNoticeImpl implements GetNotice {
 		// TODO Auto-generated method stub
 		
 		ArrayList<TbNoticeInteraction> list= new ArrayList<TbNoticeInteraction>();
-		list = (ArrayList<TbNoticeInteraction>) hibernateTemplate.find("from TbNoticeInteraction as a inner join fetch a.tbUserByToUserId where a.tbUserByToUserId.id=1 ");
+		list = (ArrayList<TbNoticeInteraction>) hibernateTemplate.find("from TbNoticeInteraction as a inner join fetch a.tbUserByToUserId where a.tbUserByToUserId.id= "+id);
 		return list;
 	}
 	public HibernateTemplate getHibernateTemplate() {

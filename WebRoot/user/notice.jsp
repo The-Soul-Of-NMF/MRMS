@@ -1,4 +1,4 @@
-﻿<%@ page language="java" pageEncoding="UTF-8"%>  
+<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
@@ -120,7 +120,7 @@
                     <li title="下一页"><a href="#">&rsaquo;</a></li>
                     <li title="最末页"><a href="#">&raquo;</a></li>
                     <li>
-                        <a href="">共<strong>98</strong>条记录，<strong>10</strong>页</a>
+                        <a href="">共<strong>1</strong>条记录，<strong>10</strong>页</a>
                     </li>
                 </ul>
             </caption>
@@ -133,12 +133,14 @@
                 </tr>
             </thead>
             <tbody>
+                <s:iterator value="readed">
                 <tr>
-                    <td>1</td>
-                    <td>你申请的会议通过审核</td>
-                    <td>管理员</td>
-                    <td>2015-06-24</td>
+                    <td><s:property value="id"/></td>
+                    <td><s:property value="tbNotice.information"/></td>
+                    <td><s:property value="tbUserByToUserId.name"/></td>
+                    <td><s:property value="tbNotice.sendTime"/></td>
                 </tr>
+                </s:iterator>
             </tbody>
         </table>
 			  
@@ -170,12 +172,14 @@
                 </tr>
             </thead>
             <tbody>
+                <s:iterator value="unlist">
                 <tr>
-                    <td>1</td>
-                    <td>您的会议人事部例会即将开始</td>
-                    <td>洪鑫</td>
-                    <td>2015-06-26</td>
+                    <td><s:property value="id"/></td>
+                    <td><s:property value="tbNotice.information"/></td>
+                    <td><s:property value="tbUserByToUserId.name"/></td>
+                    <td><s:property value="tbNotice.sendTime"/></td>
                 </tr>
+                </s:iterator>
             </tbody>
         </table>
 				

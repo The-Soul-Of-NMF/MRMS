@@ -54,7 +54,7 @@
 					<a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
 						会议室选择
 					</a>
-					<a class="list-group-item" href='../shownoticeAction'>
+					<a class="list-group-item" href='../user/shownoticeAction'>
 						通知<span class="badge">20</span>
 					</a>
 					<a class="list-group-item" href="../meeting/meeting_info_list.jsp">

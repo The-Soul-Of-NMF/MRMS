@@ -6,8 +6,8 @@
 	<session-factory>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_mrms</property>
-		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password"></property>
+		<property name="hibernate.connection.username">pca</property>
+		<property name="hibernate.connection.password">123456</property>
 		<property name="show_sql">true</property>
 		<!-- 使用c3po连接池  配置连接池提供的供应商-->
 		<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>

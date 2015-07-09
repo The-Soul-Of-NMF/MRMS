@@ -9,9 +9,7 @@
 <!-- 设定创建Action的工厂类为spring，也就是struts的action交给spring管理 -->
 <constant name="struts.objectFactory" value="spring"></constant>
 	<package name="default" namespace="/" extends="struts-default">
-	<action name="shownoticeAction" class="ShowNotice">
-			<result name="suc">index.jsp</result>
-	</action>
+	
 	<action name="showMeetingRoomAction" class="ShowMeetingRoomAct">
 			<result name="suc">meeting_room_management.jsp</result>
 	</action>
@@ -28,6 +26,9 @@
 			<result name="delsucc">meeting_room_management.jsp</result>
 	</action>
 	</package>
-	<package name="department" namespace="/department" extends="struts-default">
+	<package name="notice" namespace="/user" extends="struts-default">
+	<action name="shownoticeAction" class="ShowNotice">
+			<result name="suc">notice.jsp</result>
+	</action>
 	</package>
 </struts>

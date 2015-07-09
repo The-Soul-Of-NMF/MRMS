@@ -23,12 +23,36 @@ import dao.SaveMeetingRoom;
 
 public class ShowNoticeAction extends ActionSupport{
 	private GetNoticeService GetNoticeService;
+	private ArrayList<TbNoticeInteraction> readed;
+	public ArrayList<TbNoticeInteraction> getReaded() {
+		return readed;
+	}
+
+	public void setReaded(ArrayList<TbNoticeInteraction> readed) {
+		this.readed = readed;
+	}
+
+	public ArrayList<TbNoticeInteraction> getUnlist() {
+		return unlist;
+	}
+
+	public void setUnlist(ArrayList<TbNoticeInteraction> unlist) {
+		this.unlist = unlist;
+	}
+	private ArrayList<TbNoticeInteraction> unlist;
 	public String execute()
 	{
-		HttpServletRequest request=ServletActionContext.getRequest();
-		System.out.println("111");
-		ArrayList<TbNoticeInteraction> list = GetNoticeService.getNoticeS(0);
 		
+		readed = GetNoticeService.getNoticeS(1);
+		unlist = new ArrayList<TbNoticeInteraction>();
+		for (int i =0;i<readed.size();i++) {
+			if(readed.get(i).getTbNotice().getTbNoticeType().getId()==2)
+			{
+				unlist.add(readed.get(i));
+				readed.remove(readed.get(i));
+				
+			}
+		}
 		//调试用，使用时请把session中的用户id传入。
 		return "suc";
 		
