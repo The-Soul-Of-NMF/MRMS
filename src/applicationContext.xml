@@ -41,6 +41,48 @@
 		<aop:pointcut expression="execution(* service.*.*(..))" id="txPointCut"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
 	</aop:config>
+	<bean id="ShowNotice" class="action.ShowNoticeAction">
+		<property name="GetNoticeService" ref="GetNoticeService"></property>
+	</bean>
+	<bean id="GetNoticeService" class="service.GetNoticeServiceImpl">
+		<property name="GetNotice" ref="GetNotice"></property>
+	</bean>
+	<bean id="GetNotice" class="dao.GetNoticeImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="ShowMeetingRoomAct" class="action.ShowMeetingRoomAction">
+		<property name="ShowMeetingRoomService" ref="ShowMeetingRoomService"></property>
+	</bean>
+	<bean id="ShowMeetingRoomService" class="service.ShowMeetingRoomServiceImpl">
+		<property name="ShowMeetingRoom" ref="ShowMeetingRoom"></property>
+	</bean>
+	<bean id="ShowMeetingRoom" class="dao.ShowMeetingRoomImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="addMeetingRoomAct" class="action.AddMeetingRoomAction">
+		<property name="addMeetingRoomService" ref="addMeetingRoomService"></property>
+	</bean>
+	<bean id="addMeetingRoomService" class="service.AddMeetingRoomServiceImpl">
+		<property name="addMeetingRoom" ref="addMeetingRoom"></property>
+	</bean>
+	<bean id="addMeetingRoom" class="dao.AddMeetingRoomImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="modifyAct" class="action.ModifyAction">
+	</bean>
+	<bean id="modifyMeetingRoomAct" class="action.ModifyMeetingRoomAction">
+		<property name="meetingRoomService" ref="meetingRoomService"></property>
+	</bean>
+	<bean id="meetingRoomService" class="service.ModifyMeetingRoomServiceImpl">
+		<property name="ModifyMeetingRoom" ref="ModifyMeetingRoom"></property>
+		<property name="temp" ref="temp"></property>
+	</bean>
+	<bean id="ModifyMeetingRoom" class="dao.ModifyMeetingRoomImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="temp" class="dao.GetStateById">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
 	
 	<bean id="meetingDao" class="dao.MeetingDaoImpl" scope="prototype">
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
@@ -59,4 +101,14 @@
 		<property name="meetingService" ref="meetingService"></property>
 	</bean>
 	
+
+	<bean id="deleteMeetingRoomAct" class="action.DeleteMeetingRoomAction">
+		<property name="deleteMeetingRoomService" ref="deleteMeetingRoomService"></property>
+	</bean>
+	<bean id="deleteMeetingRoomService" class="service.DeleteMeetingRoomServiceImpl">
+		<property name="deleteMeetingRoom" ref="deleteMeetingRoom"></property>
+	</bean>
+	<bean id="deleteMeetingRoom" class="dao.DeleteMeetingRoomImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
 </beans>

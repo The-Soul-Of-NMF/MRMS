@@ -1,5 +1,6 @@
-﻿<%@ page language="java" pageEncoding="UTF-8"%>  
+<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -104,38 +105,44 @@
             <h3><strong>添加会议室</strong></h3>
         </div>
         <form class="col-md-8">
+        <s:iterator>
             <fieldset class="form-horizontal">
                 <legend>填写会议室信息</legend>
                 <div class="form-group">
+                 	<label for="name" class="col-md-3 control-label">id:</label>
+                    <div class="col-md-8" id="id">
+                    <input type="text" id="sname" name="number" placeholder="会议室门牌号"  disabled="disabled" class="form-control" value=<s:property value="ID"/> />
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="name" class="col-md-3 control-label">门牌号：</label>
                     <div class="col-md-8">
-                        <input type="text" id="name" placeholder="会议室门牌号" class="form-control" />
+                        <input type="text" id="number" placeholder="会议室门牌号" class="form-control" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="name" class="col-md-3 control-label">容纳人数：</label>
                     <div class="col-md-8">
-                        <input type="text" id="name" placeholder="可容纳人数" class="form-control" />
+                        <input type="text" id="personlimit" placeholder="可容纳人数" class="form-control" />
                     </div>
                 </div>
                  <div class="form-group">
                     <label for="name" class="col-md-3 control-label">状态：</label>
                     <div class="col-md-8">
                        <div class="form-group" style="margin-left: 0px;margin-right: 0px;">
-								<select class="form-control">
-									<option value="">默认</option>
-									<option value="1">使用中</option>
-									<option value="2">空闲中</option>
-									<option value="3">维修中</option>
+								<select class="form-control" name="state" id="state">
+									<option value="1">开放</option>
+									<option value="2">维修</option>
 								</select>
 							</div>
                     </div>
                 </div>
             </fieldset>
             <div class="text-center form-group" style="margin-left: 90px;">
-                <button type="button" class="btn btn-success">确定</button>
+                <button type="button" class="btn btn-success" onclick="agree()">确定</button>
                 <button type="button" class="btn btn-default">取消</button>
             </div>
+            </s:iterator>
         </form>
     </div>
         
@@ -150,4 +157,17 @@
 <script src="../lib/scripts/jquery-1.11.0.min.js"></script>
 <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/scripts/bootbox.min.js"></script>
+<script>
+function agree()
+{
+    var current_id=document.getElementById("sname").value;
+    var state = document.getElementById("state").value;
+    var number = document.getElementById("number").value;
+    var personlimit = document.getElementById("personlimit").value;
+    alert(personlimit);
+    
+    window.location.href="./ModifyMeetingRoomAction?current_id="+current_id+"&state="+state+"&number="+number+"&personlimit="+personlimit;
+}
+
+</script>
 </html>

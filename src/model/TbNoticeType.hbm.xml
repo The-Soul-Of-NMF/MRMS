@@ -16,7 +16,7 @@
         <property name="reservedWord" type="java.lang.String">
             <column name="reserved_word" />
         </property>
-        <set name="tbNotices" inverse="true">
+        <set name="tbNotices" inverse="true" lazy="false">
             <key>
                 <column name="type" not-null="true" />
             </key>
