@@ -215,8 +215,8 @@
 									<td><s:property value="name"/></td>
 									<td><s:property value="totalNumber"/></td>
 									<td>
-										<s:iterator value="user">
-         									<s:property value="user_name" />,
+										<s:iterator value="tbUsers">
+         									<s:property value="name" />,
 										</s:iterator>
 									</td>
 									<td>

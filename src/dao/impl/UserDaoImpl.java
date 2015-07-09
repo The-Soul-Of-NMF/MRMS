@@ -95,7 +95,7 @@ public class UserDaoImpl implements UserDao {
 				TbAdmin admin=new TbAdmin();
 				TbUser tbUser=(TbUser) hibernateTemplate.find("from TbUser where id = "+id).get(0);
 				admin.setId(id);
-				admin.setSuperAdmin(true);
+				admin.setSuperAdmin(false);
 				admin.setTbUser(tbUser);
 				hibernateTemplate.save(admin);
 				can_promote=1;
