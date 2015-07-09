@@ -12,4 +12,24 @@
 	</package>
 	<package name="department" namespace="/department" extends="struts-default">
 	</package>
+	<package name="meeting" namespace="/meeting" extends="struts-default">
+		<action name="meetingForRoomAction" class="meetingForRoomAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_for_room_list.jsp</param>
+			</result>
+		</action>
+		<action name="meetingTimeChooseAction" class="meetingTimeChooseAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_time_choose.jsp</param>
+			</result>
+		</action>
+		<action name="meetingRoomChooseAction" class="meetingRoomChooseAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_room_match_success.jsp</param>
+			</result>
+			<result name="fail">
+				<param name="location">/meeting/meeting_room_match_fail.jsp</param>
+			</result>
+		</action>
+	</package>
 </struts>
