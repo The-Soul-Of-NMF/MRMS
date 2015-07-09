@@ -1,4 +1,4 @@
-﻿<%@ page language="java" pageEncoding="UTF-8"%>  
+<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
 
 <%@ taglib uri="/struts-tags" prefix="s" %>
@@ -118,42 +118,8 @@
         <!-- 左侧可伸缩菜单栏结束 -->
         <div id="content_panel" class="col-md-9">
 			<div class="page-header">
-				<h3><strong>会议申请</strong></h3>
+				<h3><strong>会议申请成功</strong></h3>
 			</div>
-			<form name="meetinginfor" class="col-md-8" action="./meeting/meetingApplyAction" method="post">
-            <fieldset id="content_fieldset">
-                <legend>填写申请信息</legend>
-                <div class="form-group">
-                    <label for="name">会议名称</label>
-                    <input type="text" id="name" placeholder="会议名称" class="form-control" name="name"/>
-                </div>
-                <div class="form-group">
-                    <label for="date">预期会议日期</label>
-                    <input type="date" id="date" class="form-control" name="date"/>
-                </div>
-                <div class="form-group">
-                    <label for="time">会议时长</label>
-                    <input type="text" id="time" placeholder="必填，时间单位:分钟" class="form-control" name="time"/>
-                </div>
-                <div class="form-group">
-                    <label>会议简介</label>
-                    <input type="text" id="introduce" placeholder="必填，不少于50字" class="form-control" name="introduce"/>
-                </div>
-                <div class="form-group">
-                    <label for="invited">参会人员</label>
-                    <div  id="invited">
-                  		<s:iterator value="allUser">
-                  			<label class="radio-inline">
-                  				<input name="invited" type="checkbox" value="<s:property value="id"/>"/><s:property value="name"/>
-                  			</label>
-                  		</s:iterator>
-                    </div>
-                </div>
-            </fieldset>
-            <div id="button_panel" class="text-center form-group">
-                <button type="button" class="btn btn-primary" onclick="checkinfor()">申请</button>
-            </div>
-        </form>
 		</div>
     </div>
     <div class="container text-center">

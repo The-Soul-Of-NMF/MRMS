@@ -153,8 +153,8 @@
             		<td><s:property value="totalNumber"/></td>
             		<td><s:date name="date" format="yyyy/MM/dd"/></td>
             		<td>
-                        <a href="meetingApplyCheckAction!execute?setMeetingId=<s:property value="id"/>&&setop=0" class="btn btn-primary btn-sm" onclick="return Agree()">同意</a>
-                        <a href="meetingApplyCheckAction!execute?setMeetingId=<s:property value="id"/>&&setop=1" class="btn btn-danger btn-sm col-md-offset-1" onclick="return Disagree();">不同意</a>
+                        <a href='meetingApplyCheckAction!execute?setMeetingId=<s:property value="id"/>&&setop=0' class="btn btn-primary btn-sm" onclick="return Agree()">同意</a>
+                        <a href='meetingApplyCheckAction!execute?setMeetingId=<s:property value="id"/>&&setop=1' class="btn btn-danger btn-sm col-md-offset-1" onclick="return Disagree();">不同意</a>
                     </td>
             	</tr>
             	</s:iterator>

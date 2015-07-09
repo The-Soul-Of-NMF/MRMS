@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="panel-group" id="accordion">
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item" href="'meeting/meetingApplyPrepare'">
+                    <a class="list-group-item" href='../meeting/meetingApplyPrepare'>
                         会议申请
                     </a>
                     <a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <a class="list-group-item" href="../user/notice.jsp">
                         通知<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item" href="'meetingInforAction'">
+                    <a class="list-group-item" href='../meeting/meetingInforAction'>
                         会议信息
                     </a>
                     <a class="list-group-item" href='./userinformationAction'>
@@ -83,7 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <a class="list-group-item"  href='./usercheckAction'>
                         用户注册审查<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item" href="'meeting/showWaitMeetingAction'">
+                    <a class="list-group-item" href='../meeting/showWaitMeetingAction'>
                         会议审查<span class="badge">10</span>
                     </a>
                     <a class="list-group-item" href="../department/deparManaAction_show">

@@ -41,12 +41,6 @@
 		<aop:pointcut expression="execution(* service.*.*(..))" id="txPointCut"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
 	</aop:config>
-	<bean id="meetingDao" class="dao.MeetingDaoImpl" scope="prototype">
-		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
-	</bean>
-	<bean id="meetingService" class="service.MeetingServiceImpl">
-		<property name="meetingDao" ref="meetingDao"></property>
-	</bean>
 	
 	<bean id="meetingApplyAction" class="action.MeetingApplyAction" scope="prototype">	
 		<property name="meetingService" ref="meetingService"></property>

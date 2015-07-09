@@ -114,8 +114,6 @@
 				<result name="suc">notice.jsp</result>
 		</action>
 	</package>
-	
-	
 	<package name="meeting" namespace="/meeting" extends="struts-default">
 		<action name="meetingForRoomAction" class="meetingForRoomAction">
 			<result name="success">
@@ -135,8 +133,6 @@
 				<param name="location">/meeting/meeting_room_match_fail.jsp</param>
 			</result>
 		</action>
-	</package>
-	<package name="meeting" namespace="/meeting" extends="struts-default">
 		<action name="meetingApplyPrepare" class="meetingApplyPrepare">
 			<result name="success">
 				<param name="location">/meeting/meeting_apply.jsp</param>
@@ -145,7 +141,7 @@
 		
 		<action name="meetingApplyAction" class="meetingApplyAction">
 			<result name="success">
-				<param name="location">/meeting/meeting_apply.jsp</param>
+				<param name="location">/meeting/meeting_apply_success.jsp</param>
 			</result>
 		</action>
 		<action name="meetingInforAction" class="meetingInforAction">

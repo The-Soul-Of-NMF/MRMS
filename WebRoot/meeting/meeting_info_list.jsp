@@ -160,7 +160,7 @@
             	<s:iterator value="meetinglist">
 					<tr>
             			<td><s:property value="id"/></td>
-            			<td><a href="meetingDetailAction?meetingId=<s:property value="id"/>"><s:property value="title"/></a></td>
+            			<td><a href='meetingDetailAction?meetingId=<s:property value="id"/>'><s:property value="title"/></a></td>
             			<td><s:property value="tbUser.name"/></td>
             			<td><s:date name="date" format="yyyy/MM/dd"/></td>
             			<td><s:property value="tbMeetingState.name"/></td>

@@ -25,6 +25,7 @@ public class MeetingApplyPrepare extends ActionSupport{
 			if(all.get(i).getId()==id)
 			{
 				all.remove(i);
+				i=10000;
 			}
 		}
 		this.setAllUser(all);

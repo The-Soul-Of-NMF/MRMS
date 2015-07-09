@@ -21,7 +21,6 @@ public class MeetingServiceImpl implements MeetingService {
 	public void setMeetingDao(MeetingDao meetingDao) {
 		this.meetingDao = meetingDao;
 	}
-	@Override
 
 	public TbMeetingUser createNewMeetingUser(TbMeetingUser meetingUser) {
 		return meetingDao.createNewMeetingUser(meetingUser);
@@ -75,6 +74,7 @@ public class MeetingServiceImpl implements MeetingService {
 	@Override
 	public List<TbUser> searchInvitedUser(TbMeeting meeting) {
 		return meetingDao.searchInvitedUser(meeting);
+	}
 	public List<TbMeeting> serachOwnMeeting(TbUser user, int state) {
 		return meetingDao.serachOwnMeeting(user, state);
 	}

@@ -42,6 +42,31 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
 	</aop:config>
 	
+	<bean id="meetingApplyAction" class="action.MeetingApplyAction" scope="prototype">	
+		<property name="meetingService" ref="meetingService"></property>
+	</bean>
+	
+	<bean id="meetingInforAction" class="action.MeetingInforAction" scope="prototype">	
+		<property name="meetingService" ref="meetingService"></property>
+	</bean>
+	
+	<bean id="loginAction" class="action.LoginAction" scope="prototype">
+		<property name="meetingService" ref="meetingService"></property>
+	</bean>
+	
+	<bean id="showWaitMeetingAction" class="action.ShowWaitMeeting" scope="prototype">
+		<property name="meetingService" ref="meetingService"></property>
+	</bean>
+	<bean id="meetingApplyCheckAction" class="action.MeetingApplyCheckAction">
+		<property name="meetingService" ref="meetingService"></property>
+	</bean>
+	<bean id="meetingApplyPrepare" class="action.MeetingApplyPrepare">
+		<property name="meetingService" ref="meetingService"></property>
+	</bean>
+	<bean id="meetingDetailAction" class="action.MeetingDetailAction">
+		<property name="meetingService" ref="meetingService"></property>
+	</bean>
+
 	<bean id="userdao" class="dao.impl.UserDaoImpl" scope="prototype">
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 	</bean>
@@ -164,4 +189,5 @@
 	<bean id="meetingRoomDetailAction" class="action.MeetingRoomDetailAction">
 		
 	</bean>
+
 </beans>

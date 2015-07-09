@@ -72,7 +72,7 @@ public class MeetingDaoImpl implements MeetingDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<TbUser> serachAllUser() {
-		String hql="from TbUser s inner join fetch s.tbDepartment where s.workingState=0";
+		String hql="from TbUser s inner join fetch s.tbDepartment where s.workingState=1";
 		return this.hibernateTemplate.find(hql);
 	}
 	@SuppressWarnings("unchecked")

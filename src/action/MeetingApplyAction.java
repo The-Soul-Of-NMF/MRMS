@@ -54,6 +54,14 @@ public class MeetingApplyAction extends ActionSupport{
 		TbMeeting lastmeeting=meetingService.getTheLastMeeting();
 		meetingService.createNewMeetingUser(lastmeeting,invited);
 		setAllUser(meetingService.serachAllUser());
+		int allSize=allUser.size();
+		for(int i=0;i<allSize;i++){
+			if(allUser.get(i).getId()==userid)
+			{
+				allUser.remove(i);
+				i=10000;
+			}
+		}
 		return "success";
 	}
 
