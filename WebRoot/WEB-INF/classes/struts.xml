@@ -66,30 +66,30 @@
 	
 	<package name="department" namespace="/department" extends="struts-default">
 		<action name="deparManaAction_add" method="add_depar" class="deparManaAction">
-			<result name="success">../admin/department_management.jsp</result>
+			<result name="success">/admin/department_management.jsp</result>
 		</action>
 		<action name="deparManaAction_show" method="show_depar" class="deparManaAction">
-			<result name="success">../admin/department_management.jsp</result>
+			<result name="success">/admin/department_management.jsp</result>
 		</action>
 		<action name="deparManaAction_update" method="modify_depar_name" class="deparManaAction">
-			<result name="success">../admin/department_management.jsp</result>
+			<result name="success">/admin/department_management.jsp</result>
 		</action>
 		<action name="deparManaAction_current_id" method="get_current_depar" class="deparManaAction">
-			<result name="success">../admin/department_management_edit.jsp</result>
+			<result name="success">/admin/department_management_edit.jsp</result>
 		</action>
 		<action name="deparManaAction_delete" method="delete_depar" class="deparManaAction">
-			<result name="success">../admin/department_management.jsp</result>
+			<result name="success">/admin/department_management.jsp</result>
 		</action>
 		<action name="deparManaAction_check_delete" method="check_delete" class="deparManaAction">
 		</action>
 		<action name="deparManaAction_query_by_id" method="query_depar_by_id" class="deparManaAction">
-			<result name="success">../admin/department_management.jsp</result>
+			<result name="success">/admin/department_management.jsp</result>
 		</action>
 		<action name="deparManaAction_query_by_num" method="query_depar_by_num" class="deparManaAction">
-			<result name="success">../admin/department_management.jsp</result>
+			<result name="success">/admin/department_management.jsp</result>
 		</action>
 		<action name="deparManaAction_query_by_member" method="query_depar_by_member" class="deparManaAction">
-			<result name="success">../admin/department_management.jsp</result>
+			<result name="success">/admin/department_management.jsp</result>
 		</action>
 	</package>
 	<package name="default1" namespace="/meetingRoom" extends="struts-default">

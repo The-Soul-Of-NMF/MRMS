@@ -89,7 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <a class="list-group-item" href="../admin/department_management.jsp">
                         部门信息管理
                     </a>
-                    <a class="list-group-item" href="../admin/meeting_room_management.jsp">
+                    <a class="list-group-item" href="/MRMS/meetingRoom/showMeetingRoomAction">
                         会议室信息管理
                     </a>
                     <a class="list-group-item" href="./usermanageAction">
