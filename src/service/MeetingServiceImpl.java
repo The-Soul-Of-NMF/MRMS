@@ -22,11 +22,6 @@ public class MeetingServiceImpl implements MeetingService {
 		this.meetingDao = meetingDao;
 	}
 	@Override
-	public TbMeetingUser createNewMeetingUser(TbMeetingUser meetingUser) {
-		// TODO Auto-generated method stub
-		return meetingDao.createNewMeetingUser(meetingUser);
-	}
-	@Override
 	public TbMeeting getTheLastMeeting() {
 		// TODO Auto-generated method stub
 		return meetingDao.getTheLastMeeting();
@@ -62,6 +57,24 @@ public class MeetingServiceImpl implements MeetingService {
 	@Override
 	public TbMeeting serachMeeting(int id) {
 		return meetingDao.serachMeeting(id);
+	}
+	@Override
+	public void createNewMeetingUser(TbMeeting tbMeeting, String[] userId) {
+		for(String u:userId){
+			TbMeetingUser meetingUser=new TbMeetingUser();
+			meetingUser.setTbMeeting(tbMeeting);
+			meetingUser.setTbUser(meetingDao.serachUser(Integer.parseInt(u)));
+			meetingDao.createNewMeetingUser(meetingUser);
+		}
+	}
+	@Override
+	public TbMeetingState serachMeetingState(int id) {
+		// TODO Auto-generated method stub
+		return meetingDao.serachMeetingState(id);
+	}
+	@Override
+	public List<TbUser> searchInvitedUser(TbMeeting meeting) {
+		return meetingDao.searchInvitedUser(meeting);
 	}
 	
 }

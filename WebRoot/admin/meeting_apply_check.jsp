@@ -1,12 +1,16 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html>
-<head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../lib/system/css/left_menu.css" rel="stylesheet" />
+    <link href="/MRMS/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/MRMS/lib/system/css/left_menu.css" rel="stylesheet" />
 </head>
 <body>
 <!-- 顶部导航栏开始 -->
@@ -47,7 +51,7 @@
         <div class="panel-group" id="accordion">
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item" href="../meeting/meeting_apply.jsp">
+                    <a class="list-group-item" href="'meeting/meetingApplyPrepare'">
                         会议申请
                     </a>
                     <a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
@@ -56,7 +60,7 @@
                     <a class="list-group-item" href="../user/notice.jsp">
                         通知<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item" href="../meeting/meeting_info_list.jsp">
+                    <a class="list-group-item" href="'meetingInforAction'">
                         会议信息
                     </a>
                     <a class="list-group-item" href="../user/profile.jsp">
@@ -72,7 +76,7 @@
                     <a class="list-group-item" href="../admin/signup_check.jsp">
                         用户注册审查<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item active" href="../admin/meeting_apply_check.jsp">
+                    <a class="list-group-item" href="'meeting/showWaitMeetingAction'">
                         会议审查<span class="badge">10</span>
                     </a>
                     <a class="list-group-item" href="../admin/department_management.jsp">
@@ -127,62 +131,21 @@
                     <th class="text-center">操作</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>10001</td>
-                    <td>党员的党性</td>
-                    <td>李志伟</td>
-                    <td>22</td>
-                    <td>yyyy-mm-dd</td>
-                    <td >
-                        <a href="meeting_apply_check.jsp" class="btn btn-primary btn-sm" onclick="Agree()">同意</a>
-                        <a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="Disagree();">不同意</a>
+            <tbody id="wait">
+            	<s:iterator value="waitMeetings">
+            	<tr>
+            		
+            		<td><s:property value="id"/></td>
+            		<td><a href="meetingDetailAction?meetingId=<s:property value="id"/>"><s:property value="title"/></a></td>
+            		<td><s:property value="tbUser.name"/></td>
+            		<td><s:property value="totalNumber"/></td>
+            		<td><s:date name="date" format="yyyy/MM/dd"/></td>
+            		<td>
+                        <a href="meetingApplyCheckAction!execute?setMeetingId=<s:property value="id"/>&&setop=0" class="btn btn-primary btn-sm" onclick="return Agree()">同意</a>
+                        <a href="meetingApplyCheckAction!execute?setMeetingId=<s:property value="id"/>&&setop=1" class="btn btn-danger btn-sm col-md-offset-1" onclick="return Disagree();">不同意</a>
                     </td>
-                </tr>
-                <tr>
-                    <td>10002</td>
-                    <td>中软实习</td>
-                    <td>山涛</td>
-                    <td>21</td>
-                    <td>yyyy-mm-dd</td>
-                    <td >
-                       	<a href="meeting_apply_check.jsp" class="btn btn-primary btn-sm" onclick="Agree()">同意</a>
-                        <a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="Disagree();">不同意</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>10003</td>
-                    <td>毕业设计</td>
-                    <td>邓旺华</td>
-                    <td>11</td>
-                    <td>yyyy-mm-dd</td>
-                    <td >
-                        <a href="meeting_apply_check.jsp" class="btn btn-primary btn-sm" onclick="Agree()">同意</a>
-                        <a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="Disagree();">不同意</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>10004</td>
-                    <td>JavaScript</td>
-                    <td>洪鑫</td>
-                    <td>33</td>
-                    <td>yyyy-mm-dd</td>
-                    <td >
-                        <a href="meeting_apply_check.jsp" class="btn btn-primary btn-sm" onclick="Agree()">同意</a>
-                        <a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="Disagree();">不同意</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>10005</td>
-                    <td>Jsp</td>
-                    <td>吕成</td>
-                    <td>44</td>
-                    <td>yyyy-mm-dd</td>
-                    <td >
-                        <a href="meeting_apply_check.jsp" class="btn btn-primary btn-sm" onclick="Agree()">同意</a>
-                        <a href="#" class="btn btn-danger btn-sm col-md-offset-1" onclick="Disagree();">不同意</a>
-                    </td>
-                </tr>
+            	</tr>
+            	</s:iterator>
             </tbody>
         </table>
     	</div>
@@ -194,8 +157,8 @@
         <br />
     </div>
 </body>
-<script src="../lib/scripts/jquery-1.11.0.min.js"></script>
-<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="../lib/scripts/bootbox.min.js"></script>
-<script src="js/meeting_apply_check.js"></script>
+<script src="/MRMS/lib/scripts/jquery-1.11.0.min.js"></script>
+<script src="/MRMS/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/MRMS/lib/scripts/bootbox.min.js"></script>
+<script src="/MRMS/admin/js/meeting_apply_check.js"></script>
 </html>

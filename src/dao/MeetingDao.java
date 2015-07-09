@@ -17,5 +17,7 @@ public interface MeetingDao {
 	List<TbMeeting> serachJoinMeeting(TbUser user);
 	List<TbMeeting> serachWaitMeeting();
 	List<TbUser> serachAllUser();
-	void changeMeetingState(TbMeeting meeting,TbMeetingState state);
+	List<TbUser> searchInvitedUser(TbMeeting meeting);
+	TbMeeting changeMeetingState(TbMeeting meeting,TbMeetingState state);
+	TbMeetingState serachMeetingState(int id);
 }

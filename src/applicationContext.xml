@@ -40,5 +40,35 @@
 		<aop:pointcut expression="execution(* service.*.*(..))" id="txPointCut"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
 	</aop:config>
+	<bean id="meetingDao" class="dao.MeetingDaoImpl" scope="prototype">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	<bean id="meetingService" class="service.MeetingServiceImpl">
+		<property name="meetingDao" ref="meetingDao"></property>
+	</bean>
 	
+	<bean id="meetingApplyAction" class="action.MeetingApplyAction" scope="prototype">	
+		<property name="meetingService" ref="meetingService"></property>
+	</bean>
+	
+	<bean id="meetingInforAction" class="action.MeetingInforAction" scope="prototype">	
+		<property name="meetingService" ref="meetingService"></property>
+	</bean>
+	
+	<bean id="loginAction" class="action.LoginAction" scope="prototype">
+		<property name="meetingService" ref="meetingService"></property>
+	</bean>
+	
+	<bean id="showWaitMeetingAction" class="action.ShowWaitMeeting" scope="prototype">
+		<property name="meetingService" ref="meetingService"></property>
+	</bean>
+	<bean id="meetingApplyCheckAction" class="action.MeetingApplyCheckAction">
+		<property name="meetingService" ref="meetingService"></property>
+	</bean>
+	<bean id="meetingApplyPrepare" class="action.MeetingApplyPrepare">
+		<property name="meetingService" ref="meetingService"></property>
+	</bean>
+	<bean id="meetingDetailAction" class="action.MeetingDetailAction">
+		<property name="meetingService" ref="meetingService"></property>
+	</bean>
 </beans>

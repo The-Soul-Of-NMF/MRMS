@@ -12,4 +12,42 @@
 	</package>
 	<package name="department" namespace="/department" extends="struts-default">
 	</package>
+	<package name="meeting" namespace="/meeting" extends="struts-default">
+		<action name="meetingApplyPrepare" class="meetingApplyPrepare">
+			<result name="success">
+				<param name="location">/meeting/meeting_apply.jsp</param>
+			</result>
+		</action>
+		
+		<action name="meetingApplyAction" class="meetingApplyAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_apply.jsp</param>
+			</result>
+		</action>
+		<action name="meetingInforAction" class="meetingInforAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_info_list.jsp</param>
+			</result>
+		</action>
+		<action name="loginAction" class="loginAction">
+			<result name="success">
+				<param name="location">/user/welcome.jsp</param>
+			</result>
+		</action>
+		<action name="showWaitMeetingAction" class="showWaitMeetingAction">
+			<result name="success">
+				<param name="location">/admin/meeting_apply_check.jsp</param>
+			</result>
+		</action>
+		<action name="meetingApplyCheckAction" class="meetingApplyCheckAction">
+			<result name="success">
+				<param name="location">/admin/meeting_apply_check.jsp</param>
+			</result>
+		</action>
+		<action name="meetingDetailAction" class="meetingDetailAction">
+			<result name="success">
+				<param name="location">/meeting/meeting_info_detail.jsp</param>
+			</result>
+		</action>
+	</package>
 </struts>

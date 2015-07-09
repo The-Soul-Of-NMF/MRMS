@@ -63,7 +63,7 @@ public class MeetingDaoImpl implements MeetingDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<TbUser> serachAllUser() {
-		String hql="from TbUser as s where s.workingState=0";
+		String hql="from TbUser s inner join fetch s.tbDepartment where s.workingState=0";
 		return this.hibernateTemplate.find(hql);
 	}
 	@SuppressWarnings("unchecked")
@@ -73,14 +73,25 @@ public class MeetingDaoImpl implements MeetingDao {
 		return this.hibernateTemplate.find(hql);
 	}
 	@Override
-	public void changeMeetingState(TbMeeting meeting, TbMeetingState state) {
+	public TbMeeting changeMeetingState(TbMeeting meeting, TbMeetingState state) {
 		meeting.setTbMeetingState(state);
 		hibernateTemplate.update(meeting);
+		return meeting;
 	}
 	@Override
 	public TbMeeting serachMeeting(int id) {
-		String hql="from TbMeeting m where m.id="+id;
+		String hql="from TbMeeting m left outer join fetch m.tbUser  where m.id="+id;
 		return (TbMeeting)hibernateTemplate.find(hql).get(0);
 	}
-
+	public TbMeetingState serachMeetingState(int id){
+		String hql="from TbMeetingState t where t.id="+id;
+		return (TbMeetingState)hibernateTemplate.find(hql).get(0);
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TbUser> searchInvitedUser(TbMeeting meeting) {
+		String hql="from TbUser as s left outer join fetch s.tbMeetingUsers as b "
+				+ "where b.tbMeeting.id="+meeting.getId();
+		return this.hibernateTemplate.find(hql);
+	}
 }

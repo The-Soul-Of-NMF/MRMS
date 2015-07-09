@@ -36,7 +36,7 @@
             <div id="login_box">
                 <p id="login_title">登录<p>
                 <div id="form_login">
-                    <form name="login_form" method="post" id="login_form">
+                    <form name="login_form"  method="post" id="login_form">
                         <table>
                             <tr>
                                 <label id="label_name" for="name"></label>
@@ -52,7 +52,7 @@
                                 </div>
                             </tr>
                             <tr>
-                                <p id="button_submit" onclick="location.href='./user/welcome.jsp'">登 录</p>
+                                <p id="button_submit" onclick="location.href='meeting/loginAction'" >登 录</p>
                             </tr>
                             <tr align="right">
                                 <p id="register_redirect">没有帐号？新成员？

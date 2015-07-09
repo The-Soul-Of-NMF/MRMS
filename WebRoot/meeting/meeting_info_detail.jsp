@@ -1,13 +1,14 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <title>会议详情</title>
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../lib/system/css/left_menu.css" rel="stylesheet" />
-	<link href="css/meeting_info_detail.css" rel="stylesheet" />
+    <link href="/MRMS/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/MRMS/lib/system/css/left_menu.css" rel="stylesheet" />
+	<link href="/MRMS/meeting/css/meeting_info_detail.css" rel="stylesheet" />
 </head>
 <body>
 <!-- 顶部导航栏开始 -->
@@ -48,7 +49,7 @@
         <div class="panel-group" id="accordion">
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item" href="../meeting/meeting_apply.jsp">
+                     <a class="list-group-item" href="'meeting/meetingApplyPrepare'">
                         会议申请
                     </a>
                     <a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
@@ -57,7 +58,7 @@
                     <a class="list-group-item" href="../user/notice.jsp">
                         通知<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item active" href="../meeting/meeting_info_list.jsp">
+                    <a class="list-group-item" href="'meetingInforAction'">
                         会议信息
                     </a>
                     <a class="list-group-item" href="../user/profile.jsp">
@@ -73,7 +74,7 @@
                     <a class="list-group-item" href="../admin/signup_check.jsp">
                         用户注册审查<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item" href="../admin/meeting_apply_check.jsp">
+                    <a class="list-group-item" href="'meeting/showWaitMeetingAction'">
                         会议审查<span class="badge">10</span>
                     </a>
                     <a class="list-group-item" href="../admin/department_management.jsp">
@@ -107,33 +108,33 @@
         <form class="col-md-8">
                 <div class="form-group">
                     <label>会议编号:</label>
-                    <input type="text" id="number" class="form-control" value="1001"/>
+                    <input type="text" id="number" class="form-control" disabled="disabled" value="<s:property value="meeting.id"/>"/>
                 </div>
                <div class="form-group">
                     <label>会议名称:</label>
-                    <input type="text" id="meetingname"  class="form-control" value="项目开题讨论会" />
+                    <input type="text" id="meetingname"  class="form-control" disabled="disabled" value="<s:property value="meeting.title"/>" />
                 </div>
                 <div class="form-group">
                     <label>会议发起者:</label>
-                    <input type="text" id="name"  class="form-control" value="邓旺华" />
+                    <input type="text" id="name"  class="form-control" disabled="disabled" value="<s:property value="meeting.tbUser.name"/>" />
                 </div>
                  <div class="form-group">
                     <label>会议状态:</label>
-                    <input type="text" id="state"  class="form-control" value="已申请会议室" />
+                    <input type="text" id="state"  class="form-control" disabled="disabled" value="<s:property value="meeting.tbMeetingState.name"/>" />
                 </div>
                 <div class="form-group">
                     <label>会议起止时间:</label></br>
-                    <input type="text" id="time1" class="form-control" value="8:00"/>
+                    <input type="text" id="time1" class="form-control" disabled="disabled" value="<s:property value="meeting.startTime"/>"/>
 					<p id="p">——</p>
-				    <input type="text" id="time2" class="form-control" value="9:00"/>
+				    <input type="text" id="time2" class="form-control" disabled="disabled" value="<s:property value="meeting.startTime"/>"/>
                 </div>
 				 <div class="form-group">
                     <label>会议简介:</label>
-                    <textarea id="description" rows="3"  class="form-control">会议将就新项目进行开题讨论。。</textarea>
+                    <textarea id="description" rows="3"  class="form-control" disabled="disabled"><s:property value="meeting.description"/></textarea>
                 </div>
 				 <div class="form-group">
                     <label>会议成员:</label>
-                    <input type="text" id="member" class="form-control" value="邓旺华、李志伟"/>
+                    <input type="text" id="member" class="form-control" disabled="disabled" value='<s:iterator value="meetingInvited"><s:property value="name"/>&nbsp</s:iterator>'/>
                 </div>
 				
 				<fieldset>
@@ -157,7 +158,7 @@
         <br />
     </div>
 </body>
-<script src="../lib/scripts/jquery-1.11.0.min.js"></script>
-<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="../lib/scripts/bootbox.min.js"></script>
+<script src="/MRMS/lib/scripts/jquery-1.11.0.min.js"></script>
+<script src="/MRMS/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/MRMS/lib/scripts/bootbox.min.js"></script>
 </html>
