@@ -67,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <a class="list-group-item" href='../meeting/meetingInforAction'>
                         会议信息
                     </a>
-                    <a class="list-group-item" href='./userinformationAction'>
+                    <a class="list-group-item" href='../user/userinformationAction'>
                         个人信息
                     </a>
 
@@ -80,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 %>
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item"  href='./usercheckAction'>
+                    <a class="list-group-item"  href='../user/usercheckAction'>
                         用户注册审查<span class="badge">20</span>
                     </a>
                     <a class="list-group-item" href='../meeting/showWaitMeetingAction'>
@@ -92,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <a class="list-group-item" href="/MRMS/meetingRoom/showMeetingRoomAction">
                         会议室信息管理
                     </a>
-                    <a class="list-group-item" href="./usermanageAction">
+                    <a class="list-group-item" href="../user/usermanageAction">
                         用户信息管理
                     </a>
                 </div>

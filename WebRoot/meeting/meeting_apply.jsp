@@ -137,7 +137,7 @@
                 </div>
                 <div class="form-group">
                     <label>会议简介</label>
-                    <input type="text" id="introduce" placeholder="必填，不少于50字" class="form-control" name="introduce"/>
+                    <input type="text" id="introduce" placeholder="会议简介。。。" class="form-control" name="introduce"/>
                 </div>
                 <div class="form-group">
                     <label for="invited">参会人员</label>

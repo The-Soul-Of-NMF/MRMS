@@ -146,7 +146,7 @@
                 </div>
 				 <div class="form-group">
                     <label>会议成员:</label>
-                    <input type="text" id="member" class="form-control" disabled="disabled" value='<s:iterator value="meetingInvited"><s:property value="name"/>&nbsp</s:iterator>'/>
+                    <input type="text" id="member" class="form-control" disabled="disabled" value='<s:iterator value="meetingInvited">#<s:property value="name"/></s:iterator>'/>
                 </div>
 				
 				<fieldset>
