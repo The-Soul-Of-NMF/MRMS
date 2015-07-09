@@ -1,13 +1,20 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@page import="javax.servlet.http.HttpServletRequest"%>
+<%@page import="org.apache.struts2.ServletActionContext"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%@taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../lib/system/css/left_menu.css" rel="stylesheet" />
-    <link href="./css/welcome.css" rel="stylesheet" />
+    <link href="/MRMS/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/MRMS/lib/system/css/left_menu.css" rel="stylesheet" />
+    <link href="/MRMS/user/css/welcome.css" rel="stylesheet" />
 </head>
 <body>
 <!-- 顶部导航栏开始 -->
@@ -29,12 +36,12 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img height="20" class="dropdown-image" src="../lib/system/img/silverHugh.jpg">
-                        SilverHugh
+                        <s:property value="user.name"/>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="../user/profile.jsp">修改个人信息</a></li>
-                        <li><a href="../index.jsp">注销</a></li>
+                        <li><a href='./userinformationAction'>修改个人信息</a></li>
+                        <li><a href="../deletesessionAction">注销</a></li>
                     </ul>
                 </li>
             </ul>
@@ -60,17 +67,20 @@
                     <a class="list-group-item" href="../meeting/meeting_info_list.jsp">
                         会议信息
                     </a>
-                    <a class="list-group-item" href="../user/profile.jsp">
+                    <a class="list-group-item" href='./userinformationAction'>
                         个人信息
                     </a>
 
                 </div>
             </div>
 
-
+        <% HttpServletRequest request1=ServletActionContext.getRequest();
+		  String limit=(String) request1.getSession().getAttribute("limit");
+		  if(Integer.parseInt(limit)>1){
+		 %>
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item" href="../admin/signup_check.jsp">
+                    <a class="list-group-item"  href='./usercheckAction'>
                         用户注册审查<span class="badge">20</span>
                     </a>
                     <a class="list-group-item" href="../admin/meeting_apply_check.jsp">
@@ -82,11 +92,11 @@
                     <a class="list-group-item" href="../admin/meeting_room_management.jsp">
                         会议室信息管理
                     </a>
-                    <a class="list-group-item" href="../admin/user_management.jsp">
+                    <a class="list-group-item" href="./usermanageAction">
                         用户信息管理
                     </a>
                 </div>
-            </div>
+            </div><%}  if(Integer.parseInt(limit)>2){%>
 
 
             <div class="panel-body">
@@ -95,13 +105,13 @@
                         权限管理
                     </a>
                 </div>
-            </div>
+            </div><%} %>
 
         </div>
     </div>
     <!-- 左侧可伸缩菜单栏结束 -->
     <div class="col-md-offset-3 text-center">
-        <h3 id="welcome_title" class="text-info">欢迎使用会议室信息管理系统。您好，<span id="welcome_name">SilverHugh</span>~</h3>
+        <h3 id="welcome_title" class="text-info">欢迎使用会议室信息管理系统。您好，<span id="welcome_name">  <s:property value="user.name"/></span>~</h3>
     </div>
 </div>
 <div class="container text-center">
@@ -111,8 +121,8 @@
     <br />
 </div>
 </body>
-<script src="../lib/scripts/jquery-1.11.0.min.js"></script>
-<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="../lib/scripts/bootbox.min.js"></script>
-<script src="js/profile.js"></script>
+<script src="/MRMS/lib/scripts/jquery-1.11.0.min.js"></script>
+<script src="/MRMS/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/MRMS/lib/scripts/bootbox.min.js"></script>
+<script src="/MRMS/user/js/profile.js"></script>
 </html>

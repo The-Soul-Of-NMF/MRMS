@@ -1,16 +1,24 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@taglib uri="/struts-tags" prefix="s" %>
+<%@page import="javax.servlet.http.HttpServletRequest"%>
+<%@page import="org.apache.struts2.ServletActionContext"%>
+<%@page import="model.TbDepartment" %>
+<%@page import="java.util.List" %>
 <!--用户注册页面-->
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../lib/system/css/left_menu.css" rel="stylesheet" />
-    <link href="./css/signup.css" rel="stylesheet" />
+    <link href="/MRMS/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/MRMS/lib/system/css/left_menu.css" rel="stylesheet" />
+    <link href="/MRMS/user/css/signup.css" rel="stylesheet" />
 </head>
 <body>
+<% 
+	       HttpServletRequest request1=ServletActionContext.getRequest();
+		   List departments=(List)request1.getSession().getAttribute("department");%>
 <!-- 顶部导航栏开始 -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -26,7 +34,7 @@
         <div class="collapse navbar-collapse navbar-right" id="nav">
             <ul class="nav navbar-nav">
                 <li><a href="../index.jsp">登录</a></li>
-                <li class="active"><a href="./signup.jsp">注册</a></li>
+                <li class="active"><a href="registerAction">注册</a></li>
             </ul>
 
         </div>
@@ -37,7 +45,7 @@
     <div id="register_box">
         <p id="register_title">注册</p>
         <div id="form_register">
-            <form name="register_form" method="post" id="register_form">
+            <form name="register_form"  id="register_form" action="userAction">
                 <table>
                     <tbody>
                     <tr>
@@ -66,11 +74,11 @@
                         <td><label id="label_department" for="department">所在部门</label></td>
                         <td>
                             <select id="department" name="department">
-                                <option></option>
-                                <option>人事部</option>
-                                <option>财务部</option>
-                                <option>技术部</option>
-                                <option>后勤部</option>
+                                <% for(int i=0;i<departments.size();i++) {
+                                %>
+                                <option> <%=((TbDepartment)departments.get(i)).getName()%></option>
+                               
+                               <%} %>
                             </select>
                         </td>
                     </tr>
@@ -83,7 +91,7 @@
                         <td><input class="input_text" id="tel" name="tel" placeholder="输入手机号" type="text" /></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><p id="button_submit">注 册</p></td>
+                        <td colspan="2"><input id="button_submit" name="button_submit"  type="button" value="注册" onclick="check()"/></td>
                     </tr>
                     <tr align="right">
                         <td colspan="2">
@@ -105,7 +113,31 @@
     <br />
 </div>
 </body>
-<script src="../lib/scripts/jquery-1.11.0.min.js"></script>
-<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="../lib/scripts/bootbox.min.js"></script>
+<script src="/MRMS/lib/scripts/jquery-1.11.0.min.js"></script>
+<script src="/MRMS/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="/MRMS/lib/scripts/bootbox.min.js"></script>
+<script>
+function check(){
+	var name=document.getElementById("name").value;
+	var password=document.getElementById("password").value;
+	var ensurepassword=document.getElementById("ensure_password").value;
+	var gender=document.getElementById("gender").value;
+	var department=document.getElementById("department").value;
+	var email=document.getElementById("email").value;
+	var tel=document.getElementById("tel").value;
+	var data={username:name,userpassword:password,userensurepassword:ensurepassword,usergender:gender,useremail:email,usertel:tel,userdepartment:department};
+	$.post("registercheckAction",data,function(result){
+		if(result=="1"){
+		alert("注册信息不能为空！");	
+		}
+		if(result=="2"){
+			alert("两次输入密码不同！");	
+			}
+		if(result=="3"){
+			alert("已注册，等待审核！");	
+			$("#register_form").submit();
+		}
+	});
+}
+</script>
 </html>

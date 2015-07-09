@@ -8,9 +8,9 @@
     <class name="model.TbUserApplication" table="tb_user_application" catalog="db_mrms">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="increment" />
+            <generator class="increment"/>
         </id>
-        <many-to-one name="tbDepartment" class="model.TbDepartment" fetch="select">
+        <many-to-one name="tbDepartment" class="model.TbDepartment"  lazy="false" fetch="select">
             <column name="department_id" not-null="true" />
         </many-to-one>
         <property name="name" type="java.lang.String">

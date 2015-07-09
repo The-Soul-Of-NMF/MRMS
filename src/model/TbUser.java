@@ -21,10 +21,10 @@ public class TbUser implements java.io.Serializable {
 	private Long phone;
 	private Boolean workingState;
 	private String reservedWord;
-	private Set tbNoticeInteractionsForToUserId = new HashSet(0);
-	private Set tbMeetings = new HashSet(0);
-	private Set tbNoticeInteractionsForFromUserId = new HashSet(0);
-	private Set tbAdmins = new HashSet(0);
+	private Set tbNoticeInteractionsForToUserId = new HashSet();
+	private Set tbMeetings = new HashSet();
+	private Set tbNoticeInteractionsForFromUserId = new HashSet();
+	private Set tbAdmins= new HashSet();
 
 	// Constructors
 
@@ -66,7 +66,7 @@ public class TbUser implements java.io.Serializable {
 		this.tbNoticeInteractionsForToUserId = tbNoticeInteractionsForToUserId;
 		this.tbMeetings = tbMeetings;
 		this.tbNoticeInteractionsForFromUserId = tbNoticeInteractionsForFromUserId;
-		this.tbAdmins = tbAdmins;
+		this.tbAdmins=tbAdmins;
 	}
 
 	// Property accessors
@@ -177,11 +177,15 @@ public class TbUser implements java.io.Serializable {
 	}
 
 	public Set getTbAdmins() {
-		return this.tbAdmins;
+		return tbAdmins;
 	}
 
 	public void setTbAdmins(Set tbAdmins) {
 		this.tbAdmins = tbAdmins;
 	}
+
+
+
+
 
 }

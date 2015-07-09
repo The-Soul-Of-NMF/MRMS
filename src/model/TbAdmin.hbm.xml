@@ -10,7 +10,7 @@
             <column name="id" />
             <generator class="increment" />
         </id>
-        <many-to-one name="tbUser" class="model.TbUser" fetch="select">
+        <many-to-one name="tbUser" class="model.TbUser" fetch="select" >
             <column name="user_id" not-null="true" unique="true" />
         </many-to-one>
         <property name="superAdmin" type="java.lang.Boolean">

@@ -22,13 +22,13 @@
         <property name="reservedWord" type="java.lang.String">
             <column name="reserved_word" />
         </property>
-        <set name="tbUsers" inverse="true">
+        <set name="tbUsers" inverse="true" fetch="join" lazy="false">
             <key>
                 <column name="department_id" not-null="true" />
             </key>
             <one-to-many class="model.TbUser" />
         </set>
-        <set name="tbUserApplications" inverse="true">
+        <set name="tbUserApplications" inverse="true" lazy="false">
             <key>
                 <column name="department_id" not-null="true" />
             </key>

@@ -6,9 +6,9 @@
     <head lang="en">
         <meta charset="UTF-8">
         <title></title>
-        <link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="./lib/system/css/left_menu.css" rel="stylesheet" />
-        <link href="./user/css/login.css" rel="stylesheet" />
+        <link href="/MRMS/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/MRMS/lib/system/css/left_menu.css" rel="stylesheet" />
+        <link href="/MRMS/user/css/login.css" rel="stylesheet" />
     </head>
     <body>
     <!-- 顶部导航栏开始 -->
@@ -26,7 +26,7 @@
                 <div class="collapse navbar-collapse navbar-right" id="nav">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="./index.jsp">登录</a></li>
-                        <li><a href="./user/signup.jsp">注册</a></li>
+                        <li><a href='./user/registerAction'>注册</a></li>
                     </ul>
 
                 </div>
@@ -52,11 +52,11 @@
                                 </div>
                             </tr>
                             <tr>
-                                <p id="button_submit" onclick="location.href='./user/welcome.jsp'">登 录</p>
+                                <p id="button_submit" onclick="login()">登 录</p>
                             </tr>
                             <tr align="right">
                                 <p id="register_redirect">没有帐号？新成员？
-                                    <span id="register_link" onclick="document.location.href='./user/signup.jsp'">点我注册</span>
+                                    <span id="register_link" onclick="document.location.href='./user/registerAction'">点我注册</span>
                                 </p>
                             </tr>
                         </table>
@@ -71,7 +71,28 @@
             <br />
         </div>
     </body>
-    <script src="./lib/scripts/jquery-1.11.0.min.js"></script>
-    <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./lib/scripts/bootbox.min.js"></script>
+    <script src="/MRMS/lib/scripts/jquery-1.11.0.min.js"></script>
+    <script src="/MRMS/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/MRMS/lib/scripts/bootbox.min.js"></script>
+    <script>
+    function login(){
+    	var name=document.getElementById("name").value;
+    	var password=document.getElementById("password").value;
+		var data={username:name, userpassword:password};
+        $.post("user/userlogincheckAction",data,function(result){
+		if(result=="0"){
+		alert("用户名或密码不能为空！");
+		}
+		if(result=="1"){
+		alert("用户名不正确!");
+		}
+		if(result=="2"){
+		alert("用户不存在或密码不正确！");
+		}
+		if(result=="3"){
+		window.location.href="user/userloginAction";
+		}
+		});
+    }
+    </script>
 </html>
