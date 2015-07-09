@@ -14,6 +14,19 @@
     <link href="/MRMS/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/MRMS/lib/system/css/left_menu.css" rel="stylesheet" />
     <link href="/MRMS/user/css/signup.css" rel="stylesheet" />
+            <style type="text/css">
+        	#poster{
+        		width:450px;
+        		height:450px;
+        		margin: 50px 100px !important;
+        		animation: 3s slide_in;
+        	}
+			@keyframes slide_in{
+			    0%{opacity: 0}
+			    50%{opacity: 0}
+			    100%{opacity: 1}
+			}
+        </style>
 </head>
 <body>
 <% 
@@ -42,6 +55,7 @@
 </nav>
 <!-- 顶部导航栏结束 -->
 <div class="container wrap_content">
+<img src="/MRMS/lib/images/meeting_room.png" id="poster" />
     <div id="register_box">
         <p id="register_title">注册</p>
         <div id="form_register">
