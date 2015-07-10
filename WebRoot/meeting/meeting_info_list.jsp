@@ -1,22 +1,21 @@
-﻿<%@page import="org.apache.struts2.ServletActionContext"%>
-<%@ page language="java" pageEncoding="UTF-8"%>  
+﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
-<%@ taglib uri="/struts-tags" prefix="s" %>
-<%@ page import="model.TbUser" %>
 <%@page import="javax.servlet.http.HttpServletRequest"%>
-
-
+<%@page import="org.apache.struts2.ServletActionContext"%>
+<%@page import="model.TbUser"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<!--会议室选择页面-->
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>会议列表</title>
+    <title></title>
     <link href="/MRMS/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/MRMS/lib/system/css/left_menu.css" rel="stylesheet" />
-	 <link href="/MRMS/meeting/css/meeting_info_list.css" rel="stylesheet" />
+    <link href="/MRMS/meeting/css/pick.css" rel="stylesheet"/>
 </head>
 <body>
-	<% 
+<% 
 	 HttpServletRequest request1=ServletActionContext.getRequest();
 		   String limit=(String) request1.getSession().getAttribute("limit");
 		   TbUser user=(TbUser) request1.getSession().getAttribute("user");%>
@@ -39,11 +38,11 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img height="20" class="dropdown-image" src="../lib/system/img/silverHugh.jpg">
-                        <%=user.getName() %>
+                         <%=user.getName() %>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href='../user/userinformationAction'>修改个人信息</a></li>
+                        <li><a href='./userinformationAction'>修改个人信息</a></li>
                         <li><a href="../deletesessionAction">注销</a></li>
                     </ul>
                 </li>
@@ -58,16 +57,16 @@
         <div class="panel-group" id="accordion">
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                     <a class="list-group-item" href="'meeting/meetingApplyPrepare'">
+                 <a class="list-group-item" href='../meeting/meetingApplyPrepare'>
                         会议申请
                     </a>
-                    <a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
+                    <a class="list-group-item" href="/MRMS/meeting/meetingForRoomAction">
                         会议室选择
                     </a>
-                    <a class="list-group-item" href="../user/notice.jsp">
+                    <a class="list-group-item" href="../user/shownoticeAction">
                         通知<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item" href="'meetingInforAction'">
+                    <a class="list-group-item" href='../meeting/meetingInforAction'>
                         会议信息
                     </a>
                     <a class="list-group-item" href='../user/userinformationAction'>
@@ -77,22 +76,21 @@
                 </div>
             </div>
 
- 				<%
-		   			if(Integer.parseInt(limit)>1){
-		 		 %>
-
+         <% 
+		  if(Integer.parseInt(limit)>1){
+		 %>
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item" href='../user/usercheckAction'>
+                    <a class="list-group-item"  href='../user/usercheckAction'>
                         用户注册审查<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item" href="'meeting/showWaitMeetingAction'">
+                    <a class="list-group-item" href='../meeting/showWaitMeetingAction'>
                         会议审查<span class="badge">10</span>
                     </a>
-                    <a class="list-group-item" href="../admin/department_management.jsp">
+                    <a class="list-group-item" href="../department/deparManaAction_show">
                         部门信息管理
                     </a>
-                    <a class="list-group-item" href="../admin/meeting_room_management.jsp">
+                    <a class="list-group-item" href="/MRMS/meetingRoom/showMeetingRoomAction">
                         会议室信息管理
                     </a>
                     <a class="list-group-item" href="../user/usermanageAction">
@@ -170,7 +168,7 @@
             				String ss2=request2.getAttribute("usert").toString();
             				if(ss.equals(ss2)){
             				%>
-            				<img src="/MRMS/meeting/img/check.png" id="check_size"/>
+            				<img src="/MRMS/meeting/img/check.png" id="check_size" width="30" height="20" style="margin-left: 50px"/>
             				<%}%>
             			</td>
             		</tr>

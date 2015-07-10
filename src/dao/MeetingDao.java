@@ -22,7 +22,6 @@ public interface MeetingDao {
 	List<TbMeeting> serachMatchMeeting(Date meetingDate);
 	List<TbMeeting> serachMatchMeeting(Date meetingDate, int roomId);
 	List<TbUser> serachAllUser();
-	void changeMeetingState(TbMeeting meeting,TbMeetingState state);
 	void updateMeeting(TbMeeting meeting);
 	TbMeetingState getMeetingState(int stateId);
 	TbMeetingRoom getMeetingRoom(int roomId);

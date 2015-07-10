@@ -1,6 +1,7 @@
 package action;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,13 +23,25 @@ public class MeetingDetailAction extends ActionSupport {
 	private TbMeeting meeting;
 	private MeetingService meetingService;
 	private List<TbUser> meetingInvited;
-	private Date finishTIme;
+	private Date finishTime;
+	@SuppressWarnings("deprecation")
 	public String execute(){
 		HttpServletRequest request=ServletActionContext.getRequest();
 		int id=Integer.parseInt(request.getParameter("meetingId"));
 		this.setMeeting(meetingService.serachMeeting(id));
 		this.setMeetingInvited(meetingService.searchInvitedUser(meeting));
-		
+		GregorianCalendar cal =new GregorianCalendar();
+		cal.setTime(meeting.getDate());
+		if(meeting.getStartTime()!=null){
+			cal.add(GregorianCalendar.HOUR,meeting.getStartTime().getHours());
+			cal.add(12, meeting.getStartTime().getMinutes());
+			cal.add(GregorianCalendar.MINUTE, meeting.getDuringTime());
+			this.setFinishTime(cal.getTime());
+		}
+		else
+		{
+			this.setFinishTime(null);
+		}
 		return "success";
 	}
 	public TbMeeting getMeeting() {
@@ -49,10 +62,11 @@ public class MeetingDetailAction extends ActionSupport {
 	public void setMeetingInvited(List<TbUser> meetingInvited) {
 		this.meetingInvited = meetingInvited;
 	}
-	public Date getFinishTIme() {
-		return finishTIme;
+	public Date getFinishTime() {
+		return finishTime;
 	}
-	public void setFinishTIme(Date finishTIme) {
-		this.finishTIme = finishTIme;
+	public void setFinishTime(Date finishTime) {
+		this.finishTime = finishTime;
 	}
+
 }

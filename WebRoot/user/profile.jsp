@@ -56,48 +56,47 @@
         <div class="panel-group" id="accordion">
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item" href="'meeting/meetingApplyPrepare'">
+                     <a class="list-group-item" href='../meeting/meetingApplyPrepare'>
                         会议申请
                     </a>
-                    <a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
+                    <a class="list-group-item" href="/MRMS/meeting/meetingForRoomAction">
                         会议室选择
                     </a>
-                    <a class="list-group-item" href="../user/notice.jsp">
+                   <a class="list-group-item" href="../user/shownoticeAction">
                         通知<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item" href="'meetingInforAction'">
+                    <a class="list-group-item" href='../meeting/meetingInforAction'>
                         会议信息
                     </a>
-
-                    <a class="list-group-item active" href='./userinformationAction'>
+                    <a class="list-group-item" href='../user/userinformationAction'>
                         个人信息
                     </a>
 
                 </div>
             </div>
 
-      <%
-		   			if(Integer.parseInt(limit)>1){
-		 		 %>
+        <% 
+		  if(Integer.parseInt(limit)>1){
+		 %>
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item" href='./usercheckAction'>
+                    <a class="list-group-item"  href='../user/usercheckAction'>
                         用户注册审查<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item" href="'meeting/showWaitMeetingAction'">
+                    <a class="list-group-item" href='../meeting/showWaitMeetingAction'>
                         会议审查<span class="badge">10</span>
                     </a>
                     <a class="list-group-item" href="../department/deparManaAction_show">
                         部门信息管理
                     </a>
-                    <a class="list-group-item" href="../admin/meeting_room_management.jsp">
+                    <a class="list-group-item" href="/MRMS/meetingRoom/showMeetingRoomAction">
                         会议室信息管理
                     </a>
-                    <a class="list-group-item" href="./usermanageAction">
+                    <a class="list-group-item" href="../user/usermanageAction">
                         用户信息管理
                     </a>
                 </div>
-            </div> <%}  if(Integer.parseInt(limit)>2){%>
+            </div><%}  if(Integer.parseInt(limit)>2){%>
 
 
             <div class="panel-body">

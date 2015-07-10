@@ -139,6 +139,8 @@
 		<action name="meetingRoomGetAction" class="meetingRoomGetAction">
 			<result name="success">
 				<param name="location">/meeting/meeting_room_choose_complete.jsp</param>
+		</result>
+		</action>
 		<action name="meetingApplyPrepare" class="meetingApplyPrepare">
 			<result name="success">
 				<param name="location">/meeting/meeting_apply.jsp</param>

@@ -1,14 +1,24 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>  
 <%@ page contentType="text/html;charset=utf-8"%>
+<%@page import="javax.servlet.http.HttpServletRequest"%>
+<%@page import="org.apache.struts2.ServletActionContext"%>
+<%@page import="model.TbUser"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+<!--会议室选择页面-->
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../lib/system/css/left_menu.css" rel="stylesheet" />
+    <link href="/MRMS/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/MRMS/lib/system/css/left_menu.css" rel="stylesheet" />
+    <link href="/MRMS/meeting/css/pick.css" rel="stylesheet"/>
 </head>
 <body>
+<% 
+	 HttpServletRequest request1=ServletActionContext.getRequest();
+		   String limit=(String) request1.getSession().getAttribute("limit");
+		   TbUser user=(TbUser) request1.getSession().getAttribute("user");%>
 <!-- 顶部导航栏开始 -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -28,12 +38,12 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img height="20" class="dropdown-image" src="../lib/system/img/silverHugh.jpg">
-                        SilverHugh
+                         <%=user.getName() %>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="../user/profile.jsp">修改个人信息</a></li>
-                        <li><a href="../index.jsp">注销</a></li>
+                        <li><a href='./userinformationAction'>修改个人信息</a></li>
+                        <li><a href="../deletesessionAction">注销</a></li>
                     </ul>
                 </li>
             </ul>
@@ -47,45 +57,47 @@
         <div class="panel-group" id="accordion">
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item" href="../meeting/meeting_apply.jsp">
+                 <a class="list-group-item" href='../meeting/meetingApplyPrepare'>
                         会议申请
                     </a>
-                    <a class="list-group-item" href="../meeting/meeting_room_pick.jsp">
+                    <a class="list-group-item" href="/MRMS/meeting/meetingForRoomAction">
                         会议室选择
                     </a>
-                    <a class="list-group-item" href="../user/notice.jsp">
+                    <a class="list-group-item" href="../user/shownoticeAction">
                         通知<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item" href="../meeting/meeting_info_list.jsp">
+                    <a class="list-group-item" href='../meeting/meetingInforAction'>
                         会议信息
                     </a>
-                    <a class="list-group-item" href="../user/profile.jsp">
+                    <a class="list-group-item" href='../user/userinformationAction'>
                         个人信息
                     </a>
 
                 </div>
             </div>
 
-
+         <% 
+		  if(Integer.parseInt(limit)>1){
+		 %>
             <div class="panel-body">
                 <div class="list-group" style="margin:0">
-                    <a class="list-group-item" href="../admin/signup_check.jsp">
+                    <a class="list-group-item"  href='../user/usercheckAction'>
                         用户注册审查<span class="badge">20</span>
                     </a>
-                    <a class="list-group-item" href="../admin/meeting_apply_check.jsp">
+                    <a class="list-group-item" href='../meeting/showWaitMeetingAction'>
                         会议审查<span class="badge">10</span>
                     </a>
-                    <a class="list-group-item" href="../admin/department_management.jsp">
+                    <a class="list-group-item" href="../department/deparManaAction_show">
                         部门信息管理
                     </a>
-                    <a class="list-group-item active" href="../admin/meeting_room_management.jsp">
+                    <a class="list-group-item" href="/MRMS/meetingRoom/showMeetingRoomAction">
                         会议室信息管理
                     </a>
-                    <a class="list-group-item" href="../admin/user_management.jsp">
+                    <a class="list-group-item" href="../user/usermanageAction">
                         用户信息管理
                     </a>
                 </div>
-            </div>
+            </div><%}  if(Integer.parseInt(limit)>2){%>
 
 
             <div class="panel-body">
@@ -94,7 +106,7 @@
                         权限管理
                     </a>
                 </div>
-            </div>
+            </div><%} %>
 
         </div>
     </div>
